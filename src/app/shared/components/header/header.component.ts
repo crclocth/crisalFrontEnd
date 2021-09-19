@@ -7,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public telephone: string;
-  public direction: string;
+  public address: string;
   public mail: string;
 
   constructor() {
     this.telephone = '+5632 346 5021  +569 9081 9320';
-    this.direction =
-      'Arlegui 263, Piso 7, Oficina 701 - Ed. Gala - Viña del Mar';
+    this.address = 'Arlegui 263, Piso 7, Oficina 701 - Ed. Gala - Viña del Mar';
     this.mail = 'contacto@crisalsaludlaboral.cl';
   }
 
