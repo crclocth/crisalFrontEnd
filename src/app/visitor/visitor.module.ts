@@ -10,6 +10,8 @@ import { AboutUsScreenComponent } from './screens/about-us-screen/about-us-scree
 import { NewsScreenComponent } from './screens/news-screen/news-screen.component';
 import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
 import { AppointmentScreenComponent } from './screens/appointment-screen/appointment-screen.component';
+import { DownloadCertificatesScreenComponent } from './screens/download-certificates-screen/download-certificates-screen.component';
+import { ValidateCertificatesScreenComponent } from './screens/validate-certificates-screen/validate-certificates-screen.component';
 
 const components = [
   HomeScreenComponent,
@@ -21,6 +23,8 @@ const components = [
   NewsScreenComponent,
   ContactScreenComponent,
   AppointmentScreenComponent,
+  DownloadCertificatesScreenComponent,
+  ValidateCertificatesScreenComponent,
 ];
 
 @NgModule({
