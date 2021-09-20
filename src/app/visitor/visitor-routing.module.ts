@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutUsScreenComponent } from './screens/about-us-screen/about-us-screen.component';
 import { AppointmentScreenComponent } from './screens/appointment-screen/appointment-screen.component';
 import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
+import { DownloadCertificatesScreenComponent } from './screens/download-certificates-screen/download-certificates-screen.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { NewsScreenComponent } from './screens/news-screen/news-screen.component';
 import { ServicesScreenComponent } from './screens/services-screen/services-screen.component';
+import { ValidateCertificatesScreenComponent } from './screens/validate-certificates-screen/validate-certificates-screen.component';
 import { VisitorModule } from './visitor.module';
 
 const routes: Routes = [
@@ -19,6 +21,14 @@ const routes: Routes = [
       { path: 'agendar-hora', component: AppointmentScreenComponent },
       { path: 'noticias', component: NewsScreenComponent },
       { path: 'contactenos', component: ContactScreenComponent },
+      {
+        path: 'descargar-certificado',
+        component: DownloadCertificatesScreenComponent,
+      },
+      {
+        path: 'validar-certificado',
+        component: ValidateCertificatesScreenComponent,
+      },
     ],
   },
 ];
