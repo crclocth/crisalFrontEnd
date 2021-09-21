@@ -12,6 +12,9 @@ import { ContactScreenComponent } from './screens/contact-screen/contact-screen.
 import { AppointmentScreenComponent } from './screens/appointment-screen/appointment-screen.component';
 import { DownloadCertificatesScreenComponent } from './screens/download-certificates-screen/download-certificates-screen.component';
 import { ValidateCertificatesScreenComponent } from './screens/validate-certificates-screen/validate-certificates-screen.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { MapComponent } from './components/map/map.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 const components = [
   HomeScreenComponent,
@@ -25,6 +28,8 @@ const components = [
   AppointmentScreenComponent,
   DownloadCertificatesScreenComponent,
   ValidateCertificatesScreenComponent,
+  CarouselComponent,
+  //GoogleMapsModule,
 ];
 
 @NgModule({
