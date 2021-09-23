@@ -15,6 +15,7 @@ import { ValidateCertificatesScreenComponent } from './screens/validate-certific
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { MapComponent } from './components/map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ClientsComponent } from './components/clients/clients.component';
 
 const components = [
   HomeScreenComponent,
@@ -30,6 +31,8 @@ const components = [
   ValidateCertificatesScreenComponent,
   CarouselComponent,
   //GoogleMapsModule,
+  MapComponent,
+  ClientsComponent,
 ];
 
 @NgModule({
