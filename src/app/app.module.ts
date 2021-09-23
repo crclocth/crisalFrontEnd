@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,13 @@ const components = [AppComponent];
 
 @NgModule({
   declarations: [...components],
-  imports: [BrowserModule, AppRoutingModule, VisitorModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    VisitorModule,
+    SharedModule,
+    GoogleMapsModule,
+  ],
   providers: [],
   bootstrap: [...components],
 })
