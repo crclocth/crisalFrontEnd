@@ -15,6 +15,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { MapComponent } from './components/map/map.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { BatteryComponent } from './components/battery/battery.component';
+import { NewComponent } from './components/new/new.component';
 
 const components = [
   HomeScreenComponent,
@@ -32,6 +34,8 @@ const components = [
   MapComponent,
   ClientsComponent,
   EmployeeComponent,
+  BatteryComponent,
+  NewComponent,
 ];
 
 @NgModule({
