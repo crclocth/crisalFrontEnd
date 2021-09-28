@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { VisitorRoutingModule } from './visitor-routing.module';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { SharedModule } from '../shared/shared.module';
@@ -14,8 +13,8 @@ import { DownloadCertificatesScreenComponent } from './screens/download-certific
 import { ValidateCertificatesScreenComponent } from './screens/validate-certificates-screen/validate-certificates-screen.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { MapComponent } from './components/map/map.component';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { ClientsComponent } from './components/clients/clients.component';
+import { EmployeeComponent } from './components/employee/employee.component';
 
 const components = [
   HomeScreenComponent,
@@ -30,9 +29,9 @@ const components = [
   DownloadCertificatesScreenComponent,
   ValidateCertificatesScreenComponent,
   CarouselComponent,
-  //GoogleMapsModule,
   MapComponent,
   ClientsComponent,
+  EmployeeComponent,
 ];
 
 @NgModule({
