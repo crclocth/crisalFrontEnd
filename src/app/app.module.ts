@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { VisitorModule } from './visitor/visitor.module';
+import { AdminModule } from './admin/admin.module';
 
 const components = [AppComponent];
 
@@ -16,6 +17,7 @@ const components = [AppComponent];
     VisitorModule,
     SharedModule,
     GoogleMapsModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [...components],
