@@ -15,6 +15,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then(
+        (AdminModule) => AdminModule.AdminModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'visitor/inicio',
   },
