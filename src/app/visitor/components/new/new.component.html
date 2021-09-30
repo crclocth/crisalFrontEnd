@@ -1,8 +1,22 @@
-<div class="container-fluid">
-  <div class="row">
-
+<div class="container-fluid p-5">
+  <div class="row mb-2">
+    <div class="col-md-1 col-12">
+      <div class="row">
+        {{day}}
+      </div>
+      <div class="row">
+        {{month}}
+      </div>
+    </div>
+    <div class="col-md-10 col-12 align-items-center verticalLine">
+      <h5>{{title}}</h5>
+    </div>
   </div>
-  <div class="row text-start p-5">{{values}}</div>
-
+  <div class="row text-start">{{values}}</div>
+  <div class="row text-start">
+    <div class="col-12 mt-1 p-0">
+      <button class="btn" type="submit" style="background-color: #309CEA; color: white;">LEER MÁS</button>
+    </div>
+  </div>
 </div>
 
