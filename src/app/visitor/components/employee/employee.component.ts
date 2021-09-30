@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-employee',
@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.less'],
 })
 export class EmployeeComponent implements OnInit {
-  public name: string;
+  @Input() name: string;
+  @Input() description: string;
+  //public name: string;
   public profession: string;
-  public description: string;
+  //public description: string;
 
   constructor() {
     this.name = 'nombre';
