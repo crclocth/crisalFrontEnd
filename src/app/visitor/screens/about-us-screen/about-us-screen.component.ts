@@ -23,4 +23,29 @@ export class AboutUsScreenComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  dummy = [
+    {
+      _id: '1',
+      name: 'organización 1',
+      description:
+        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus modi recusandae suscipit accusantium. Facilis corporisaccusamus commodi nisi necessitatibus ad labore modi dolor autem, unde fuga itaque quae ex expedita.',
+    },
+    {
+      _id: '2',
+      name: 'organización 2',
+      description: 'asdasdasdads',
+    },
+    {
+      _id: '3',
+      name: 'organización 3',
+      description: 'sadsadasd',
+    },
+    {
+      _id: '4',
+      name: 'organización 4',
+      description:
+        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus modi recusandae suscipit accusantium. Facilis corporisaccusamus commodi nisi necessitatibus ad labore modi dolor autem, unde fuga itaque quae ex expedita.',
+    },
+  ];
 }

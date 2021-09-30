@@ -8,10 +8,11 @@
   </div>
 </div>
 
-<!-- <app-employee></app-employee>
-<app-employee></app-employee>
-<app-employee></app-employee>
- -->
+
+<div class="row space">
+<ng-container *ngFor="let item of dummy"><app-employee [name]="item.name" [description]="item.description"></app-employee></ng-container>
+</div>
+
 
 <div class="container-fluid box mt-4 pt-4 mb-4">
   <div class="row text-center">
