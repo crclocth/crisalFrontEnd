@@ -27,11 +27,11 @@ export class AboutUsScreenComponent implements OnInit {
   dummy = [
     {
       _id: '1',
-      name: 'organización 1',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus modi recusandae suscipit accusantium. Facilis corporisaccusamus commodi nisi necessitatibus ad labore modi dolor autem, unde fuga itaque quae ex expedita.',
+      name: 'Nombre',
+      profession: 'Profesión',
+      description: 'Descripción',
     },
-    {
+    /* {
       _id: '2',
       name: 'organización 2',
       description: 'asdasdasdads',
@@ -46,6 +46,6 @@ export class AboutUsScreenComponent implements OnInit {
       name: 'organización 4',
       description:
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus modi recusandae suscipit accusantium. Facilis corporisaccusamus commodi nisi necessitatibus ad labore modi dolor autem, unde fuga itaque quae ex expedita.',
-    },
+    }, */
   ];
 }

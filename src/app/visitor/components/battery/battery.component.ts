@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-battery',
   templateUrl: './battery.component.html',
-  styleUrls: ['./battery.component.less']
+  styleUrls: ['./battery.component.less'],
 })
 export class BatteryComponent implements OnInit {
+  @Input() name: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    this.name = 'nombre';
   }
 
+  ngOnInit(): void {}
 }

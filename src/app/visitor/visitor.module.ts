@@ -17,12 +17,12 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { BatteryComponent } from './components/battery/battery.component';
 import { NewComponent } from './components/new/new.component';
+import { WorkerComponent } from './components/worker/worker.component';
 
 const components = [
   HomeScreenComponent,
   VisitorComponent,
   AboutUsScreenComponent,
-  ServicesScreenComponent,
   ServicesScreenComponent,
   AboutUsScreenComponent,
   NewsScreenComponent,
@@ -36,6 +36,7 @@ const components = [
   EmployeeComponent,
   BatteryComponent,
   NewComponent,
+  WorkerComponent,
 ];
 
 @NgModule({
