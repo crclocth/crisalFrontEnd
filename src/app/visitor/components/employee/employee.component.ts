@@ -9,7 +9,7 @@ export class EmployeeComponent implements OnInit {
   @Input() name: string;
   @Input() description: string;
   //public name: string;
-  public profession: string;
+  @Input() profession: string;
   //public description: string;
 
   constructor() {
