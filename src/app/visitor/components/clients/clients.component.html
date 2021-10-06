@@ -4,32 +4,64 @@
   </div>
 </div>
 
-<!--
-<div class="multi-carousel" data-interval="2000">
-  <div class="multi-carousel-inner">
-    <div class="multi-carousel-item">
-      <img src="https://mdbootstrap.com/img/Photos/Thumbnails/Slides/1.jpg" alt="Gallery image 1" class="w-100">
-    </div>
-    <div class="multi-carousel-item">
-      <img src="https://mdbootstrap.com/img/Photos/Thumbnails/Slides/2.jpg" alt="Gallery image 2" class="w-100">
-    </div>
-    <div class="multi-carousel-item">
-      <img src="https://mdbootstrap.com/img/Photos/Thumbnails/Slides/3.jpg" alt="Gallery image 3" class="w-100">
-    </div>
-    <div class="multi-carousel-item">
-      <img src="https://mdbootstrap.com/img/Photos/Thumbnails/Slides/4.jpg" alt="Gallery image 4" class="w-100">
+<div class="container-fluid mb-5">
+  <div class="row align-items-center justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-12">
+        <swiper
+          [breakpoints]="breakPoints"
+          [speed]="7000"
+          [loop]="true"
+          [autoplay]="{
+            delay: 3000,
+            disableOnInteraction: false
+          }"
+          [centeredSlides]="true"
+          [loopFillGroupWithBlank]="true"
+        >
+        <ng-template swiperSlide><app-card-certificate></app-card-certificate></ng-template>
+        <ng-template swiperSlide>Slide 2</ng-template>
+        <ng-template swiperSlide>Slide 3</ng-template>
+        <ng-template swiperSlide>Slide 4</ng-template>
+        <ng-template swiperSlide>Slide 5</ng-template>
+        <ng-template swiperSlide>Slide 6</ng-template>
+        <ng-template swiperSlide>Slide 7</ng-template>
+      </swiper>
     </div>
   </div>
-  <a class="carousel-control-prev" tabindex="0" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </a>
-  <a class="carousel-control-next" tabindex="0" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </a>
-</div> -->
+</div>
+</div>
 
 <div class="container-fluid mb-5">
   <div class="row align-items-center text-center">
     <h3>NUESTROS CLIENTES</h3>
   </div>
+</div>
+
+<div class="container-fluid mb-5">
+  <div class="row align-items-center justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-12">
+        <swiper
+          [breakpoints]="breakPoints"
+          [speed]="7000"
+          [loop]="true"
+          [autoplay]="{
+            delay: 3000,
+            disableOnInteraction: false
+          }"
+          [centeredSlides]="true"
+          [loopFillGroupWithBlank]="true"
+        >
+        <ng-template swiperSlide><app-card-certificate></app-card-certificate></ng-template>
+        <ng-template swiperSlide>Slide 2</ng-template>
+        <ng-template swiperSlide>Slide 3</ng-template>
+        <ng-template swiperSlide>Slide 4</ng-template>
+        <ng-template swiperSlide>Slide 5</ng-template>
+        <ng-template swiperSlide>Slide 6</ng-template>
+        <ng-template swiperSlide>Slide 7</ng-template>
+      </swiper>
+    </div>
+  </div>
+</div>
 </div>

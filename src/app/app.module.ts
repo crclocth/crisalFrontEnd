@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { VisitorModule } from './visitor/visitor.module';
 import { AdminModule } from './admin/admin.module';
+import { SwiperModule } from 'swiper/angular';
 
 const components = [AppComponent];
 
@@ -18,6 +19,7 @@ const components = [AppComponent];
     SharedModule,
     GoogleMapsModule,
     AdminModule,
+    SwiperModule,
   ],
   providers: [],
   bootstrap: [...components],
