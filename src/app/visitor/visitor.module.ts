@@ -18,6 +18,9 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { BatteryComponent } from './components/battery/battery.component';
 import { NewComponent } from './components/new/new.component';
 import { WorkerComponent } from './components/worker/worker.component';
+import { SwiperModule } from 'swiper/angular';
+import { CardCertificateComponent } from './components/card-certificate/card-certificate.component';
+import { CardClientComponent } from './components/card-client/card-client.component';
 
 const components = [
   HomeScreenComponent,
@@ -37,10 +40,12 @@ const components = [
   BatteryComponent,
   NewComponent,
   WorkerComponent,
+  CardCertificateComponent,
+  CardClientComponent,
 ];
 
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, VisitorRoutingModule, SharedModule],
+  imports: [CommonModule, VisitorRoutingModule, SharedModule, SwiperModule],
 })
 export class VisitorModule {}
