@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { VisitorModule } from './visitor/visitor.module';
 import { AdminModule } from './admin/admin.module';
 import { SwiperModule } from 'swiper/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const components = [AppComponent];
 
@@ -14,6 +15,7 @@ const components = [AppComponent];
   declarations: [...components],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     VisitorModule,
     SharedModule,
