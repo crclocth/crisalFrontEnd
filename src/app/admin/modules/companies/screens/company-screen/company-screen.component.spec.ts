@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HistoryScreenComponent } from './history-screen.component';
+import { CompanyScreenComponent } from './company-screen.component';
 
-describe('HistoryScreenComponent', () => {
-  let component: HistoryScreenComponent;
-  let fixture: ComponentFixture<HistoryScreenComponent>;
+describe('CompanyScreenComponent', () => {
+  let component: CompanyScreenComponent;
+  let fixture: ComponentFixture<CompanyScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoryScreenComponent ]
+      declarations: [ CompanyScreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HistoryScreenComponent);
+    fixture = TestBed.createComponent(CompanyScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
