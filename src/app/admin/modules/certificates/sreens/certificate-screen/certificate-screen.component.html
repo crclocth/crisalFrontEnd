@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" [ngSwitch]="getCurrentRoute()">
+      <div *ngSwitchCase="'crear-certificado'">Crear Certificado</div>
+      <div *ngSwitchCase="'historico'">Certificados Historicos</div>
+    </div>
+  </div>
+</div>
