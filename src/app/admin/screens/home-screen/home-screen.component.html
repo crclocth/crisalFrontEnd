@@ -5,13 +5,10 @@
   </mat-toolbar>
   <mat-sidenav-container class="example-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <!------------------------------------------------------------------------------------------------------->
         <app-accordion></app-accordion>
-      <!------------------------------------------------------------------------------------------------------->
-
     </mat-sidenav>
     <mat-sidenav-content>
-       aa
+       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
