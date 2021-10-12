@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-services-screen',
@@ -15,5 +15,18 @@ export class ServicesScreenComponent implements OnInit {
       _id: '1',
       name: 'Nombre de la batería',
     },
+    {
+      _id: '2',
+      name: 'Nombre de la batería',
+    },
+    {
+      _id: '3',
+      name: 'Nombre de la batería',
+    },
   ];
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    return window.innerWidth;
+  }
 }

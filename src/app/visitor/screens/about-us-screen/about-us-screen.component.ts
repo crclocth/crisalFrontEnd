@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-about-us-screen',
@@ -31,21 +31,34 @@ export class AboutUsScreenComponent implements OnInit {
       profession: 'Profesión',
       description: 'Descripción',
     },
-    /* {
+    {
       _id: '2',
-      name: 'organización 2',
-      description: 'asdasdasdads',
+      name: 'Nombre',
+      profession: 'Profesión',
+      description: 'Descripción',
     },
     {
       _id: '3',
-      name: 'organización 3',
-      description: 'sadsadasd',
+      name: 'Nombre',
+      profession: 'Profesión',
+      description: 'Descripción',
     },
     {
       _id: '4',
-      name: 'organización 4',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus modi recusandae suscipit accusantium. Facilis corporisaccusamus commodi nisi necessitatibus ad labore modi dolor autem, unde fuga itaque quae ex expedita.',
-    }, */
+      name: 'Nombre',
+      profession: 'Profesión',
+      description: 'Descripción',
+    },
+    {
+      _id: '5',
+      name: 'Nombre',
+      profession: 'Profesión',
+      description: 'Descripción',
+    },
   ];
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    return window.innerWidth;
+  }
 }
