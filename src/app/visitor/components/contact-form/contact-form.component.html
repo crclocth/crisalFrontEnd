@@ -1,0 +1,66 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+      <div class="row text-center justify-content-center align-items-center">
+        <h5>CONTÁCTENOS</h5>
+      </div>
+      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+    <mat-card-content>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>NOMBRE</mat-label>
+            <input matInput placeholder="NOMBRE COMPLETO" formControlName="firstName" required>
+            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+              Nombre <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>CORREO</mat-label>
+            <input matInput placeholder="CORREO ELECTRÓNICO" formControlName="address" required>
+            <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+              CORREO <strong>REQUERIDO</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['address'].errors?.pattern">
+              FORMATO DE CORREO ELECTRÓNICO INCORRECTO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>ASUNTO</mat-label>
+            <input matInput placeholder="ASUNTO" formControlName="subject" required>
+            <mat-error *ngIf="addressForm.controls['subject'].hasError('required')">
+              ASUNTO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>MENSAJE</mat-label>
+            <textarea matInput placeholder="MENSAJE" formControlName="message"></textarea>
+            <mat-error *ngIf="addressForm.controls['message'].hasError('required')">
+              MENSAJE <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center mt-4">
+          <button mat-raised-button class="mb-4" type="submit" style="color: white;" [disabled]="!addressForm.valid"
+            [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+          >ENVIAR</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>
