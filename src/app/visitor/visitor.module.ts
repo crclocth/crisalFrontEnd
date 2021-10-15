@@ -21,6 +21,16 @@ import { WorkerComponent } from './components/worker/worker.component';
 import { SwiperModule } from 'swiper/angular';
 import { CardCertificateComponent } from './components/card-certificate/card-certificate.component';
 import { CardClientComponent } from './components/card-client/card-client.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
+import { ValidateFormComponent } from './components/validate-form/validate-form.component';
+import { DownloadFormComponent } from './components/download-form/download-form.component';
 
 const components = [
   HomeScreenComponent,
@@ -42,10 +52,25 @@ const components = [
   WorkerComponent,
   CardCertificateComponent,
   CardClientComponent,
+  ContactFormComponent,
+  AppointmentFormComponent,
+  ValidateFormComponent,
+  DownloadFormComponent,
 ];
 
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, VisitorRoutingModule, SharedModule, SwiperModule],
+  imports: [
+    CommonModule,
+    VisitorRoutingModule,
+    SharedModule,
+    SwiperModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule,
+  ],
 })
 export class VisitorModule {}
