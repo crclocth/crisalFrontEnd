@@ -1,0 +1,216 @@
+<div class="container-fluid mt-4 mb-4">
+  <div class="row text-center justify-content-center align-items-center">
+    <h5>AGENDAR HORA</h5>
+  </div>
+  <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button class="btn m-2" type="button" style="color: white;background-color: #049CDB;" (click)="clickCompany('yes')">EMPRESA</button>
+      <button class="btn mr-2" type="button" style="color: white;background-color: #049CDB;" (click)="clickCompany('no')">PARTICULAR</button>
+    </div>
+  </div>
+  <ng-container *ngIf= "this.option == 'yes'">
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+        <mat-card-content>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-12">
+              <h5>DATOS DE LA EMPRESA</h5>
+            </div>
+          </div>
+          <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>NOMBRE DE LA EMPRESA</mat-label>
+                <input matInput placeholder="NOMBRE" formControlName="firstName" required>
+                <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+                  Nombre <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>RUT DE LA EMPRESA</mat-label>
+                <input matInput placeholder="ASUNTO" formControlName="subject" required>
+                <mat-error *ngIf="addressForm.controls['subject'].hasError('required')">
+                  ASUNTO <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>FAENA</mat-label>
+                <input matInput placeholder="ASUNTO" formControlName="subject" required>
+                <mat-error *ngIf="addressForm.controls['subject'].hasError('required')">
+                  ASUNTO <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>CORREO ELECTRÓNICO</mat-label>
+                <input matInput placeholder="CORREO" formControlName="address" required>
+                <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+                  CORREO <strong>REQUERIDO</strong>
+                </mat-error>
+                <mat-error *ngIf="addressForm.controls['address'].errors?.pattern">
+                  CORasdsdREO <strong>REQUEasdRIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-12 text-center  mt-3">
+              <label for="validationTooltip03" class="form-label">FECHA</label>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-12">
+              <h5>DATOS DE LOS TRABAJADORES</h5>
+            </div>
+          </div>
+          <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-12">
+              <div class="row text-center justify-content-center align-items-center">
+                <div class="col-3">NOMBRE COMPLETO</div>
+                <div class="col-3">RUT</div>
+                <div class="col-3">CARGO</div>
+                <div class="col-3">BATERÍA</div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-2 mb-4">
+            <div class="col-md-6 col-12">
+              <ng-container *ngFor="let item of dummy"><app-worker></app-worker></ng-container>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mt-4">
+              <button class="btn mb-4" type="submit" style="background-color: #309CEA; color: white;"><i class="fas fa-plus"></i></button> <!-- (click)="addWorker()" -->
+            </div>
+          </div>
+          <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+          </mat-card-content>
+          <mat-card-actions>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mt-4">
+              <button mat-raised-button class="mb-4" type="submit" style="background-color: #309CEA; color: white;">ENVIAR</button>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </ng-container>
+<!--------------------------------------------------------------------------->
+  <ng-container *ngIf= "this.option == 'no'">
+    <form [formGroup]="addressForm2" novalidate (ngSubmit)="onSubmit()">
+      <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+        <mat-card-content>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-12">
+              <h5>DATOS DEL TRABAJADOR</h5>
+            </div>
+          </div>
+          <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>NOMBRE COMPLETO</mat-label>
+                <input matInput placeholder="NOMBRE COMPLETO" formControlName="partName" required>
+                <mat-error *ngIf="addressForm2.controls['partName'].hasError('required')">
+                  Nombre <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>RUT</mat-label>
+                <input matInput placeholder="Ej: 11111111-1" formControlName="partRut" required>
+                <mat-error *ngIf="addressForm2.controls['partRut'].hasError('required')">
+                  RUT <strong>REQUERIDO</strong>
+                </mat-error>
+                <mat-error *ngIf="addressForm2.controls['partRut'].errors?.pattern">
+                  FORMATO DE RUT INCORRECTO <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>CORREO ELECTRÓNICO</mat-label>
+                <input matInput placeholder="CORREO" formControlName="partMail" required>
+                <mat-error *ngIf="addressForm2.controls['partMail'].hasError('required')">
+                  CORREO <strong>REQUERIDO</strong>
+                </mat-error>
+                <mat-error *ngIf="addressForm2.controls['partMail'].errors?.pattern">
+                  FORMATO DE CORREO ELECTRÓNICO INCORRECTO <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row text-center justify-content-center align-items-center">
+            <div class="col-md-6 col-12 text-center mt-3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>BATERÍA</mat-label>
+                <input matInput placeholder="BATERÍA" formControlName="partBattery" required>
+                <mat-error *ngIf="addressForm2.controls['partBattery'].hasError('required')">
+                  ASUNTO <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-12 text-center  mt-3">
+              <label for="validationTooltip03" class="form-label">FECHA</label>
+            </div>
+          </div>
+          <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mt-4">
+              <button mat-raised-button class="mb-4" type="submit" style="color: white;" (click)="validateRut()" [disabled]="!addressForm2.valid"
+              [ngStyle]="{'background-color': !addressForm2.valid ? 'gray' : '#309CEA'}">ENVIAR</button>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </ng-container>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
