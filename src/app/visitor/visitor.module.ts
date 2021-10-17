@@ -31,6 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
 import { ValidateFormComponent } from './components/validate-form/validate-form.component';
 import { DownloadFormComponent } from './components/download-form/download-form.component';
+import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
+import { AdminModule } from '../admin/admin.module';
 
 const components = [
   HomeScreenComponent,
@@ -56,6 +58,7 @@ const components = [
   AppointmentFormComponent,
   ValidateFormComponent,
   DownloadFormComponent,
+  LoginScreenComponent,
 ];
 
 @NgModule({
@@ -71,6 +74,7 @@ const components = [
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
+    AdminModule,
   ],
 })
 export class VisitorModule {}
