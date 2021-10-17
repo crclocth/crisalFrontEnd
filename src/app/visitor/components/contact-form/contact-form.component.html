@@ -9,10 +9,11 @@
         <div class="col-md-6 col-12 text-center mt-3">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>NOMBRE</mat-label>
-            <input matInput placeholder="NOMBRE COMPLETO" formControlName="firstName" required>
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+            <input matInput placeholder="NOMBRE COMPLETO" formControlName="name" required>
+            <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
               Nombre <strong>REQUERIDO</strong>
             </mat-error>
+
           </mat-form-field>
         </div>
       </div>
@@ -20,11 +21,11 @@
         <div class="col-md-6 col-12 text-center mt-3">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>CORREO</mat-label>
-            <input matInput placeholder="CORREO ELECTRÓNICO" formControlName="address" required>
-            <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+            <input matInput placeholder="CORREO ELECTRÓNICO" formControlName="mail" required>
+            <mat-error *ngIf="addressForm.controls['mail'].hasError('required')">
               CORREO <strong>REQUERIDO</strong>
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['address'].errors?.pattern">
+            <mat-error *ngIf="addressForm.controls['mail'].errors?.pattern">
               FORMATO DE CORREO ELECTRÓNICO INCORRECTO <strong>REQUERIDO</strong>
             </mat-error>
           </mat-form-field>
