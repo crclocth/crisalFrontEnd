@@ -1,0 +1,97 @@
+<div class="container-fluid ">
+  <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+        <div class="row text-center justify-content-center align-items-center">
+          <h5>Crear Noticia</h5>
+        </div>
+        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+      <mat-card-content>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Título
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Título</mat-label>
+              <input matInput placeholder="Título" formControlName="title" required>
+              <mat-error *ngIf="addressForm.controls['title'].hasError('required')">
+                Título <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Bajada
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Bajada</mat-label>
+              <input matInput placeholder="Bajada" formControlName="lead" required>
+              <mat-error *ngIf="addressForm.controls['lead'].hasError('required')">
+                Bajada <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Fecha
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Fecha</mat-label>
+              <input matInput placeholder="Fecha" formControlName="lead" required>
+              <mat-error *ngIf="addressForm.controls['lead'].hasError('required')">
+                Fecha <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Contenido
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Contenido</mat-label>
+              <textarea matInput placeholder="Contenido" formControlName="content" required></textarea>
+              <mat-error *ngIf="addressForm.controls['content'].hasError('required')">
+                Contenido <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Imagen
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Imagen</mat-label>
+              <textarea matInput placeholder="Imagen" formControlName="image" required></textarea>
+              <mat-error *ngIf="addressForm.controls['image'].hasError('required')">
+                Imagen <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+        <div class="row justify-content-center">
+          <div class="col-12 text-center mt-4">
+            <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
+              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+            >DESCARGAR</button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

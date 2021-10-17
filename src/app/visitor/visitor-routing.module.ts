@@ -5,7 +5,7 @@ import { AppointmentScreenComponent } from './screens/appointment-screen/appoint
 import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
 import { DownloadCertificatesScreenComponent } from './screens/download-certificates-screen/download-certificates-screen.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
-import { LoginComponent } from './screens/login/login.component';
+import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { NewsScreenComponent } from './screens/news-screen/news-screen.component';
 import { ServicesScreenComponent } from './screens/services-screen/services-screen.component';
 import { ValidateCertificatesScreenComponent } from './screens/validate-certificates-screen/validate-certificates-screen.component';
@@ -31,7 +31,7 @@ const routes: Routes = [
       },
       {
         path: 'plataforma',
-        component: LoginComponent,
+        component: LoginScreenComponent,
       },
     ],
   },

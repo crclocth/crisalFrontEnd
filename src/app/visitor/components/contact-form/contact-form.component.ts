@@ -12,8 +12,8 @@ export class ContactFormComponent {
 
   constructor(private fb: FormBuilder) {
     this.addressForm = this.fb.group({
-      firstName: [null, Validators.required],
-      address: [
+      name: [null, Validators.required],
+      mail: [
         '',
         [
           Validators.required,
@@ -26,11 +26,11 @@ export class ContactFormComponent {
     this.hasUnitNumber = false;
   }
 
-  get firstName() {
-    return this.addressForm.get('firstName')?.value;
+  get name() {
+    return this.addressForm.get('name')?.value;
   }
-  get address() {
-    return this.addressForm.get('address')?.value;
+  get mail() {
+    return this.addressForm.get('mail')?.value;
   }
   get subject() {
     return this.addressForm.get('subject')?.value;
