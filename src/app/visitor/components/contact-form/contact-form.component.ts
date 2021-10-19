@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ContactFormComponent {
   public hasUnitNumber: boolean;
   public addressForm: FormGroup;
+  public maxInputMessage: number;
+  public maxInputName: number;
+  public maxInputMail: number;
+  public maxInputsubject: number;
 
   constructor(private fb: FormBuilder) {
     this.addressForm = this.fb.group({
@@ -24,6 +28,10 @@ export class ContactFormComponent {
       message: [null, Validators.required],
     });
     this.hasUnitNumber = false;
+    this.maxInputMessage = 250;
+    this.maxInputName = 120;
+    this.maxInputMail = 320;
+    this.maxInputsubject = 30;
   }
 
   get name() {
@@ -37,6 +45,15 @@ export class ContactFormComponent {
   }
   get message() {
     return this.addressForm.get('message')?.value;
+  }
+
+  get form() {
+    return this.addressForm.controls;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    return window.innerWidth;
   }
 
   onSubmit(): void {
