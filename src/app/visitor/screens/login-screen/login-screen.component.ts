@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -34,6 +34,11 @@ export class LoginScreenComponent {
 
   public goToHistoryScreen(): void {
     this.router.navigate(['/admin']);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    return window.innerWidth;
   }
 
   onSubmit(): void {
