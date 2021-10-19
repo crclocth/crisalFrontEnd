@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { rutTools } from 'prettyutils';
 
@@ -40,6 +40,10 @@ export class DownloadFormComponent {
     console.log(result, this.addressForm.valid);
   }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    return window.innerWidth;
+  }
   onSubmit(): void {
     alert('Thanks!');
   }

@@ -4,7 +4,11 @@
         <div class="col-md-6 col-12 mb-4">
             <img src="/assets/image/logo.jpg" alt="logo CRISAL" width="176.5" height="80.76">
         </div>
-        <h5>Login</h5>
+        <div class="row text-center justify-content-center align-items-center p-3">
+          <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <h5 class="mt-2">Login</h5>
+          </div>
+        </div>
       </div>
       <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
     <mat-card-content>
@@ -26,7 +30,7 @@
         <div class="col-md-6 col-12 text-center mt-3">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>CONTRASEÑA:</mat-label>
-            <input matInput placeholder="" formControlName="password" type="password" required>
+            <input matInput placeholder="" formControlName="password" type="password" [maxlength]="20" required>
             <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
               CÓDIGO <strong>REQUERIDO</strong>
             </mat-error>

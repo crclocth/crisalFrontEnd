@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col" [ngSwitch]="getCurrentRoute()">
-      <div *ngSwitchCase="'agregar-empleado'">Agregar Empleados</div>
+      <div *ngSwitchCase="'agregar-empleado'"><app-add-employee-screen></app-add-employee-screen></div>
       <div *ngSwitchCase="'historico'">Empleados</div>
     </div>
   </div>

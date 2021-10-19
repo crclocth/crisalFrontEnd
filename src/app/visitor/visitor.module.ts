@@ -33,6 +33,9 @@ import { ValidateFormComponent } from './components/validate-form/validate-form.
 import { DownloadFormComponent } from './components/download-form/download-form.component';
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { AdminModule } from '../admin/admin.module';
+import { NewsDetailComponent } from './components/news-detail/news-detail.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const components = [
   HomeScreenComponent,
@@ -59,6 +62,7 @@ const components = [
   ValidateFormComponent,
   DownloadFormComponent,
   LoginScreenComponent,
+  NewsDetailComponent,
 ];
 
 @NgModule({
@@ -75,6 +79,8 @@ const components = [
     MatCardModule,
     ReactiveFormsModule,
     AdminModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
 })
 export class VisitorModule {}

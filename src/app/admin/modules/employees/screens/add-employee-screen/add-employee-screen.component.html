@@ -2,8 +2,8 @@
   <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
     <mat-card class="shipping-card" style="background-color: #E4E4E4;">
       <div class="row text-center justify-content-center align-items-center p-3">
-        <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-          <h5 class="mt-2">Crear Noticia</h5>
+        <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+          <h5 class="mt-2">Agregar Empleado</h5>
         </div>
       </div>
       <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
@@ -11,14 +11,14 @@
         <div class="row align-items-center">
           <div class="col-md-3"></div>
           <div class="col-md-3 col-12 text-right">
-            Título
+            Nombre del Empleado
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Título</mat-label>
-              <input matInput placeholder="Título" formControlName="title" [maxlength] = "maxInputTitle" required>
-              <mat-error *ngIf="addressForm.controls['title'].hasError('required')">
-                Título <strong>REQUERIDO</strong>
+            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Nombre del Empleado</mat-label>
+              <input matInput placeholder="Nombre del Empleado" formControlName="name" [maxlength] = "maxInputName" required>
+              <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                Nombre del Empleado <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field>
           </div>
@@ -26,40 +26,29 @@
         <div class="row align-items-center">
           <div class="col-md-3"></div>
           <div class="col-md-3 col-12 text-right">
-            Bajada
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Bajada</mat-label>
-              <input matInput placeholder="Bajada" formControlName="lead" [maxlength] = "maxInputLead" required>
-              <mat-error *ngIf="addressForm.controls['lead'].hasError('required')">
-                Bajada <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Fecha
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              asdasd
-            </div>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Contenido
+            Profesión
           </div>
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>Contenido</mat-label>
-              <textarea matInput placeholder="Contenido" formControlName="content" [maxlength] = "maxInputContent" [rows]="6" required></textarea>
+              <mat-label>Profesión</mat-label>
+              <input matInput placeholder="Profesión" formControlName="profession" [maxlength] = "maxInputProfession" required>
+              <mat-error *ngIf="addressForm.controls['profession'].hasError('required')">
+                Profesión <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Descripción
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput placeholder="Descripción" formControlName="content" [maxlength] = "maxInputContent" required></textarea>
               <mat-error *ngIf="addressForm.controls['content'].hasError('required')">
-                Contenido <strong>REQUERIDO</strong>
+                Descripción <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field>
           </div>
@@ -70,8 +59,8 @@
             Imagen
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              asdasd
+            <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              ASDSAD
             </div>
           </div>
         </div>
@@ -82,7 +71,7 @@
           <div class="col-12 text-center mt-4">
             <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
               [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
-            >CREAR NOTICIA</button>
+            >AGREGAR EMPLEADO</button>
           </div>
         </div>
       </mat-card-actions>

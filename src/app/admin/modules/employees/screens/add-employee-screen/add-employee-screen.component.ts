@@ -1,37 +1,37 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { rutTools } from 'prettyutils';
 
 @Component({
-  selector: 'app-create-new-screen',
-  templateUrl: './create-new-screen.component.html',
-  styleUrls: ['./create-new-screen.component.less'],
+  selector: 'app-add-employee-screen',
+  templateUrl: './add-employee-screen.component.html',
+  styleUrls: ['./add-employee-screen.component.less'],
 })
-export class CreateNewScreenComponent {
+export class AddEmployeeScreenComponent {
   public hasUnitNumber: boolean;
   public addressForm: FormGroup;
-  public maxInputTitle: number;
-  public maxInputLead: number;
+  public maxInput: number;
+  public maxInputName: number;
+  public maxInputProfession: number;
   public maxInputContent: number;
 
   constructor(private fb: FormBuilder) {
-    this.maxInputTitle = 60;
-    this.maxInputLead = 60;
+    this.maxInputName = 120;
+    this.maxInputProfession = 500;
     this.maxInputContent = 500;
     this.addressForm = this.fb.group({
-      title: [null, [Validators.required]],
-      lead: ['', [Validators.required]],
+      name: [null, [Validators.required]],
+      profession: ['', [Validators.required]],
       content: [null, [Validators.required]],
     });
-
     this.hasUnitNumber = false;
+    this.maxInput = 250;
   }
 
-  get rut() {
-    return this.addressForm.get('rut')?.value;
+  get name() {
+    return this.addressForm.get('name')?.value;
   }
-  get lead() {
-    return this.addressForm.get('lead')?.value;
+  get profession() {
+    return this.addressForm.get('profession')?.value;
   }
   get content() {
     return this.addressForm.get('content')?.value;
