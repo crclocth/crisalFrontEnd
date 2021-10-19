@@ -10,13 +10,18 @@ import { rutTools } from 'prettyutils';
 export class CreateNewScreenComponent {
   public hasUnitNumber: boolean;
   public addressForm: FormGroup;
+  public maxInputTitle: number;
+  public maxInputLead: number;
+  public maxInputContent: number;
 
   constructor(private fb: FormBuilder) {
+    this.maxInputTitle = 60;
+    this.maxInputLead = 60;
+    this.maxInputContent = 500;
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
       lead: ['', [Validators.required]],
       content: [null, [Validators.required]],
-      image: [null, [Validators.required]],
     });
 
     this.hasUnitNumber = false;
@@ -30,9 +35,6 @@ export class CreateNewScreenComponent {
   }
   get content() {
     return this.addressForm.get('content')?.value;
-  }
-  get image() {
-    return this.addressForm.get('image')?.value;
   }
 
   @HostListener('window:resize', ['$event'])
