@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NewsDetailComponent } from './components/news-detail/news-detail.component';
 import { AboutUsScreenComponent } from './screens/about-us-screen/about-us-screen.component';
 import { AppointmentScreenComponent } from './screens/appointment-screen/appointment-screen.component';
 import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'servicios', component: ServicesScreenComponent },
       { path: 'agendar-hora', component: AppointmentScreenComponent },
       { path: 'noticias', component: NewsScreenComponent },
+      { path: 'noticias/detalle', component: NewsDetailComponent },
       { path: 'contactenos', component: ContactScreenComponent },
       {
         path: 'descargar-certificado',
