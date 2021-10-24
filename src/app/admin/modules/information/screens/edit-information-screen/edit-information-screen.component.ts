@@ -10,7 +10,8 @@ import { rutTools } from 'prettyutils';
 export class EditInformationScreenComponent {
   public hasUnitNumber: boolean;
   public addressForm: FormGroup;
-  public maxInputTelephone: number;
+  public maxInputTelephone1: number;
+  public maxInputTelephone2: number;
   public maxInputAddress: number;
   public maxInputMail: number;
   public maxInputAboutUs: number;
@@ -19,7 +20,8 @@ export class EditInformationScreenComponent {
   public maxInputValues: number;
 
   constructor(private fb: FormBuilder) {
-    this.maxInputTelephone = 20;
+    this.maxInputTelephone1 = 10;
+    this.maxInputTelephone2 = 10;
     this.maxInputAddress = 60;
     this.maxInputMail = 320;
     this.maxInputAboutUs = 500;
@@ -27,9 +29,16 @@ export class EditInformationScreenComponent {
     this.maxInputMission = 500;
     this.maxInputValues = 500;
     this.addressForm = this.fb.group({
-      telephone: [null, [Validators.required]],
+      telephone1: [null, [Validators.required]],
+      telephone2: [null, [Validators.required]],
       address: ['', [Validators.required]],
-      mail: [null, [Validators.required]],
+      mail: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
       aboutUs: [null, [Validators.required]],
       vision: [null, [Validators.required]],
       mission: [null, [Validators.required]],
