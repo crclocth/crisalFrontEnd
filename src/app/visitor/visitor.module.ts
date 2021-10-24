@@ -36,6 +36,8 @@ import { AdminModule } from '../admin/admin.module';
 import { NewsDetailComponent } from './components/news-detail/news-detail.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { core } from '@angular/compiler';
+import { CoreModule } from '../core/core.module';
 
 const components = [
   HomeScreenComponent,
@@ -81,6 +83,7 @@ const components = [
     AdminModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    CoreModule,
   ],
 })
 export class VisitorModule {}

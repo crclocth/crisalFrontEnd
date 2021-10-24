@@ -8,6 +8,8 @@ import { VisitorModule } from './visitor/visitor.module';
 import { AdminModule } from './admin/admin.module';
 import { SwiperModule } from 'swiper/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 const components = [AppComponent];
 
@@ -22,6 +24,8 @@ const components = [AppComponent];
     GoogleMapsModule,
     AdminModule,
     SwiperModule,
+    CoreModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [...components],

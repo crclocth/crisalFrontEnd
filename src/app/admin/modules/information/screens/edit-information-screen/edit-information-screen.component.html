@@ -16,7 +16,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Teléfono</mat-label>
-              <input matInput placeholder="+569" formControlName="telephone" [maxlength] = "maxInputTelephone" required>
+              <input matInput placeholder="+569" formControlName="telephone" [maxlength] = "maxInputTelephone1" required>
               <mat-error *ngIf="addressForm.controls['telephone'].hasError('required')">
                 Teléfono <strong>REQUERIDO</strong>
               </mat-error>

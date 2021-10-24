@@ -16,12 +16,12 @@ export class AddEmployeeScreenComponent {
 
   constructor(private fb: FormBuilder) {
     this.maxInputName = 120;
-    this.maxInputProfession = 500;
-    this.maxInputContent = 500;
+    this.maxInputProfession = 45;
+    this.maxInputContent = 255;
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
       profession: ['', [Validators.required]],
-      content: [null, [Validators.required]],
+      description: [null, [Validators.required]],
     });
     this.hasUnitNumber = false;
     this.maxInput = 250;
@@ -33,8 +33,8 @@ export class AddEmployeeScreenComponent {
   get profession() {
     return this.addressForm.get('profession')?.value;
   }
-  get content() {
-    return this.addressForm.get('content')?.value;
+  get description() {
+    return this.addressForm.get('description')?.value;
   }
 
   @HostListener('window:resize', ['$event'])
