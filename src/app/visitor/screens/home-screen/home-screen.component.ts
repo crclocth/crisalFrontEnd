@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Information } from 'src/app/core/models/information.model';
+import { InformationProviderService } from 'src/app/core/providers/information/information-provider.service';
 
 @Component({
   selector: 'app-home-screen',
@@ -6,15 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-screen.component.less'],
 })
 export class HomeScreenComponent implements OnInit {
-  public telephone: string;
-  public address: string;
-  public mail: string;
+  public informations$: Observable<Information[]>;
+  public informationArray: Information[];
 
-  constructor() {
-    this.telephone = '+5632 346 5021  +569 9081 9320';
-    this.address = 'Arlegui 263, Piso 7, Oficina 701 - Ed. Gala - Viña del Mar';
-    this.mail = 'contacto@crisalsaludlaboral.cl';
+  constructor(private informationProviderService: InformationProviderService) {
+    this.informations$ = new Observable<Information[]>();
+    this.informationArray = [];
   }
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges) {
+    this.fetchInformations();
+    console.log('se cambio');
+  }
+
+  async ngOnInit() {
+    this.fetchInformations();
+  }
+
+  async fetchInformations() {
+    try {
+      this.informations$ =
+        await this.informationProviderService.getInformations();
+      this.informations$.subscribe((information: Information[]) => {
+        this.informationArray = information;
+      });
+    } catch (error) {
+      console.log('error');
+    }
+  }
 }
