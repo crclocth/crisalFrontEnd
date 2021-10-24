@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<app-new></app-new>
-<app-new></app-new>
+<ng-container *ngFor="let news of newsArray"><app-new [news]="news"></app-new></ng-container>
+
 
 <app-footer></app-footer>
