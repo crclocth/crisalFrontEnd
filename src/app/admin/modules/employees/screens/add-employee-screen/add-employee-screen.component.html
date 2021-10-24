@@ -46,8 +46,8 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Descripción</mat-label>
-              <textarea matInput placeholder="Descripción" formControlName="content" [maxlength] = "maxInputContent" required></textarea>
-              <mat-error *ngIf="addressForm.controls['content'].hasError('required')">
+              <textarea matInput placeholder="Descripción" formControlName="description" [maxlength] = "maxInputContent" required></textarea>
+              <mat-error *ngIf="addressForm.controls['description'].hasError('required')">
                 Descripción <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field>
