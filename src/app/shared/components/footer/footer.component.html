@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <div class="row cardheader align-items-center">
+    <ng-container *ngIf="informations$ | async">
     <div class="col-lg-6 col-12 columitem text-center">
       DIRECCIÓN
       <div>
@@ -19,7 +20,9 @@
         <a href="tel:+4733378901"><i class="fas fa-phone-alt iconcolor"></i></a>
         +56 32 {{informationArray[0].telephone1}} +56 9 {{informationArray[0].telephone2}}
       </div>
+
     </div>
+    </ng-container>
   </div>
   <div class="row align-items-center justify-content-center">
     <div class="col-12 text-center">

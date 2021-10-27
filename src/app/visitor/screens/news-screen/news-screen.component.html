@@ -8,7 +8,8 @@
   </div>
 </div>
 
-<ng-container *ngFor="let news of newsArray"><app-new [news]="news"></app-new></ng-container>
-
+<ng-container *ngIf="news$ | async">
+  <ng-container *ngFor="let news of newsArray"><app-new [news]="news"></app-new></ng-container>
+</ng-container>
 
 <app-footer></app-footer>

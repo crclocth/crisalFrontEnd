@@ -8,6 +8,7 @@
       </div>
       <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
       <mat-card-content>
+        <ng-container *ngIf="informations$ | async">
         <div class="row align-items-center">
           <div class="col-md-3"></div>
           <div class="col-md-3 col-12 text-right">
@@ -15,9 +16,24 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>Teléfono</mat-label>
-              <input matInput placeholder="+569" formControlName="telephone" [maxlength] = "maxInputTelephone1" required>
-              <mat-error *ngIf="addressForm.controls['telephone'].hasError('required')">
+              <mat-label>Teléfono +56 32 </mat-label>
+              <input matInput placeholder="+569 " [(ngModel)]="informationArray[0].telephone1" formControlName="telephone1" [maxlength] = "maxInputTelephone1" required>
+              <mat-error *ngIf="addressForm.controls['telephone1'].hasError('required')">
+                Teléfono <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Teléfono
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%' }">
+              <mat-label>Teléfono +56 9</mat-label>
+              <input matInput placeholder="+569" [(ngModel)]="informationArray[0].telephone2" formControlName="telephone2" [maxlength] = "maxInputTelephone2" required>
+              <mat-error *ngIf="addressForm.controls['telephone2'].hasError('required')">
                 Teléfono <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field>
@@ -31,7 +47,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Dirección</mat-label>
-              <input matInput placeholder="Dirección" formControlName="address" [maxlength] = "maxInputAddress" required>
+              <input matInput placeholder="Dirección" [(ngModel)]="informationArray[0].address" formControlName="address" [maxlength] = "maxInputAddress" required>
               <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
                 Dirección <strong>REQUERIDO</strong>
               </mat-error>
@@ -46,7 +62,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Correo Electrónico</mat-label>
-              <input matInput placeholder="Correo Electrónico" formControlName="mail" [maxlength] = "maxInputMail" required>
+              <input matInput placeholder="Correo Electrónico" [(ngModel)]="informationArray[0].mail" formControlName="mail" [maxlength] = "maxInputMail" required>
               <mat-error *ngIf="addressForm.controls['mail'].hasError('required')">
                 Correo Electrónico <strong>REQUERIDO</strong>
               </mat-error>
@@ -61,7 +77,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Quienes Somos</mat-label>
-              <textarea matInput placeholder="Quienes Somos" formControlName="aboutUs" [maxlength] = "maxInputAboutUs" required></textarea>
+              <textarea matInput placeholder="Quienes Somos" [(ngModel)]="informationArray[0].aboutUs" formControlName="aboutUs" [maxlength] = "maxInputAboutUs"  [rows]="8"  required></textarea>
               <mat-error *ngIf="addressForm.controls['aboutUs'].hasError('required')">
                 Quienes Somos <strong>REQUERIDO</strong>
               </mat-error>
@@ -76,7 +92,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Visión</mat-label>
-              <textarea matInput placeholder="Visión" formControlName="vision" [maxlength] = "maxInputVision" required></textarea>
+              <textarea matInput placeholder="Visión" [(ngModel)]="informationArray[0].vision" formControlName="vision" [maxlength] = "maxInputVision"  [rows]="8"  required></textarea>
               <mat-error *ngIf="addressForm.controls['vision'].hasError('required')">
                 Visión <strong>REQUERIDO</strong>
               </mat-error>
@@ -91,7 +107,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Misión</mat-label>
-              <textarea matInput placeholder="Misión" formControlName="mission" [maxlength] = "maxInputMission" required></textarea>
+              <textarea matInput placeholder="Misión" [(ngModel)]="informationArray[0].mission"  formControlName="mission" [maxlength] = "maxInputMission"  [rows]="8"  required></textarea>
               <mat-error *ngIf="addressForm.controls['mission'].hasError('required')">
                 Misión <strong>REQUERIDO</strong>
               </mat-error>
@@ -106,20 +122,21 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Valores</mat-label>
-              <textarea matInput placeholder="Valores" formControlName="values" [maxlength] = "maxInputValues" required></textarea>
+              <textarea matInput placeholder="Valores" [(ngModel)]="informationArray[0].values"  formControlName="values" [maxlength] = "maxInputValues" [rows]="8" required></textarea>
               <mat-error *ngIf="addressForm.controls['values'].hasError('required')">
                 Valores <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field>
           </div>
         </div>
+      </ng-container>
       </mat-card-content>
       <mat-card-actions>
         <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
         <div class="row justify-content-center">
           <div class="col-12 text-center mt-4">
             <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
-              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" (click)="pactchInformation()"
             >GUARDAR</button>
           </div>
         </div>

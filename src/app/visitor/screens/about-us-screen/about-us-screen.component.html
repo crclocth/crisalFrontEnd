@@ -8,50 +8,47 @@
   </div>
 </div>
 
-<div class="container-fluid my-3">
-  <div class="row my-3">
-    <div class="my-2" *ngFor="let employee of employeeArray"
-      [ngClass]="[getScreenSize() > 1500 ? 'col-3' :
-      getScreenSize() > 1130 && getScreenSize() <= 1500 ? 'col-4' :
-      getScreenSize() > 770 && getScreenSize() <= 1130 ? 'col-6' : 'col-12'
-      ]">
-        <app-employee [employee]="employee"></app-employee>
+<ng-container *ngIf="employees$  | async">
+  <div class="container-fluid my-3">
+    <div class="row my-3">
+      <div class="my-2" *ngFor="let employee of employeeArray"
+        [ngClass]="[getScreenSize() > 1500 ? 'col-3' :
+        getScreenSize() > 1130 && getScreenSize() <= 1500 ? 'col-4' :
+        getScreenSize() > 770 && getScreenSize() <= 1130 ? 'col-6' : 'col-12'
+        ]">
+          <app-employee [employee]="employee"></app-employee>
+      </div>
     </div>
   </div>
-</div>
-
-
-
-<!-- <div class="row space">
-<ng-container *ngFor="let item of dummy"><app-employee [name]="item.name" [profession]="item.profession" [description]="item.description"></app-employee></ng-container>
-</div>
- -->
+</ng-container>
 
 <div class="container-fluid box mt-4 pt-4 mb-4">
   <div class="row text-center">
     <h5>NUESTRA HISTORIA</h5>
   </div>
   <div class="row justify-content-center align-items-center text-center">
-    <div class="col-md-6 col-12 mt-4">
-      <div class="row">
-          <h5>Quienes Somos</h5>
+    <ng-container *ngIf="informations$ | async">
+      <div class="col-md-6 col-12 mt-4">
+        <div class="row">
+            <h5>Quienes Somos</h5>
+        </div>
+        <div class="row text-start p-5">{{informationArray[0].aboutUs}}</div>
       </div>
-      <div class="row text-start p-5">{{informationArray[0].aboutUs}}</div>
-    </div>
-    <div class="col-md-6 col-12 p-5">
-      <div class="row">
-        <h5>Visión</h5>
+      <div class="col-md-6 col-12 p-5">
+        <div class="row">
+          <h5>Visión</h5>
+        </div>
+        <div class="row text-start">{{informationArray[0].vision}}</div>
+        <div class="row mt-4">
+          <h5>Misión</h5>
+        </div>
+        <div class="row text-start">{{informationArray[0].mission}}</div>
+        <div class="row mt-4">
+          <h5>Valores</h5>
+        </div>
+        <div class="row text-start">{{informationArray[0].values}}</div>
       </div>
-      <div class="row text-start">{{informationArray[0].vision}}</div>
-      <div class="row mt-4">
-        <h5>Misión</h5>
-      </div>
-      <div class="row text-start">{{informationArray[0].mission}}</div>
-      <div class="row mt-4">
-        <h5>Valores</h5>
-      </div>
-      <div class="row text-start">{{informationArray[0].values}}</div>
-    </div>
+    </ng-container>
   </div>
 </div>
 

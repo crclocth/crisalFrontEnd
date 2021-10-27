@@ -5,32 +5,34 @@
 
 <div class="container-fluid mb-5">
   <div class="row align-items-center">
-    <div class="col-lg-4 col-12 align-items-center text-center mt-5">
-      <i class="fas fa-phone-alt iconSize"></i>
-      <div class="row align-items-center text-center">
-        <div class="col-12">TELÉFONO</div>
-        <div class="col-12 mt-2">Para mayor información de nuestros servicios
-          contáctenos al siguiente número.</div>
-        <div class="col-12">+56 32 {{informationArray[0].telephone1}} +56 9 {{informationArray[0].telephone2}}</div>
+    <ng-container *ngIf="informations$ | async">
+      <div class="col-lg-4 col-12 align-items-center text-center mt-5">
+        <i class="fas fa-phone-alt iconSize"></i>
+        <div class="row align-items-center text-center">
+          <div class="col-12">TELÉFONO</div>
+          <div class="col-12 mt-2">Para mayor información de nuestros servicios
+            contáctenos al siguiente número.</div>
+          <div class="col-12">+56 32 {{informationArray[0].telephone1}} +56 9 {{informationArray[0].telephone2}}</div>
+        </div>
       </div>
-    </div>
-    <div class="col-lg-4 col-12 align-items-center text-center mt-5">
-        <i class="fas fa-envelope iconSize"></i>
-        <div class="row align-items-center text-center">
-          <div class="col-12">CORREO ELECTRÓNICO</div>
-          <div class="col-12 mt-2">Para solicitudes y sugerencias no dude en
-            contactarnos a nuestro correo electrónico.</div>
-          <div class="col-12">{{informationArray[0].mail}}</div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-12 align-items-center text-center mt-5">
-        <i class="fas fa-map-marker-alt iconSize"></i>
-        <div class="row align-items-center text-center">
-          <div class="col-12">DIRECCIÓN</div>
-          <div class="col-12 mt-2">Casa Matriz.</div>
-          <div class="col-12">{{informationArray[0].address}}</div>
-        </div>
-    </div>
+      <div class="col-lg-4 col-12 align-items-center text-center mt-5">
+          <i class="fas fa-envelope iconSize"></i>
+          <div class="row align-items-center text-center">
+            <div class="col-12">CORREO ELECTRÓNICO</div>
+            <div class="col-12 mt-2">Para solicitudes y sugerencias no dude en
+              contactarnos a nuestro correo electrónico.</div>
+            <div class="col-12">{{informationArray[0].mail}}</div>
+          </div>
+      </div>
+      <div class="col-lg-4 col-12 align-items-center text-center mt-5">
+          <i class="fas fa-map-marker-alt iconSize"></i>
+          <div class="row align-items-center text-center">
+            <div class="col-12">DIRECCIÓN</div>
+            <div class="col-12 mt-2">Casa Matriz.</div>
+            <div class="col-12">{{informationArray[0].address}}</div>
+          </div>
+      </div>
+    </ng-container>>
   </div>
 </div>
 
