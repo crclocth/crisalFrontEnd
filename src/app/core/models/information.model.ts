@@ -1,5 +1,4 @@
 export interface Information {
-  _id: string;
   telephone1: number;
   telephone2: number;
   address: string;

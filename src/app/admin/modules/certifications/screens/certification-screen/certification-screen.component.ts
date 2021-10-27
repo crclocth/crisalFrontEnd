@@ -12,8 +12,6 @@ export class CertificationScreenComponent implements OnInit {
   ngOnInit(): void {}
 
   public getCurrentRoute(): string | void {
-    console.log(this.router.url);
-
     let route = this.router.url;
     if (route === '/admin/certificaciones/agregar-certificacion') {
       return 'agregar-certificacion';

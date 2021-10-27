@@ -54,45 +54,11 @@ export class AboutUsScreenComponent implements OnInit {
       this.employees$ = await this.employeeProviderService.getEmployees();
       this.employees$.subscribe((employee: Employee[]) => {
         this.employeeArray = employee;
-        console.log(this.employeeArray);
       });
     } catch (error) {
       console.log('error');
     }
   }
-
-  dummy = [
-    {
-      _id: '1',
-      name: 'Nombre',
-      profession: 'Profesión',
-      description: 'Descripción',
-    },
-    {
-      _id: '2',
-      name: 'Nombre',
-      profession: 'Profesión',
-      description: 'Descripción',
-    },
-    {
-      _id: '3',
-      name: 'Nombre',
-      profession: 'Profesión',
-      description: 'Descripción',
-    },
-    {
-      _id: '4',
-      name: 'Nombre',
-      profession: 'Profesión',
-      description: 'Descripción',
-    },
-    {
-      _id: '5',
-      name: 'Nombre',
-      profession: 'Profesión',
-      description: 'Descripción',
-    },
-  ];
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {

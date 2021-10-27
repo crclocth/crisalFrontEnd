@@ -26,6 +26,10 @@ export class HeaderComponent implements OnInit {
     this.fetchInformations();
   }
 
+  get telephone1() {
+    return this.informationArray[0]!.telephone1!;
+  }
+
   async fetchInformations() {
     try {
       this.informations$ =

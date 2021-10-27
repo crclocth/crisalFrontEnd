@@ -11,7 +11,6 @@ import { InformationProviderService } from 'src/app/core/providers/information/i
 export class FooterComponent implements OnInit {
   public informations$: Observable<Information[]>;
   public informationArray: Information[];
-
   constructor(private informationProviderService: InformationProviderService) {
     this.informations$ = new Observable<Information[]>();
     this.informationArray = [];
@@ -24,6 +23,10 @@ export class FooterComponent implements OnInit {
 
   async ngOnInit() {
     this.fetchInformations();
+  }
+
+  get telephone1() {
+    return this.informationArray[0]!.telephone1!;
   }
 
   async fetchInformations() {
