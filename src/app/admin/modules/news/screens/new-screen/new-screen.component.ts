@@ -12,8 +12,6 @@ export class NewScreenComponent implements OnInit {
   ngOnInit(): void {}
 
   public getCurrentRoute(): string | void {
-    console.log(this.router.url);
-
     let route = this.router.url;
     if (route === '/admin/noticias/crear-noticia') {
       return 'crear-noticia';

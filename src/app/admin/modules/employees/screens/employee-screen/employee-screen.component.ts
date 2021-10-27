@@ -12,7 +12,7 @@ export class EmployeeScreenComponent implements OnInit {
   ngOnInit(): void {}
 
   public getCurrentRoute(): string | void {
-    console.log(this.router.url);
+    //console.log(this.router.url);
 
     let route = this.router.url;
     if (route === '/admin/empleados/agregar-empleado') {
