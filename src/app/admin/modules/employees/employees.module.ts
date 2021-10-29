@@ -10,12 +10,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListEmployeeScreenComponent } from './screens/list-employee-screen/list-employee-screen.component';
+import { EmployeesComponent } from './components/employees/employees.component';
 
 
 @NgModule({
   declarations: [
     EmployeeScreenComponent,
-    AddEmployeeScreenComponent
+    AddEmployeeScreenComponent,
+    ListEmployeeScreenComponent,
+    EmployeesComponent
   ],
   imports: [
     CommonModule,

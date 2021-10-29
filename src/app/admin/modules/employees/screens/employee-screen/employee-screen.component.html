@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col" [ngSwitch]="getCurrentRoute()">
       <div *ngSwitchCase="'agregar-empleado'"><app-add-employee-screen></app-add-employee-screen></div>
-      <div *ngSwitchCase="'historico'">Empleados</div>
+      <div *ngSwitchCase="'historico'"><app-list-employee-screen></app-list-employee-screen></div>
     </div>
   </div>
 </div>

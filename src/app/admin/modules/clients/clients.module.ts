@@ -10,12 +10,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListClientScreenComponent } from './screens/list-client-screen/list-client-screen.component';
+import { ClientsComponent } from './components/clients/clients.component';
 
 
 @NgModule({
   declarations: [
     ClientScreenComponent,
-    AddClientScreenComponent
+    AddClientScreenComponent,
+    ListClientScreenComponent,
+    ClientsComponent
   ],
   imports: [
     CommonModule,

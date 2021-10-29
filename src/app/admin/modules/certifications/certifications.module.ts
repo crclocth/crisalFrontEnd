@@ -10,12 +10,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListCertificationScreenComponent } from './screens/list-certification-screen/list-certification-screen.component';
+import { CertificationsComponent } from './components/certifications/certifications.component';
 
 
 @NgModule({
   declarations: [
     CertificationScreenComponent,
-    AddCertificationScreenComponent
+    AddCertificationScreenComponent,
+    ListCertificationScreenComponent,
+    CertificationsComponent
   ],
   imports: [
     CommonModule,
