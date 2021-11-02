@@ -58,7 +58,7 @@
             Contenido
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
               <mat-label>Contenido</mat-label>
               <textarea matInput placeholder="Contenido" formControlName="content" [maxlength] = "maxInputContent" [rows]="6" required></textarea>
               <mat-error *ngIf="addressForm.controls['content'].hasError('required')">
@@ -74,7 +74,7 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <input #file type="file" accept='image/*' (change)="preview(file.files)" />
-            <div class="row">
+            <div class="row mt-3">
               <img [src]="imgURL" *ngIf="imgURL" class="w-50">
             </div>
           </div>

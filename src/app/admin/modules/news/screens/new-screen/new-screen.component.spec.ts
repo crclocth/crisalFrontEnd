@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NewScreenComponent } from './new-screen.component';
 
 describe('NewScreenComponent', () => {
@@ -8,9 +7,8 @@ describe('NewScreenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewScreenComponent ]
-    })
-    .compileComponents();
+      declarations: [NewScreenComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

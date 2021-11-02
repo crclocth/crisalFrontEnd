@@ -26,6 +26,6 @@ export class NewsProviderService {
   }
 
   public async patchNew(id: string, newNews: News): Promise<any> {
-    await this.httpService.patch<News>('/news/' + id, newNews).toPromise();
+    await this.httpService.patch<News>('/new/' + id, newNews).toPromise();
   }
 }

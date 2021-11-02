@@ -10,7 +10,5 @@ export class CardClientComponent implements OnInit {
   @Input() client!: Client;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.client);
-  }
+  ngOnInit(): void {}
 }

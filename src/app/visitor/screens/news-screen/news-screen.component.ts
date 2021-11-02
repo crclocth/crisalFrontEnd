@@ -28,10 +28,7 @@ export class NewsScreenComponent implements OnInit {
 
   async fetchNews() {
     try {
-      this.news$ = await this.newProviderService.getNews();
-      this.news$.subscribe((news: News[]) => {
-        this.newsArray = news;
-      });
+      this.newsArray = await this.newProviderService.getNews().toPromise();
     } catch (error) {
       console.log('error');
     }

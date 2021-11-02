@@ -13,9 +13,22 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ListNewScreenComponent } from './screens/list-new-screen/list-new-screen.component';
 import { NewsComponent } from './components/news/news.component';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import { MaterialModule } from 'src/app/core/material.module';
+import { EditModalComponent } from './components/edit-modal/edit-modal.component';
+import { SeeModalComponent } from './components/see-modal/see-modal.component';
 
+const components = [
+  NewScreenComponent,
+  CreateNewScreenComponent,
+  ListNewScreenComponent,
+  NewsComponent,
+  DeleteModalComponent,
+  EditModalComponent,
+  SeeModalComponent,
+];
 @NgModule({
-  declarations: [NewScreenComponent, CreateNewScreenComponent, ListNewScreenComponent, NewsComponent],
+  declarations: [...components],
   imports: [
     CommonModule,
     NewsRoutingModule,
@@ -27,6 +40,7 @@ import { NewsComponent } from './components/news/news.component';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MaterialModule,
   ],
 })
 export class NewsModule {}

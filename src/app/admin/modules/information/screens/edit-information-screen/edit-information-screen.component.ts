@@ -1,6 +1,5 @@
 import { Component, HostListener, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { rutTools } from 'prettyutils';
 import { Observable } from 'rxjs';
 import { Information } from 'src/app/core/models/information.model';
 import { InformationProviderService } from 'src/app/core/providers/information/information-provider.service';
@@ -24,7 +23,7 @@ export class EditInformationScreenComponent {
   public informations$: Observable<Information[]>;
   public informationArray: Information[];
   public information!: Information;
-  public mensaje: string;
+  public message: string;
   public id: string;
 
   constructor(
@@ -42,7 +41,7 @@ export class EditInformationScreenComponent {
     this.maxInputVision = 500;
     this.maxInputMission = 500;
     this.maxInputValues = 500;
-    this.mensaje = '';
+    this.message = '';
     this.addressForm = this.fb.group({
       telephone1: [null, [Validators.required]],
       telephone2: [null, [Validators.required]],
@@ -87,22 +86,24 @@ export class EditInformationScreenComponent {
     return this.addressForm.get('values')?.value;
   }
 
-  @HostListener('window:resize', ['$event'])
-  getScreenSize(event?: any) {
-    return window.innerWidth;
-  }
-
   onSubmit(): void {
     alert('Thanks!');
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.fetchInformations();
+    console.log('se cambio');
+  }
+
+  async ngOnInit() {
+    this.fetchInformations();
+  }
+
   async fetchInformations() {
     try {
-      this.informations$ =
-        await this.informationProviderService.getInformations();
-      this.informations$.subscribe((information: Information[]) => {
-        this.informationArray = information;
-      });
+      this.informationArray = await this.informationProviderService
+        .getInformations()
+        .toPromise();
     } catch (error) {
       console.log('error');
     }
@@ -130,16 +131,16 @@ export class EditInformationScreenComponent {
       values
     );
     try {
-      this.mensaje = 'Se guardaron los datos.';
+      this.message = 'Se guardaron los datos.';
       this.information = {
-        telephone1: this.telephone1?.trim(),
-        telephone2: this.telephone2?.trim(),
-        address: this.address?.trim(),
-        mail: this.mail?.trim(),
-        aboutUs: this.aboutUs?.trim(),
-        vision: this.vision?.trim(),
-        mission: this.mission?.trim(),
-        values: this.values?.trim(),
+        telephone1: this.telephone1,
+        telephone2: this.telephone2,
+        address: this.address,
+        mail: this.mail,
+        aboutUs: this.aboutUs,
+        vision: this.vision,
+        mission: this.mission,
+        values: this.values,
       };
       await this.informationProviderService.patchInformation(
         this.id,
@@ -150,12 +151,8 @@ export class EditInformationScreenComponent {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.fetchInformations();
-    console.log('se cambio');
-  }
-
-  async ngOnInit() {
-    this.fetchInformations();
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    return window.innerWidth;
   }
 }

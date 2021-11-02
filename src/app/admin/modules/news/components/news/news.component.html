@@ -2,8 +2,9 @@
   <div class="row text-center justify-content-center align-items-center p-2"  style="background-color: #C4C4C4;" >
       <div class="col-6">{{news.title}}</div>
       <div class="col-3">{{news.date | date:'yyyy-MM-dd'}}</div>
-      <div class="col-1"><button type="button" class="btn btn-white"><i class="fas fa-pen" style="color: black; font-size: 100%;"></i></button></div>
-      <div class="col-1"><button type="button" class="btn btn-white"><i class="fas fa-edit"style="color: black; font-size: 100%;"></i></button></div>
-      <div class="col-1"><button type="button" class="btn btn-white"><i class="fas fa-trash-alt" style="color: black; font-size: 100%;" (click)="SelectedNew()"></i></button></div>
+      <div class="col-1"><button type="button" class="btn btn-white"><i class="fas fa-eye" style="color: black; font-size: 100%;" (click)="openModalSee()"></i></button></div>
+      <div class="col-1"><button type="button" class="btn btn-white"><i class="fas fa-edit"style="color: black; font-size: 100%;" (click)="openModalEdit()"></i></button></div>
+      <div class="col-1"><button type="button" class="btn btn-white"><i class="fas fa-trash-alt" style="color: black; font-size: 100%;" (click)="openModalDelete()"></i></button></div>
     </div>
 </div>
+
