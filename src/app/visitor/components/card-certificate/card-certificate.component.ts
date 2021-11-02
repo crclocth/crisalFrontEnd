@@ -10,7 +10,5 @@ export class CardCertificateComponent implements OnInit {
   @Input() certification!: Certification;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.certification);
-  }
+  ngOnInit(): void {}
 }

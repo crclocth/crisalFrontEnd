@@ -9,8 +9,8 @@
     <div class="col-3">Fecha</div>
     <div class="col-3">Acciones</div>
   </div>
-  <ng-container *ngIf="news$ | async">
-    <ng-container *ngFor="let news of newsArray"><app-news [news]="news" (NewSelectedEmitter)="selectNew($event)"></app-news></ng-container>
+  <ng-container >
+    <ng-container *ngFor="let news of newsArray"><app-news [news]="news"></app-news></ng-container>
   </ng-container>
 </div>
 

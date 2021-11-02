@@ -1,5 +1,4 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Information } from 'src/app/core/models/information.model';
 import { InformationProviderService } from 'src/app/core/providers/information/information-provider.service';
 
@@ -9,11 +8,9 @@ import { InformationProviderService } from 'src/app/core/providers/information/i
   styleUrls: ['./home-screen.component.less'],
 })
 export class HomeScreenComponent implements OnInit {
-  public informations$: Observable<Information[]>;
   public informationArray: Information[];
 
   constructor(private informationProviderService: InformationProviderService) {
-    this.informations$ = new Observable<Information[]>();
     this.informationArray = [];
   }
 
@@ -28,11 +25,9 @@ export class HomeScreenComponent implements OnInit {
 
   async fetchInformations() {
     try {
-      this.informations$ =
-        await this.informationProviderService.getInformations();
-      this.informations$.subscribe((information: Information[]) => {
-        this.informationArray = information;
-      });
+      this.informationArray = await this.informationProviderService
+        .getInformations()
+        .toPromise();
     } catch (error) {
       console.log('error');
     }

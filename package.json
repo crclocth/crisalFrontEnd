@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
+    "ngx-toastr": "^14.1.4",
     "prettyutils": "^1.0.14",
     "rxjs": "~6.6.0",
     "swiper": "^7.0.8",

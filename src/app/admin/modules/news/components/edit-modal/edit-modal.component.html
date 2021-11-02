@@ -1,0 +1,100 @@
+<div class="modal-header">
+  <div class="row text-center justify-content-center align-items-center p-2">
+    <h4>Editar {{news.title}}? </h4>
+  </div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body text-center">
+  <div class="container-fluid">
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+        <mat-card-content>
+          <ng-container *ngIf="news">
+            <div class="row align-items-center">
+              <div class="col-md-2"></div>
+              <div class="col-md-4 col-12 text-right">
+                Título
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                  <mat-label>Título</mat-label>
+                  <input matInput placeholder="Título" [(ngModel)]="news.title" formControlName="title" [maxlength] = "maxInputTitle" required>
+                  <mat-error *ngIf="addressForm.controls['title'].hasError('required')">
+                    Título <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-2"></div>
+              <div class="col-md-4 col-12 text-right">
+                Bajada
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                  <mat-label>Bajada</mat-label>
+                  <input matInput placeholder="Bajada" [(ngModel)]="news.lead" formControlName="lead" [maxlength] = "maxInputLead" required>
+                  <mat-error *ngIf="addressForm.controls['lead'].hasError('required')">
+                    Bajada <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-2"></div>
+              <div class="col-md-4 col-12 text-right">
+                Fecha
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field appearance="fill"  [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                  <mat-label>Choose a date</mat-label>
+                  <input matInput [matDatepicker]="picker" [(ngModel)]="news.date"  formControlName="date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker>{{picker}}</mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-2"></div>
+              <div class="col-md-4 col-12 text-right">
+                Contenido
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                  <mat-label>Contenido</mat-label>
+                  <textarea matInput placeholder="Contenido" [(ngModel)]="news.content" formControlName="content" [maxlength] = "maxInputContent" [rows]="6" required></textarea>
+                  <mat-error *ngIf="addressForm.controls['content'].hasError('required')">
+                    Contenido <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-2"></div>
+              <div class="col-md-4 col-12 text-right">
+                Imagen
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                <div class="row text-center justify-content-center align-items-center mt-3">
+                  <img [src]="imgURL" *ngIf="imgURL" class="w-50">
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div class="row text-center justify-content-center align-items-center mt-3">
+    <div class="col">
+      <button class="btn btn-warning" (click)="edit()">EDITAR</button>
+    </div>
+    <div class="col">
+      <button class="btn" style="background-color: #309CEA; color: white;" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
+    </div>
+  </div>
+</div>
+<div class="modal-footer"></div>

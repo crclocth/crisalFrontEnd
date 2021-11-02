@@ -1,18 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NewScreenComponent } from './new-screen.component';
 
-describe('NewScreenComponent', () => {
-  let component: NewScreenComponent;
-  let fixture: ComponentFixture<NewScreenComponent>;
+import { SeeModalComponent } from './see-modal.component';
+
+describe('SeeModalComponent', () => {
+  let component: SeeModalComponent;
+  let fixture: ComponentFixture<SeeModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NewScreenComponent],
-    }).compileComponents();
+      declarations: [ SeeModalComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewScreenComponent);
+    fixture = TestBed.createComponent(SeeModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

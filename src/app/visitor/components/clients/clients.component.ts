@@ -53,9 +53,12 @@ export class ClientsComponent implements OnInit {
     try {
       this.certifications$ =
         await this.certificationProviderService.getCertifications();
-      this.certifications$.subscribe((certification: Certification[]) => {
-        this.certificationArray = certification;
+      this.certifications$.subscribe((client: Certification[]) => {
+        this.certificationArray = client;
       });
+      /* this.certificationArray = await this.certificationProviderService
+        .getCertifications()
+        .toPromise(); */
     } catch (error) {
       console.log('error');
     }
@@ -66,7 +69,6 @@ export class ClientsComponent implements OnInit {
       this.clients$ = await this.clientProviderService.getClients();
       this.clients$.subscribe((client: Client[]) => {
         this.clientArray = client;
-        console.log(this.clientArray);
       });
     } catch (error) {
       console.log('error');

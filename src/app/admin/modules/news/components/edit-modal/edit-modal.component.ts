@@ -1,15 +1,16 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { News } from 'src/app/core/models/news.model';
 import { NewsProviderService } from 'src/app/core/providers/news/news-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
-  selector: 'app-create-new-screen',
-  templateUrl: './create-new-screen.component.html',
-  styleUrls: ['./create-new-screen.component.less'],
+  selector: 'app-edit-modal',
+  templateUrl: './edit-modal.component.html',
+  styleUrls: ['./edit-modal.component.less'],
 })
-export class CreateNewScreenComponent {
+export class EditModalComponent implements OnInit {
   public addressForm: FormGroup;
   public maxInputTitle: number;
   public maxInputLead: number;
@@ -21,11 +22,15 @@ export class CreateNewScreenComponent {
   public imgURL: any;
   public newsArray: News[];
   public op: boolean;
+  public news: any;
+  public information!: News;
 
   constructor(
     private fb: FormBuilder,
     private newsProviderService: NewsProviderService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public activeModal: NgbActiveModal,
+    private newProviderService: NewsProviderService
   ) {
     this.maxInputTitle = 60;
     this.maxInputLead = 60;
@@ -56,23 +61,14 @@ export class CreateNewScreenComponent {
   }
 
   onSubmit(): void {
-    this.notificationService.success('Se creó correctamente la noticia');
     this.addressForm.reset();
   }
 
   ngOnInit() {
-    this.fetchNews();
+    console.log(this.news);
   }
 
-  async fetchNews() {
-    try {
-      this.newsArray = await this.newsProviderService.getNews().toPromise();
-    } catch (error) {
-      console.log('error');
-    }
-  }
-
-  notInArray(): boolean {
+  /* notInArray(): boolean {
     for (let i = 0; i < this.newsArray.length; i++) {
       console.log(i);
       if (this.title === this.newsArray[i].title) {
@@ -81,28 +77,25 @@ export class CreateNewScreenComponent {
       }
     }
     return true;
-  }
+  } */
 
-  public async postNew() {
+  public async edit() {
     let { title, lead, content, date } = this.addressForm.value;
-    if (this.notInArray() === true) {
-      try {
-        this.message2 = 'Se guardaron los datos.';
-        await this.newsProviderService
-          .postNew({
-            title: this.title,
-            lead: this.lead,
-            date: this.date,
-            content: this.content,
-            image: this.imgURL,
-          })
-          .toPromise();
-        this.notificationService.success('Se creó correctamente la noticia');
-      } catch (error) {
-        this.notificationService.error('Error al Crear la noticia');
-      }
-    } else {
-      this.notificationService.error('Se repite el nombre de la noticia');
+    console.log(title, lead, content, date);
+    try {
+      this.message = 'Se guardaron los datos.';
+      this.information = {
+        title: this.title,
+        lead: this.lead,
+        date: this.date,
+        content: this.content,
+        image: this.imgURL,
+      };
+      this.newProviderService.patchNew(this.news._id, this.information);
+      this.notificationService.success('Se editó la noticia');
+      this.activeModal.close('info modal');
+    } catch (error) {
+      this.notificationService.error('Error al Editar la noticia');
     }
   }
 
@@ -110,7 +103,7 @@ export class CreateNewScreenComponent {
     if (files.length === 0) return;
     let mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      this.message = 'Only images are supported.';
+      this.message2 = 'Only images are supported.';
       return;
     }
     let reader = new FileReader();

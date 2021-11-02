@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<ng-container *ngIf="employees$  | async">
+<ng-container *ngIf="employeeArray">
   <div class="container-fluid my-3">
     <div class="row my-3">
       <div class="my-2" *ngFor="let employee of employeeArray"
@@ -27,26 +27,26 @@
     <h5>NUESTRA HISTORIA</h5>
   </div>
   <div class="row justify-content-center align-items-center text-center">
-    <ng-container *ngIf="informations$ | async">
+    <ng-container *ngIf="informationArray">
       <div class="col-md-6 col-12 mt-4">
         <div class="row">
             <h5>Quienes Somos</h5>
         </div>
-        <div class="row text-start p-5">{{informationArray[0].aboutUs}}</div>
+        <div class="row text-start p-5">{{informationArray[0]?.aboutUs}}</div>
       </div>
       <div class="col-md-6 col-12 p-5">
         <div class="row">
           <h5>Visión</h5>
         </div>
-        <div class="row text-start">{{informationArray[0].vision}}</div>
+        <div class="row text-start">{{informationArray[0]?.vision}}</div>
         <div class="row mt-4">
           <h5>Misión</h5>
         </div>
-        <div class="row text-start">{{informationArray[0].mission}}</div>
+        <div class="row text-start">{{informationArray[0]?.mission}}</div>
         <div class="row mt-4">
           <h5>Valores</h5>
         </div>
-        <div class="row text-start">{{informationArray[0].values}}</div>
+        <div class="row text-start">{{informationArray[0]?.values}}</div>
       </div>
     </ng-container>
   </div>

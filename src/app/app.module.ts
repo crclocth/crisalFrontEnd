@@ -10,6 +10,11 @@ import { SwiperModule } from 'swiper/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import {
+  NgbPaginationModule,
+  NgbAlertModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 const components = [AppComponent];
 
@@ -26,6 +31,16 @@ const components = [AppComponent];
     SwiperModule,
     CoreModule,
     HttpClientModule,
+    NgbPaginationModule,
+    NgbAlertModule,
+    ToastrModule.forRoot({
+      progressBar: false,
+      closeButton: true,
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+    }),
   ],
   providers: [],
   bootstrap: [...components],
