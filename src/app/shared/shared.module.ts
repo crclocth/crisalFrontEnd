@@ -5,12 +5,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CertificateComponent } from './components/certificate/certificate.component';
 import { CoreModule } from '../core/core.module';
+import { SlicePipe } from './pipes/slice/slice.pipe';
 
 const components = [
   NavBarComponent,
   HeaderComponent,
   FooterComponent,
   CertificateComponent,
+  SlicePipe,
 ];
 
 @NgModule({
