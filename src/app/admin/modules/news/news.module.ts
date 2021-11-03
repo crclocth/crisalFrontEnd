@@ -17,6 +17,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
 import { MaterialModule } from 'src/app/core/material.module';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { SeeModalComponent } from './components/see-modal/see-modal.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const components = [
   NewScreenComponent,
@@ -41,6 +42,7 @@ const components = [
     MatNativeDateModule,
     MatDatepickerModule,
     MaterialModule,
+    SharedModule,
   ],
 })
 export class NewsModule {}

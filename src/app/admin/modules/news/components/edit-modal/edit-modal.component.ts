@@ -43,7 +43,6 @@ export class EditModalComponent implements OnInit {
       title: [null, [Validators.required]],
       lead: ['', [Validators.required]],
       content: [null, [Validators.required]],
-      date: ['', [Validators.required]],
     });
   }
 
@@ -55,9 +54,6 @@ export class EditModalComponent implements OnInit {
   }
   get content() {
     return this.addressForm.get('content')?.value;
-  }
-  get date() {
-    return this.addressForm.get('date')?.value;
   }
 
   onSubmit(): void {
@@ -87,7 +83,6 @@ export class EditModalComponent implements OnInit {
       this.information = {
         title: this.title,
         lead: this.lead,
-        date: this.date,
         content: this.content,
         image: this.imgURL,
       };

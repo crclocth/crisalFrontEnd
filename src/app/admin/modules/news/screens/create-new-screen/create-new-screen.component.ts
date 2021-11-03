@@ -38,7 +38,6 @@ export class CreateNewScreenComponent {
       title: [null, [Validators.required]],
       lead: ['', [Validators.required]],
       content: [null, [Validators.required]],
-      date: ['', [Validators.required]],
     });
   }
 
@@ -50,9 +49,6 @@ export class CreateNewScreenComponent {
   }
   get content() {
     return this.addressForm.get('content')?.value;
-  }
-  get date() {
-    return this.addressForm.get('date')?.value;
   }
 
   onSubmit(): void {
@@ -92,7 +88,6 @@ export class CreateNewScreenComponent {
           .postNew({
             title: this.title,
             lead: this.lead,
-            date: this.date,
             content: this.content,
             image: this.imgURL,
           })
