@@ -1,9 +1,7 @@
-<div class="modal-header">
-  <div class="row text-center justify-content-center align-items-center">
-    <h4>Noticia: {{news.title}}? </h4>
-  </div>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <i class="far fa-times-circle"></i>
+<div class="modal-header text-center" style="background-color: #309cea; color: white;">
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">{{news.title}}</h4>
+  <button class="btn" (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
   </button>
 </div>
 <div class="modal-body text-center">
@@ -11,65 +9,56 @@
     <mat-card class="shipping-card" style="background-color: #E4E4E4;">
       <mat-card-content>
         <ng-container *ngIf="news">
-          <div class="row align-items-center">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 col-12 text-right">
+          <div class="row align-items-center mb-3">
+            <div class="col-2"></div>
+            <div class="col-md-4 col-12 text-start">
               Título
             </div>
-            <div class="col-md-6 col-12 mt-3">
-              <div appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+            <div class="col-md-6 col-12 text-start">
                 {{news?.title}}
-              </div>
             </div>
           </div>
-          <div class="row align-items-center">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 col-12 text-right">
+          <div class="row align-items-center mb-3">
+            <div class="col-2"></div>
+            <div class="col-md-4 col-12 text-start">
               Bajada
             </div>
-            <div class="col-md-6 col-12 mt-3">
-              <div class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+            <div class="col-md-6 col-12 text-start">
                 {{news?.lead}}
-              </div>
             </div>
-          <div class="row align-items-center">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 col-12 text-right">
+          </div>
+          <div class="row align-items-center mb-3">
+            <div class="col-2"></div>
+            <div class="col-md-4 col-12 text-start">
               Fecha
             </div>
-            <div class="col-md-6 col-12 mt-3">
-              <div appearance="fill"  [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-                {{news?.date  | date:'yyyy-MM-dd'}}
-              </div>
+            <div class="col-md-6 col-12 text-start">
+                {{news?.createdAt  | date:'yyyy-MM-dd'}}
             </div>
           </div>
-          <div class="row align-items-center">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 col-12 text-right">
+          <div class="row align-items-center mb-3">
+            <div class="col-2"></div>
+            <div class="col-md-4 col-12 text-start">
               Contenido
             </div>
-            <div class="col-md-6 col-12 mt-3">
-              <div class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+            <div class="col-md-6 col-12 text-start">
                 {{news?.content}}
-              </div>
             </div>
           </div>
-          <div class="row align-items-center">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 col-12 text-right">
+          <div class="row align-items-center mb-3">
+            <div class="col-2"></div>
+            <div class="col-md-4 col-12 text-start">
               Imagen
             </div>
-            <div class="col-md-6 col-12 mt-3">
+            <div class="col-md-6 col-12 text-start">
               <img class="card-img-top" style="height: 30vh" [src]="news?.image" alt="logo CRISAL">
             </div>
-          </div>
           </div>
         </ng-container>
       </mat-card-content>
     </mat-card>
   </div>
   <div class="row text-center justify-content-center align-items-center mt-3">
-    <button class="btn" style="background-color: #309CEA; color: white;" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
+    <button class="btn" style="background-color: #309CEA; color: white;" (click)="activeModal.dismiss('Cross click')">Cerrar</button>
   </div>
 </div>
-<div class="modal-footer"></div>

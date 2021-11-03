@@ -4,4 +4,6 @@ export interface Employee {
   profession: string;
   image: string;
   description: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

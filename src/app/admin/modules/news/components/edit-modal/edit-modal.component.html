@@ -1,9 +1,7 @@
-<div class="modal-header">
-  <div class="row text-center justify-content-center align-items-center p-2">
-    <h4>Editar {{news.title}}? </h4>
-  </div>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
+<div class="modal-header text-center" style="background-color: #309cea; color: white;">
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de ELIMINAR {{news.title}}? </h4>
+  <button class="btn" (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
   </button>
 </div>
 <div class="modal-body text-center">
@@ -13,12 +11,12 @@
         <mat-card-content>
           <ng-container *ngIf="news">
             <div class="row align-items-center">
-              <div class="col-md-2"></div>
-              <div class="col-md-4 col-12 text-right">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-start">
                 Título
               </div>
               <div class="col-md-6 col-12 mt-3">
-                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'}">
                   <mat-label>Título</mat-label>
                   <input matInput placeholder="Título" [(ngModel)]="news.title" formControlName="title" [maxlength] = "maxInputTitle" required>
                   <mat-error *ngIf="addressForm.controls['title'].hasError('required')">
@@ -28,12 +26,12 @@
               </div>
             </div>
             <div class="row align-items-center">
-              <div class="col-md-2"></div>
-              <div class="col-md-4 col-12 text-right">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-start">
                 Bajada
               </div>
               <div class="col-md-6 col-12 mt-3">
-                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'}">
                   <mat-label>Bajada</mat-label>
                   <input matInput placeholder="Bajada" [(ngModel)]="news.lead" formControlName="lead" [maxlength] = "maxInputLead" required>
                   <mat-error *ngIf="addressForm.controls['lead'].hasError('required')">
@@ -43,26 +41,12 @@
               </div>
             </div>
             <div class="row align-items-center">
-              <div class="col-md-2"></div>
-              <div class="col-md-4 col-12 text-right">
-                Fecha
-              </div>
-              <div class="col-md-6 col-12 mt-3">
-                <mat-form-field appearance="fill"  [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-                  <mat-label>Choose a date</mat-label>
-                  <input matInput [matDatepicker]="picker" [(ngModel)]="news.date"  formControlName="date">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker>{{picker}}</mat-datepicker>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="col-md-2"></div>
-              <div class="col-md-4 col-12 text-right">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-start">
                 Contenido
               </div>
               <div class="col-md-6 col-12 mt-3">
-                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'}">
                   <mat-label>Contenido</mat-label>
                   <textarea matInput placeholder="Contenido" [(ngModel)]="news.content" formControlName="content" [maxlength] = "maxInputContent" [rows]="6" required></textarea>
                   <mat-error *ngIf="addressForm.controls['content'].hasError('required')">
@@ -72,8 +56,8 @@
               </div>
             </div>
             <div class="row align-items-center">
-              <div class="col-md-2"></div>
-              <div class="col-md-4 col-12 text-right">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-start">
                 Imagen
               </div>
               <div class="col-md-6 col-12 mt-3">
@@ -90,11 +74,11 @@
   </div>
   <div class="row text-center justify-content-center align-items-center mt-3">
     <div class="col">
-      <button class="btn btn-warning" (click)="edit()">EDITAR</button>
+      <button class="btn" style="background-color: #309CEA; color: white;" (click)="edit()">EDITAR</button>
     </div>
     <div class="col">
-      <button class="btn" style="background-color: #309CEA; color: white;" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
+      <button class="btn btn-danger" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
     </div>
   </div>
 </div>
-<div class="modal-footer"></div>
+
