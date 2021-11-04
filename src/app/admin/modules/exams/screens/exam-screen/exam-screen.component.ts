@@ -10,9 +10,8 @@ export class ExamScreenComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  public getCurrentRoute(): string | void {
-    console.log(this.router.url);
 
+  public getCurrentRoute(): string | void {
     let route = this.router.url;
     if (route === '/admin/examenes/crear-examen') {
       return 'crear-examen';

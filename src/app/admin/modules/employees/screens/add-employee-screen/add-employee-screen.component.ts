@@ -1,6 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Employee } from 'src/app/core/models/employee.model';
 import { EmployeeProviderService } from 'src/app/core/providers/employee/employee-provider.service';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
   selector: 'app-add-employee-screen',
@@ -15,24 +17,30 @@ export class AddEmployeeScreenComponent {
   public maxInputProfession: number;
   public maxInputContent: number;
   public imagePath = '';
-  imgURL: any;
-  public message: string = '';
-  mensaje: string = '';
+  public imgURL: any;
+  public message: string;
+  public message2: string;
+  public employeeArray: Employee[];
 
   constructor(
     private fb: FormBuilder,
-    private employeeProviderService: EmployeeProviderService
+    private employeeProviderService: EmployeeProviderService,
+    private notificationService: NotificationService
   ) {
     this.maxInputName = 120;
     this.maxInputProfession = 45;
     this.maxInputContent = 255;
+    this.hasUnitNumber = false;
+    this.maxInput = 250;
+    this.employeeArray = [];
+    this.message2 = '';
+    this.message = '';
+
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
       profession: ['', [Validators.required]],
       description: [null, [Validators.required]],
     });
-    this.hasUnitNumber = false;
-    this.maxInput = 250;
   }
 
   get name() {
@@ -45,21 +53,53 @@ export class AddEmployeeScreenComponent {
     return this.addressForm.get('description')?.value;
   }
 
-  public async postUsuario() {
-    let { name, description, profession } = this.addressForm.value;
-    console.log(name, description, profession);
+  onSubmit(): void {}
+
+  ngOnInit() {
+    this.fetchEmployees();
+  }
+
+  async fetchEmployees() {
     try {
-      this.mensaje = 'Se guardaron los datos.';
-      await this.employeeProviderService
-        .postEmployee({
-          name: this.name,
-          profession: this.profession,
-          image: this.imgURL,
-          description: this.description,
-        })
+      this.employeeArray = await this.employeeProviderService
+        .getEmployees()
         .toPromise();
     } catch (error) {
-      alert('Error al añadir el registro');
+      console.log('error');
+    }
+  }
+
+  notInArray(): boolean {
+    for (let i = 0; i < this.employeeArray.length; i++) {
+      console.log(i);
+      if (this.name === this.employeeArray[i].name) {
+        //this.notificationService.error('Se repite el nombre de la noticia');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public async postUsuario() {
+    let { name, description, profession } = this.addressForm.value;
+    if (this.notInArray() === true) {
+      try {
+        this.message2 = 'Se guardaron los datos.';
+        await this.employeeProviderService
+          .postEmployee({
+            name: this.name,
+            profession: this.profession,
+            image: this.imgURL,
+            description: this.description,
+          })
+          .toPromise();
+        this.notificationService.success('Se Agregó correctamente el Empleado');
+        window.location.reload();
+      } catch (error) {
+        this.notificationService.error('Error al Agregar al Empleado');
+      }
+    } else {
+      this.notificationService.error('Se repite el nombre del Empleado');
     }
   }
 
@@ -82,9 +122,5 @@ export class AddEmployeeScreenComponent {
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
     return window.innerWidth;
-  }
-
-  onSubmit(): void {
-    alert('Thanks!');
   }
 }

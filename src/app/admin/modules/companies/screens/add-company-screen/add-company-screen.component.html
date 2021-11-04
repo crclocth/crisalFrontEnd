@@ -80,7 +80,7 @@
         <div class="row justify-content-center">
           <div class="col-12 text-center mt-4">
             <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
-              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" (click)="postCompany()"
             >AGREGAR EMPRESA</button>
           </div>
         </div>

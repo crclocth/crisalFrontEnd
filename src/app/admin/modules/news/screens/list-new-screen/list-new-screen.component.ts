@@ -16,6 +16,7 @@ export class ListNewScreenComponent implements OnInit {
   ngOnInit() {
     this.fetchNews();
   }
+
   addItem(event: any) {
     this.fetchNews();
   }

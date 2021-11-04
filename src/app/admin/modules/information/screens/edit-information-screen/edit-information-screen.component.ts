@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Information } from 'src/app/core/models/information.model';
 import { InformationProviderService } from 'src/app/core/providers/information/information-provider.service';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
   selector: 'app-edit-information-screen',
@@ -28,7 +29,8 @@ export class EditInformationScreenComponent {
 
   constructor(
     private fb: FormBuilder,
-    private informationProviderService: InformationProviderService
+    private informationProviderService: InformationProviderService,
+    private notificationService: NotificationService
   ) {
     this.informations$ = new Observable<Information[]>();
     this.informationArray = [];
@@ -87,7 +89,9 @@ export class EditInformationScreenComponent {
   }
 
   onSubmit(): void {
-    alert('Thanks!');
+    this.notificationService.success(
+      'Se modificó correctamente la información'
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -146,8 +150,9 @@ export class EditInformationScreenComponent {
         this.id,
         this.information
       );
+      this.notificationService.success('Se Editó la Información');
     } catch (error) {
-      alert('Error al añadir el registro');
+      this.notificationService.success('Error al Editar la Información');
     }
   }
 

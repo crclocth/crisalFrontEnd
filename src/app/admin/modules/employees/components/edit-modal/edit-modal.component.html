@@ -1,0 +1,83 @@
+<div class="modal-header text-center" style="background-color: #309cea; color: white;">
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de ELIMINAR {{employee.name}}? </h4>
+  <button class="btn" (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
+  </button>
+</div>
+<div class="modal-body text-center">
+  <div class="container-fluid">
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+        <mat-card-content>
+          <ng-container *ngIf="employee">
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-start">
+                Nombre del Empleado
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'}">
+                  <mat-label>Nombre del Empleado</mat-label>
+                  <input matInput placeholder="Nombre del Empleado" [(ngModel)]="employee.name" formControlName="name" [maxlength] = "maxInputName" required>
+                  <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                    Nombre del Empleado <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-start">
+                Profesión
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
+                  <mat-label>Profesión</mat-label>
+                  <input matInput placeholder="Profesión" [(ngModel)]="employee.profession" formControlName="profession" [maxlength] = "maxInputProfession" required>
+                  <mat-error *ngIf="addressForm.controls['profession'].hasError('required')">
+                    Profesión <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-start">
+                Descripción
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
+                  <mat-label>Descripción</mat-label>
+                  <textarea matInput placeholder="Descripción" [(ngModel)]="employee.description" formControlName="description" [maxlength] = "maxInputContent" [rows]="5" required></textarea>
+                  <mat-error *ngIf="addressForm.controls['description'].hasError('required')">
+                    Descripción <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-2"></div>
+              <div class="col-md-4 col-12 text-right">
+                Imagen
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                <div class="row text-center justify-content-center align-items-center mt-3">
+                  <img [src]="imgURL" *ngIf="imgURL" class="w-50">
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div class="row text-center justify-content-center align-items-center mt-3">
+    <div class="col">
+      <button class="btn" style="background-color: #309CEA; color: white;" (click)="edit()">EDITAR</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-danger" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
+    </div>
+  </div>
+</div>

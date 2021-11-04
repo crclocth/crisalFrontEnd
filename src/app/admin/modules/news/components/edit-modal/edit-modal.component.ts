@@ -15,13 +15,12 @@ export class EditModalComponent implements OnInit {
   public maxInputTitle: number;
   public maxInputLead: number;
   public maxInputContent: number;
-  public selected!: Date | null;
   public message2: string;
   public message: string;
   public imagePath = '';
   public imgURL: any;
-  public newsArray: News[];
-  public op: boolean;
+  //public newsArray: News[];
+  //public op: boolean;
   public news: any;
   public information!: News;
 
@@ -29,16 +28,15 @@ export class EditModalComponent implements OnInit {
     private fb: FormBuilder,
     private newsProviderService: NewsProviderService,
     private notificationService: NotificationService,
-    public activeModal: NgbActiveModal,
-    private newProviderService: NewsProviderService
+    public activeModal: NgbActiveModal
   ) {
     this.maxInputTitle = 60;
     this.maxInputLead = 60;
     this.maxInputContent = 500;
     this.message2 = '';
     this.message = '';
-    this.newsArray = [];
-    this.op = false;
+    //this.newsArray = [];
+    //this.op = false;
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
       lead: ['', [Validators.required]],
@@ -77,7 +75,6 @@ export class EditModalComponent implements OnInit {
 
   public async edit() {
     let { title, lead, content, date } = this.addressForm.value;
-    console.log(title, lead, content, date);
     try {
       this.message = 'Se guardaron los datos.';
       this.information = {
@@ -86,11 +83,11 @@ export class EditModalComponent implements OnInit {
         content: this.content,
         image: this.imgURL,
       };
-      this.newProviderService.patchNew(this.news._id, this.information);
-      this.notificationService.success('Se editó la noticia');
+      this.newsProviderService.patchNew(this.news._id, this.information);
+      this.notificationService.success('Se Editó la Noticia');
       this.activeModal.close('info modal');
     } catch (error) {
-      this.notificationService.error('Error al Editar la noticia');
+      this.notificationService.error('Error al Editar la Noticia');
     }
   }
 
