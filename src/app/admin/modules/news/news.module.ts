@@ -28,6 +28,7 @@ const components = [
   EditModalComponent,
   SeeModalComponent,
 ];
+
 @NgModule({
   declarations: [...components],
   imports: [

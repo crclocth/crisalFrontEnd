@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { InformationRoutingModule } from './information-routing.module';
 import { InformationScreenComponent } from './screens/information-screen/information-screen.component';
 import { EditInformationScreenComponent } from './screens/edit-information-screen/edit-information-screen.component';
@@ -11,12 +10,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 
+const components = [InformationScreenComponent, EditInformationScreenComponent];
 
 @NgModule({
-  declarations: [
-    InformationScreenComponent,
-    EditInformationScreenComponent
-  ],
+  declarations: [...components],
   imports: [
     CommonModule,
     InformationRoutingModule,
@@ -25,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class InformationModule { }
+export class InformationModule {}

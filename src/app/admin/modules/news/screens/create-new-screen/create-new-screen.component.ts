@@ -20,7 +20,6 @@ export class CreateNewScreenComponent {
   public imagePath = '';
   public imgURL: any;
   public newsArray: News[];
-  public op: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -33,7 +32,6 @@ export class CreateNewScreenComponent {
     this.message2 = '';
     this.message = '';
     this.newsArray = [];
-    this.op = false;
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
       lead: ['', [Validators.required]],
@@ -51,10 +49,7 @@ export class CreateNewScreenComponent {
     return this.addressForm.get('content')?.value;
   }
 
-  onSubmit(): void {
-    this.notificationService.success('Se creó correctamente la noticia');
-    this.addressForm.reset();
-  }
+  onSubmit(): void {}
 
   ngOnInit() {
     this.fetchNews();
@@ -72,7 +67,7 @@ export class CreateNewScreenComponent {
     for (let i = 0; i < this.newsArray.length; i++) {
       console.log(i);
       if (this.title === this.newsArray[i].title) {
-        console.log('mismo nombre');
+        this.notificationService.error('Se repite el nombre de la Noticia');
         return false;
       }
     }
@@ -92,12 +87,13 @@ export class CreateNewScreenComponent {
             image: this.imgURL,
           })
           .toPromise();
-        this.notificationService.success('Se creó correctamente la noticia');
+        this.notificationService.success('Se Creó correctamente la Noticia');
+        window.location.reload();
       } catch (error) {
-        this.notificationService.error('Error al Crear la noticia');
+        this.notificationService.error('Error al Crear la Noticia');
       }
     } else {
-      this.notificationService.error('Se repite el nombre de la noticia');
+      this.notificationService.error('Se repite el nombre de la Noticia');
     }
   }
 
