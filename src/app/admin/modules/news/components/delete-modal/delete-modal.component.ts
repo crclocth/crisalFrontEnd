@@ -10,6 +10,7 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
 })
 export class DeleteModalComponent implements OnInit {
   public news: any;
+
   constructor(
     public activeModal: NgbActiveModal,
     private newProviderService: NewsProviderService,
@@ -23,10 +24,10 @@ export class DeleteModalComponent implements OnInit {
   async delete() {
     try {
       await this.newProviderService.deleteNewById(this.news._id);
-      this.notificationService.success('Se eliminó la noticia');
+      this.notificationService.success('Se Eliminó la Noticia');
       this.activeModal.close('info modal');
     } catch (error) {
-      this.notificationService.error('Error al Eliminar la noticia');
+      this.notificationService.error('Error al Eliminar la Noticia');
     }
   }
 }
