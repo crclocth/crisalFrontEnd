@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Certification } from 'src/app/core/models/certification.model';
 import { CertificationProviderService } from 'src/app/core/providers/certification/certification-provider.service';
 
@@ -9,37 +8,33 @@ import { CertificationProviderService } from 'src/app/core/providers/certificati
   styleUrls: ['./list-certification-screen.component.less'],
 })
 export class ListCertificationScreenComponent implements OnInit {
-  public certifications$: Observable<Certification[]>;
   public certificationArray: Certification[];
   constructor(
     private certificationProviderService: CertificationProviderService
   ) {
-    this.certifications$ = new Observable<Certification[]>();
     this.certificationArray = [];
   }
+
   ngOnInit() {
     this.fetchCertifications();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  addItem(event: any) {
     this.fetchCertifications();
-    console.log('se cambio');
+  }
+
+  async fetchCertifications() {
+    try {
+      this.certificationArray = await this.certificationProviderService
+        .getCertifications()
+        .toPromise();
+    } catch (error) {
+      console.log('error');
+    }
   }
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
     return window.innerWidth;
-  }
-
-  async fetchCertifications() {
-    try {
-      this.certifications$ =
-        await this.certificationProviderService.getCertifications();
-      this.certifications$.subscribe((certification: Certification[]) => {
-        this.certificationArray = certification;
-      });
-    } catch (error) {
-      console.log('error');
-    }
   }
 }
