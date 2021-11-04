@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Employee } from 'src/app/core/models/employee.model';
 import { EmployeeProviderService } from 'src/app/core/providers/employee/employee-provider.service';
 
@@ -9,10 +8,8 @@ import { EmployeeProviderService } from 'src/app/core/providers/employee/employe
   styleUrls: ['./list-employee-screen.component.less'],
 })
 export class ListEmployeeScreenComponent implements OnInit {
-  public employees$: Observable<Employee[]>;
   public employeeArray: Employee[];
   constructor(private employeeProviderService: EmployeeProviderService) {
-    this.employees$ = new Observable<Employee[]>();
     this.employeeArray = [];
   }
 
@@ -20,24 +17,22 @@ export class ListEmployeeScreenComponent implements OnInit {
     this.fetchEmployees();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  addItem(event: any) {
     this.fetchEmployees();
-    console.log('se cambio');
+  }
+
+  async fetchEmployees() {
+    try {
+      this.employeeArray = await this.employeeProviderService
+        .getEmployees()
+        .toPromise();
+    } catch (error) {
+      console.log('error');
+    }
   }
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
     return window.innerWidth;
-  }
-
-  async fetchEmployees() {
-    try {
-      this.employees$ = await this.employeeProviderService.getEmployees();
-      this.employees$.subscribe((news: Employee[]) => {
-        this.employeeArray = news;
-      });
-    } catch (error) {
-      console.log('error');
-    }
   }
 }

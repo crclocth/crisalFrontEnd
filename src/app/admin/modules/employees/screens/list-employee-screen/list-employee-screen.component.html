@@ -1,15 +1,15 @@
 <div class="container-fluid">
-  <div class="row text-center justify-content-center align-items-center p-3">
-    <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+  <div class="row text-center justify-content-center align-items-center p-2">
+    <div style="background-color: #C4C4C4; border-radius: 5px;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
       <h5 class="mt-2">Empleados</h5>
     </div>
   </div>
   <div class="row mb-3 text-center justify-content-center align-items-center p-3" style="background-color: #C4C4C4;">
-    <div class="col-9">Nombre Empleados</div>
-    <div class="col-3">Acciones</div>
+    <div class="col-6">Nombre Empleados</div>
+    <div class="col-6">Acciones</div>
   </div>
-  <ng-container *ngIf="employees$ | async">
-    <ng-container *ngFor="let employee of employeeArray"><app-employees [employee]="employee"></app-employees></ng-container>
+  <ng-container *ngIf="employeeArray">
+    <ng-container *ngFor="let employee of employeeArray"><app-employees [employee]="employee" (newItemEvent)="addItem($event)"></app-employees></ng-container>
   </ng-container>
 </div>
 
