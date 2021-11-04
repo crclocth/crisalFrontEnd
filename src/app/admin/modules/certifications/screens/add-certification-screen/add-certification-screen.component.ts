@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Certification } from 'src/app/core/models/certification.model';
 import { CertificationProviderService } from 'src/app/core/providers/certification/certification-provider.service';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
   selector: 'app-add-certification-screen',
@@ -16,23 +17,77 @@ export class AddCertificationScreenComponent {
   public imgURL: any;
   public message: string;
   public message2: string;
+  public certificationArray: Certification[];
 
   constructor(
     private fb: FormBuilder,
-    private certificationProviderService: CertificationProviderService
+    private certificationProviderService: CertificationProviderService,
+    private notificationService: NotificationService
   ) {
     this.maxInputName = 120;
     this.message = '';
     this.message2 = '';
+    this.hasUnitNumber = false;
+    this.certificationArray = [];
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
     });
-
-    this.hasUnitNumber = false;
   }
 
   get title() {
     return this.addressForm.get('title')?.value;
+  }
+
+  onSubmit(): void {}
+
+  ngOnInit() {
+    this.fetchCertifications();
+  }
+
+  async fetchCertifications() {
+    try {
+      this.certificationArray = await this.certificationProviderService
+        .getCertifications()
+        .toPromise();
+    } catch (error) {
+      console.log('error');
+    }
+  }
+
+  notInArray(): boolean {
+    for (let i = 0; i < this.certificationArray.length; i++) {
+      console.log(i);
+      if (this.title === this.certificationArray[i].title) {
+        this.notificationService.error(
+          'Se repite el nombre de la Certificación'
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public async postCertification() {
+    let { name } = this.addressForm.value;
+    if (this.notInArray() === true) {
+      try {
+        this.message2 = 'Se guardaron los datos.';
+        await this.certificationProviderService
+          .postCertification({
+            title: this.title,
+            image: this.imgURL,
+          })
+          .toPromise();
+        this.notificationService.success(
+          'Se Agregó correctamente la Certificación'
+        );
+        window.location.reload();
+      } catch (error) {
+        this.notificationService.error('Error al Añadir la Certificación');
+      }
+    } else {
+      this.notificationService.error('Se repite el nombre de la Certificación');
+    }
   }
 
   preview(files: any) {
@@ -51,27 +106,8 @@ export class AddCertificationScreenComponent {
     };
   }
 
-  public async postCertification() {
-    let { name } = this.addressForm.value;
-    console.log(name);
-    try {
-      this.message2 = 'Se guardaron los datos.';
-      await this.certificationProviderService
-        .postCertification({
-          title: this.title,
-          image: this.imgURL,
-        })
-        .toPromise();
-    } catch (error) {
-      alert('Error al añadir el registro');
-    }
-  }
-
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
     return window.innerWidth;
-  }
-  onSubmit(): void {
-    alert('Thanks!');
   }
 }
