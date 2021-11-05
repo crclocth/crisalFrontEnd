@@ -1,6 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthProviderService } from 'src/app/core/providers/auth/auth-provider.service';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
   selector: 'app-login-screen',
@@ -11,7 +13,12 @@ export class LoginScreenComponent {
   public hasUnitNumber: boolean;
   public addressForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    public router: Router,
+    private authProviderService: AuthProviderService,
+    private notificationService: NotificationService
+  ) {
     this.addressForm = this.fb.group({
       user: [
         '',
@@ -32,8 +39,18 @@ export class LoginScreenComponent {
     return this.addressForm.get('password')?.value;
   }
 
-  public goToHistoryScreen(): void {
-    this.router.navigate(['/admin']);
+  public async goToHistoryScreen() {
+    try {
+      const result = await this.authProviderService
+        .login(this.user, this.password)
+        .toPromise();
+      if (result?.access_token) {
+        this.notificationService.success('Se Inició Sesión Correctamente');
+      }
+    } catch (error) {
+      console.log(error);
+      this.notificationService.error('Sesión Invalida');
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -41,7 +58,5 @@ export class LoginScreenComponent {
     return window.innerWidth;
   }
 
-  onSubmit(): void {
-    alert('Thanks!');
-  }
+  onSubmit(): void {}
 }

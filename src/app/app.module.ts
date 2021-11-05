@@ -9,12 +9,13 @@ import { AdminModule } from './admin/admin.module';
 import { SwiperModule } from 'swiper/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {
   NgbPaginationModule,
   NgbAlertModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { InterceptorsInterceptor } from './core/interceptors/interceptors.interceptor';
 
 const components = [AppComponent];
 
@@ -42,7 +43,13 @@ const components = [AppComponent];
       resetTimeoutOnDuplicate: true,
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorsInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [...components],
 })
 export class AppModule {}
