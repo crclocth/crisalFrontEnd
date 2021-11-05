@@ -9,7 +9,7 @@
     <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">RUT</div>
     <div class="col-3">Acciones</div>
   </div>
-  <!-- <ng-container *ngIf="companyArray">
-    <ng-container *ngFor="let company of companyArray"><app-employees [company]="company" (newItemEvent)="addItem($event)"></app-employees></ng-container>
-  </ng-container> -->
+  <ng-container *ngIf="companyArray">
+    <ng-container *ngFor="let company of companyArray"><app-company [company]="company" (newItemEvent)="addItem($event)"></app-company></ng-container>
+  </ng-container>
 </div>
