@@ -49,8 +49,6 @@ export class CreateNewScreenComponent {
     return this.addressForm.get('content')?.value;
   }
 
-  onSubmit(): void {}
-
   ngOnInit() {
     this.fetchNews();
   }

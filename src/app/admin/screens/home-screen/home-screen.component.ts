@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { AuthProviderService } from 'src/app/core/providers/auth/auth-provider.service';
 
 @Component({
   selector: 'app-home-screen',
@@ -9,7 +10,11 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class HomeScreenComponent implements OnInit {
   mobileQuery: MediaQueryList;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private authProviderService: AuthProviderService
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -26,4 +31,8 @@ export class HomeScreenComponent implements OnInit {
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some((h) =>
     h.test(window.location.host)
   );
+
+  public logout() {
+    this.authProviderService.logout();
+  }
 }

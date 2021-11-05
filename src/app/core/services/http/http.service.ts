@@ -38,6 +38,16 @@ export class HttpService {
       );
   } //Crear datos
 
+  public postLogin<type>(path: string, body: any): Observable<type> {
+    return this.httpClient
+      .post<type>(this.baseUrl + path, body, this.httpOptions)
+      .pipe(
+        map((data: any) => {
+          return data as type;
+        })
+      );
+  } //Crear datos
+
   public delete<type>(path: string): Observable<type> {
     return this.httpClient
       .delete<type>(this.baseUrl + path, this.httpOptions)
