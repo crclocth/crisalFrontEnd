@@ -1,5 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Exam } from 'src/app/core/models/exam.modal';
+import { ExamProviderService } from 'src/app/core/providers/exam/exam-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
@@ -18,11 +21,13 @@ export class CreateExamScreenComponent implements OnInit {
   public imgURL: any;
   public message: string;
   public message2: string;
-  public employeeArray: Employee[];
+  public examArray: Exam[];
+  public options: string[] = ['One', 'Two', 'Three'];
+  public filteredOptions!: Observable<string[]>;
 
   constructor(
     private fb: FormBuilder,
-    private employeeProviderService: EmployeeProviderService,
+    private examProviderService: ExamProviderService,
     private notificationService: NotificationService
   ) {
     this.maxInputName = 120;
@@ -30,25 +35,29 @@ export class CreateExamScreenComponent implements OnInit {
     this.maxInputContent = 255;
     this.hasUnitNumber = false;
     this.maxInput = 250;
-    this.employeeArray = [];
+    this.examArray = [];
     this.message2 = '';
     this.message = '';
 
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
-      profession: ['', [Validators.required]],
-      description: [null, [Validators.required]],
+      laboratory: ['', [Validators.required]],
+      type: [null, [Validators.required]],
+      unit: [null, [Validators.required]],
     });
   }
 
   get name() {
     return this.addressForm.get('name')?.value;
   }
-  get profession() {
-    return this.addressForm.get('profession')?.value;
+  get laboratory() {
+    return this.addressForm.get('laboratory')?.value;
   }
-  get description() {
-    return this.addressForm.get('description')?.value;
+  get type() {
+    return this.addressForm.get('type')?.value;
+  }
+  get unit() {
+    return this.addressForm.get('unit')?.value;
   }
 
   onSubmit(): void {}
@@ -59,18 +68,16 @@ export class CreateExamScreenComponent implements OnInit {
 
   async fetchEmployees() {
     try {
-      this.employeeArray = await this.employeeProviderService
-        .getEmployees()
-        .toPromise();
+      this.examArray = await this.examProviderService.getExams().toPromise();
     } catch (error) {
       console.log('error');
     }
   }
 
   notInArray(): boolean {
-    for (let i = 0; i < this.employeeArray.length; i++) {
+    for (let i = 0; i < this.examArray.length; i++) {
       console.log(i);
-      if (this.name === this.employeeArray[i].name) {
+      if (this.name === this.examArray[i].name) {
         //this.notificationService.error('Se repite el nombre de la noticia');
         return false;
       }
@@ -79,42 +86,26 @@ export class CreateExamScreenComponent implements OnInit {
   }
 
   public async postUsuario() {
-    let { name, description, profession } = this.addressForm.value;
+    let { name, laboratory, type, unit } = this.addressForm.value;
     if (this.notInArray() === true) {
       try {
         this.message2 = 'Se guardaron los datos.';
-        await this.employeeProviderService
-          .postEmployee({
+        await this.examProviderService
+          .postExam({
             name: this.name,
-            profession: this.profession,
-            image: this.imgURL,
-            description: this.description,
+            laboratory: this.laboratory,
+            type: this.type,
+            unit: this.unit,
           })
           .toPromise();
-        this.notificationService.success('Se Agregó correctamente el Empleado');
+        this.notificationService.success('Se Agregó correctamente el Exámen');
         window.location.reload();
       } catch (error) {
-        this.notificationService.error('Error al Agregar al Empleado');
+        this.notificationService.error('Error al Agregar el Exámen');
       }
     } else {
-      this.notificationService.error('Se repite el nombre del Empleado');
+      this.notificationService.error('Se repite el nombre del Exámen');
     }
-  }
-
-  preview(files: any) {
-    if (files.length === 0) return;
-    let mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = 'Only images are supported.';
-      return;
-    }
-    let reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      this.imgURL = reader.result;
-      console.log(this.imgURL);
-    };
   }
 
   @HostListener('window:resize', ['$event'])

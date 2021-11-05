@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Exam } from 'src/app/core/models/exam.modal';
+import { ExamProviderService } from 'src/app/core/providers/exam/exam-provider.service';
 
 @Component({
   selector: 'app-list-exam-screen',
@@ -6,24 +8,22 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./list-exam-screen.component.less'],
 })
 export class ListExamScreenComponent implements OnInit {
-  public employeeArray: Employee[];
-  constructor(private employeeProviderService: EmployeeProviderService) {
-    this.employeeArray = [];
+  public examArray: Exam[];
+  constructor(private examProviderService: ExamProviderService) {
+    this.examArray = [];
   }
 
   ngOnInit() {
-    this.fetchEmployees();
+    this.fetchExams();
   }
 
   addItem(event: any) {
-    this.fetchEmployees();
+    this.fetchExams();
   }
 
-  async fetchEmployees() {
+  async fetchExams() {
     try {
-      this.employeeArray = await this.employeeProviderService
-        .getEmployees()
-        .toPromise();
+      this.examArray = await this.examProviderService.getExams().toPromise();
     } catch (error) {
       console.log('error');
     }
