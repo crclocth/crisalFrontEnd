@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Company } from 'src/app/core/models/company.modal';
+import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
@@ -13,18 +15,18 @@ export class AddCompanyScreenComponent {
   public maxInputName: number;
   public maxInputTask: number;
   public message2: string;
-  //public companyArray: Company[];
+  public companyArray: Company[];
 
   constructor(
     private fb: FormBuilder,
-    //private companyProviderService: CompanyProviderService,
+    private companyProviderService: CompanyProviderService,
     private notificationService: NotificationService
   ) {
     this.maxInputName = 120;
     this.maxInputTask = 120;
     this.message2 = '';
     this.hasUnitNumber = false;
-    //this.companyArray = [];
+    this.companyArray = [];
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
       rut: [
@@ -63,10 +65,10 @@ export class AddCompanyScreenComponent {
   onSubmit(): void {}
 
   ngOnInit() {
-    // this.fetchCompanies();
+    this.fetchCompanies();
   }
 
-  /* async fetchCompanies() {
+  async fetchCompanies() {
     try {
       this.companyArray = await this.companyProviderService
         .getCompanies()
@@ -74,9 +76,9 @@ export class AddCompanyScreenComponent {
     } catch (error) {
       console.log('error');
     }
-  } */
+  }
 
-  /* notInArray(): boolean {
+  notInArray(): boolean {
     for (let i = 0; i < this.companyArray.length; i++) {
       console.log(i);
       if (this.name === this.companyArray[i].name) {
@@ -85,15 +87,15 @@ export class AddCompanyScreenComponent {
       }
     }
     return true;
-  } */
+  }
 
   public async postCompany() {
-    /* let { name, rut, task, mail } = this.addressForm.value;
+    let { name, rut, task, mail } = this.addressForm.value;
     if (this.notInArray() === true) {
       try {
         this.message2 = 'Se guardaron los datos.';
         await this.companyProviderService
-          .postEmployee({
+          .postCompany({
             name: this.name,
             rut: this.rut,
             task: this.task,
@@ -107,7 +109,7 @@ export class AddCompanyScreenComponent {
       }
     } else {
       this.notificationService.error('Se repite el nombre de la Empresa');
-    } */
+    }
   }
 
   @HostListener('window:resize', ['$event'])

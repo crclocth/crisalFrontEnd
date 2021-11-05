@@ -19,10 +19,18 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { SeeModalComponent } from './components/see-modal/see-modal.component';
 
-const components = [CompanyScreenComponent, AddCompanyScreenComponent];
+const components = [
+  CompanyScreenComponent,
+  AddCompanyScreenComponent,
+  ListCompanyScreenComponent,
+  CompanyComponent,
+  DeleteModalComponent,
+  EditModalComponent,
+  SeeModalComponent,
+];
 
 @NgModule({
-  declarations: [...components, ListCompanyScreenComponent, CompanyComponent, DeleteModalComponent, EditModalComponent, SeeModalComponent],
+  declarations: [...components],
   imports: [
     CommonModule,
     CompaniesRoutingModule,

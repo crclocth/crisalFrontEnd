@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class DeleteModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    // private newProviderService: NewsProviderService,
+    private companyProviderService: CompanyProviderService,
     private notificationService: NotificationService
   ) {}
 
@@ -21,12 +22,12 @@ export class DeleteModalComponent implements OnInit {
   }
 
   async delete() {
-    /* try {
-      await this.newProviderService.deleteCompanyById(this.company._id);
+    try {
+      await this.companyProviderService.deleteCompanyById(this.company._id);
       this.notificationService.success('Se Eliminó la Empresa');
       this.activeModal.close('info modal');
     } catch (error) {
       this.notificationService.error('Error al Eliminar la Empresa');
-    } */
+    }
   }
 }

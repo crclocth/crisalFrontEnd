@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Company } from 'src/app/core/models/company.modal';
+import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
@@ -14,13 +16,13 @@ export class EditModalComponent implements OnInit {
   public maxInputName: number;
   public maxInputTask: number;
   public message2: string;
-  //public companyArray: Company[];
+  public companyArray: Company[];
   public company: any;
-  //public information!: Company;
+  public information!: Company;
 
   constructor(
     private fb: FormBuilder,
-    //private companyProviderService: CompanyProviderService,
+    private companyProviderService: CompanyProviderService,
     private notificationService: NotificationService,
     public activeModal: NgbActiveModal
   ) {
@@ -28,7 +30,7 @@ export class EditModalComponent implements OnInit {
     this.maxInputTask = 120;
     this.message2 = '';
     this.hasUnitNumber = false;
-    //this.companyArray = [];
+    this.companyArray = [];
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
       rut: [
@@ -84,21 +86,24 @@ export class EditModalComponent implements OnInit {
   } */
 
   public async edit() {
-    /*let { name, rut, task, mail } = this.addressForm.value;
-      try {
-        this.message2 = 'Se guardaron los datos.';
-        this.information = {
+    let { name, rut, task, mail } = this.addressForm.value;
+    try {
+      this.message2 = 'Se guardaron los datos.';
+      this.information = {
         name: this.name,
         rut: this.rut,
         task: this.task,
         mail: this.mail,
       };
-      this.companyProviderService.patchCompany(this.company._id, this.information);
+      this.companyProviderService.patchCompany(
+        this.company._id,
+        this.information
+      );
       this.notificationService.success('Se Editó la Empresa');
       this.activeModal.close('info modal');
-      } catch (error) {
-        this.notificationService.error('Error al Editar la Empresa');
-      }*/
+    } catch (error) {
+      this.notificationService.error('Error al Editar la Empresa');
+    }
   }
 
   @HostListener('window:resize', ['$event'])
