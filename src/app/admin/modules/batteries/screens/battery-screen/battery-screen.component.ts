@@ -12,10 +12,8 @@ export class BatteryScreenComponent implements OnInit {
   ngOnInit(): void {}
 
   public getCurrentRoute(): string | void {
-    console.log(this.router.url);
-
     let route = this.router.url;
-    if (route === '/admin/batarias/crear-bateria') {
+    if (route === '/admin/baterias/crear-bateria') {
       return 'crear-bateria';
     }
     if (route === '/admin/baterias/historico') {
