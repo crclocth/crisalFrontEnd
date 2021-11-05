@@ -22,7 +22,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'batarias',
+        path: 'baterias',
         loadChildren: () =>
           import('./modules/batteries/batteries.module').then(
             (m) => m.BatteriesModule
