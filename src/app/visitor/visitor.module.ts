@@ -22,11 +22,6 @@ import { SwiperModule } from 'swiper/angular';
 import { CardCertificateComponent } from './components/card-certificate/card-certificate.component';
 import { CardClientComponent } from './components/card-client/card-client.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
 import { ValidateFormComponent } from './components/validate-form/validate-form.component';
@@ -34,10 +29,9 @@ import { DownloadFormComponent } from './components/download-form/download-form.
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { AdminModule } from '../admin/admin.module';
 import { NewsDetailComponent } from './components/news-detail/news-detail.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { core } from '@angular/compiler';
 import { CoreModule } from '../core/core.module';
+import { CardCarouselComponent } from './components/card-carousel/card-carousel.component';
+import { MaterialModule } from '../core/material.module';
 
 const components = [
   HomeScreenComponent,
@@ -68,22 +62,16 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, CardCarouselComponent],
   imports: [
     CommonModule,
     VisitorRoutingModule,
     SharedModule,
     SwiperModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
     ReactiveFormsModule,
     AdminModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
     CoreModule,
+    MaterialModule,
   ],
 })
 export class VisitorModule {}

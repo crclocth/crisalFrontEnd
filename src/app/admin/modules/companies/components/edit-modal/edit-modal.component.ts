@@ -42,7 +42,7 @@ export class EditModalComponent implements OnInit {
           Validators.pattern('[0-9]{1,2}[0-9]{3}[0-9]{3}-[0-9Kk]{1}'),
         ],
       ],
-      task: [null, [Validators.required]],
+      faena: [null, [Validators.required]],
       mail: [
         '',
         [
@@ -59,8 +59,8 @@ export class EditModalComponent implements OnInit {
   get rut() {
     return this.addressForm.get('rut')?.value;
   }
-  get task() {
-    return this.addressForm.get('task')?.value;
+  get faena() {
+    return this.addressForm.get('faena')?.value;
   }
   get mail() {
     return this.addressForm.get('mail')?.value;
@@ -92,7 +92,7 @@ export class EditModalComponent implements OnInit {
       this.information = {
         name: this.name,
         rut: this.rut,
-        task: this.task,
+        faena: this.faena,
         mail: this.mail,
       };
       this.companyProviderService.patchCompany(

@@ -9,7 +9,12 @@
       <h5>{{news.title}}</h5>
     </div>
   </div>
-  <div class="row text-start">{{news.lead}}</div>
+  <div class="row text-start">
+    <div class="col-1"></div>
+    <div class="col">
+      {{news.lead}}
+    </div>
+  </div>
   <div class="row text-start">
     <div class="col-12 mt-1 p-0">
       <button class="btn" type="submit" style="background-color: #309CEA; color: white;" (click)="goToNewsDetailScreens()">LEER MÁS</button>

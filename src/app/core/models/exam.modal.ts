@@ -3,7 +3,7 @@ export interface Exam {
   name: string;
   laboratory: string;
   type: string;
-  unit: string;
+  measurementUnit: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

@@ -18,7 +18,7 @@
               <mat-label>Nombre del Exámen</mat-label>
               <input matInput placeholder="Nombre del Exámen" formControlName="name" [maxlength] = "maxInputName" required>
               <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
-                Nombre del Exámeno <strong>REQUERIDO</strong>
+                Nombre del Exámen <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field>
           </div>
@@ -46,7 +46,19 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Tipo de Exámen</mat-label>
-              <textarea matInput placeholder="Tipo de Exámen" formControlName="type" [maxlength] = "maxInputContent" [rows]="5" required></textarea>
+              <input type="text"
+                     placeholder="Tipo de Exámen"
+                     aria-label="Number"
+                     matInput
+                     [maxlength] = "maxInputContent"
+                     placeholder="Unidad Métrica"
+                     formControlName="type"
+                     [matAutocomplete]="auto" required>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
               <mat-error *ngIf="addressForm.controls['type'].hasError('required')">
                 Tipo de Exámen <strong>REQUERIDO</strong>
               </mat-error>
@@ -68,10 +80,9 @@
                      [maxlength] = "maxInputContent"
                      placeholder="Unidad Métrica"
                      formControlName="unit"
-                     [formControl]="unit"
                      [matAutocomplete]="auto" required>
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                <mat-option *ngFor="let option of options" [value]="option">
                   {{option}}
                 </mat-option>
               </mat-autocomplete>

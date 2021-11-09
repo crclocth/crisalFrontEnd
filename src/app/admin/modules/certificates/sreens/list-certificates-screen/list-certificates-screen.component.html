@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row text-center justify-content-center align-items-center p-3">
+    <div style="background-color: #C4C4C4; border-radius: 5px;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+      <h5 class="mt-2">Certificados Históricos</h5>
+    </div>
+  </div>
+  <div class="row mb-3 text-center justify-content-center align-items-center p-3" style="background-color: #C4C4C4;">
+    <div class="col-3">Nombre de la Empresa</div>
+    <div class="col-3">Certificado</div>
+    <div class="col-3">Datos del Trabajador</div>
+    <div class="col-3">Acciones</div>
+  </div>
+  <!-- <ng-container *ngIf="certificatestArray">
+    <ng-container *ngFor="let client of certificatestArray"><app-certificates [client]="client" (newItemEvent)="addItem($event)"></app-certificates></ng-container>
+  </ng-container> -->
+</div>
+
