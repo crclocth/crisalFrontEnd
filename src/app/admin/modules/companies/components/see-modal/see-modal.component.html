@@ -1,5 +1,5 @@
 <div class="modal-header text-center" style="background-color: #309cea; color: white;">
-  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">{{company.title}}</h4>
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">{{company.name}}</h4>
   <button class="btn" (click)="activeModal.dismiss('Cross click')">
     <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
   </button>
@@ -21,7 +21,7 @@
           <div class="row align-items-center mb-3">
             <div class="col-2"></div>
             <div class="col-md-4 col-12 text-start">
-              Bajada
+              Rut de la Empresa
             </div>
             <div class="col-md-6 col-12 text-start">
                 {{company?.rut}}
@@ -30,19 +30,19 @@
           <div class="row align-items-center mb-3">
             <div class="col-2"></div>
             <div class="col-md-4 col-12 text-start">
-              Contenido
+              Faena
             </div>
             <div class="col-md-6 col-12 text-start">
-                {{company?.task}}
+                {{company?.faena}}
             </div>
           </div>
           <div class="row align-items-center mb-3">
             <div class="col-2"></div>
             <div class="col-md-4 col-12 text-start">
-              Contenido
+              Correo Electrónico
             </div>
             <div class="col-md-6 col-12 text-start">
-                {{company?.mail}}
+                {{company?.email}}
             </div>
           </div>
         </ng-container>

@@ -38,7 +38,7 @@ export class AddCompanyScreenComponent {
           Validators.pattern('[0-9]{1,2}[0-9]{3}[0-9]{3}-[0-9Kk]{1}'),
         ],
       ],
-      task: [null, [Validators.required]],
+      faena: [null, [Validators.required]],
       mail: [
         '',
         [
@@ -55,8 +55,8 @@ export class AddCompanyScreenComponent {
   get rut() {
     return this.addressForm.get('rut')?.value;
   }
-  get task() {
-    return this.addressForm.get('task')?.value;
+  get faena() {
+    return this.addressForm.get('faena')?.value;
   }
   get mail() {
     return this.addressForm.get('mail')?.value;
@@ -98,8 +98,8 @@ export class AddCompanyScreenComponent {
           .postCompany({
             name: this.name,
             rut: this.rut,
-            task: this.task,
-            mail: this.mail,
+            faena: this.faena,
+            email: this.mail,
           })
           .toPromise();
         this.notificationService.success('Se Agregó correctamente la Empresa');

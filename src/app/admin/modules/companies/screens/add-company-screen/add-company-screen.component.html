@@ -49,8 +49,8 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Faena</mat-label>
-              <input matInput placeholder="Faena" formControlName="task" [maxlength] = "maxInputTask" required>
-              <mat-error *ngIf="addressForm.controls['task'].hasError('required')">
+              <input matInput placeholder="Faena" formControlName="faena" [maxlength] = "maxInputTask" required>
+              <mat-error *ngIf="addressForm.controls['faena'].hasError('required')">
                 Faena <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field>

@@ -23,7 +23,6 @@ export class CreateExamScreenComponent implements OnInit {
   public message2: string;
   public examArray: Exam[];
   public options: string[] = ['One', 'Two', 'Three'];
-  public filteredOptions!: Observable<string[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -62,9 +61,7 @@ export class CreateExamScreenComponent implements OnInit {
 
   onSubmit(): void {}
 
-  ngOnInit() {
-    this.fetchEmployees();
-  }
+  ngOnInit() {}
 
   async fetchEmployees() {
     try {

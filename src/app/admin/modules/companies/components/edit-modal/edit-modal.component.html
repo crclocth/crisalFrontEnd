@@ -1,5 +1,5 @@
 <div class="modal-header text-center" style="background-color: #309cea; color: white;">
-  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de ELIMINAR {{company.title}}? </h4>
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de EDITAR {{company.name}}? </h4>
   <button class="btn" (click)="activeModal.dismiss('Cross click')">
     <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
   </button>
@@ -11,7 +11,7 @@
         <mat-card-content>
           <ng-container *ngIf="company">
             <div class="row align-items-center">
-              <div class="col-4"></div>
+              <div class="col-2"></div>
               <div class="col-md-4 col-12 text-start">
                 Nombre
               </div>
@@ -27,7 +27,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col-2"></div>
-              <div class="col-md-4 col-12 text-star">
+              <div class="col-md-4 col-12 text-start">
                 Rut de la Empresa
               </div>
               <div class="col-md-6 col-12  mt-3">
@@ -51,8 +51,8 @@
               <div class="col-md-6 col-12 mt-3">
                 <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
                   <mat-label>Faena</mat-label>
-                  <input matInput placeholder="Faena" [(ngModel)]="company.task" formControlName="task" [maxlength] = "maxInputTask" required>
-                  <mat-error *ngIf="addressForm.controls['task'].hasError('required')">
+                  <input matInput placeholder="Faena" [(ngModel)]="company.faena" formControlName="faena" [maxlength] = "maxInputTask" required>
+                  <mat-error *ngIf="addressForm.controls['faena'].hasError('required')">
                     Faena <strong>REQUERIDO</strong>
                   </mat-error>
                 </mat-form-field>
@@ -66,7 +66,7 @@
               <div class="col-md-6 col-12 mt-3">
                 <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
                   <mat-label>Correo Electrónico</mat-label>
-                  <input matInput placeholder="CORREO ELECTRÓNICO" [(ngModel)]="company.mail" formControlName="mail" required>
+                  <input matInput placeholder="CORREO ELECTRÓNICO" [(ngModel)]="company.email" formControlName="mail" required>
                   <mat-error *ngIf="addressForm.controls['mail'].hasError('required')">
                     Correo Electrónico <strong>REQUERIDO</strong>
                   </mat-error>

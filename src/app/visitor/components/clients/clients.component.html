@@ -6,7 +6,7 @@
 
 <div class="container-fluid mb-5">
   <div class="row align-items-center justify-content-center">
-    <ng-container *ngIf="certifications$ |async">
+    <ng-container *ngIf="certifications$ |async; else loading">
       <div class="col-md-6 col-12" style="user-select: none;">
           <swiper
             [breakpoints]="breakPoints"
@@ -25,6 +25,9 @@
           </swiper>
       </div>
     </ng-container>
+    <ng-template #loading>
+      <mat-spinner class="mt-2"></mat-spinner>
+    </ng-template>
   </div>
 </div>
 
@@ -36,7 +39,7 @@
 
 <div class="container-fluid mb-5">
   <div class="row align-items-center justify-content-center">
-    <ng-container *ngIf="clients$ | async">
+    <ng-container *ngIf="clients$ | async; else loading">
       <div class="col-md-6 col-12">
           <swiper
             [breakpoints]="breakPoints"
@@ -55,5 +58,8 @@
           </swiper>
       </div>
     </ng-container>
+    <ng-template #loading>
+      <mat-spinner class="mt-2"></mat-spinner>
+    </ng-template>
   </div>
 </div>
