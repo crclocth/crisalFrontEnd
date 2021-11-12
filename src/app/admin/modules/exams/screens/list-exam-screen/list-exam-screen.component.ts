@@ -8,24 +8,32 @@ import { ExamProviderService } from 'src/app/core/providers/exam/exam-provider.s
   styleUrls: ['./list-exam-screen.component.less'],
 })
 export class ListExamScreenComponent implements OnInit {
-  public examArray: Exam[];
+  public examArray: Exam[] | null;
   constructor(private examProviderService: ExamProviderService) {
     this.examArray = [];
   }
 
-  ngOnInit() {
-    this.fetchExams();
+  async ngOnInit() {
+    this.examArray = await this.fetchExams('all');
   }
 
-  addItem(event: any) {
-    this.fetchExams();
+  async addItem(event: any) {
+    this.examArray = await this.fetchExams('all');
   }
 
-  async fetchExams() {
+  /*  async fetchExams() {
     try {
       this.examArray = await this.examProviderService.getExams().toPromise();
     } catch (error) {
       console.log('error');
+    }
+  } */
+  async fetchExams(type: string): Promise<Exam[] | null> {
+    try {
+      return await this.examProviderService.getExams(type).toPromise();
+    } catch (error) {
+      console.log('error');
+      return null;
     }
   }
 

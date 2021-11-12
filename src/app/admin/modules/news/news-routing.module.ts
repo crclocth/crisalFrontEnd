@@ -4,7 +4,6 @@ import { NewScreenComponent } from './screens/new-screen/new-screen.component';
 
 const routes: Routes = [
   { path: '', component: NewScreenComponent, pathMatch: 'full' },
-  //{ path: 'crear', component: CertificateScreenComponent },
   { path: '**', component: NewScreenComponent },
 ];
 

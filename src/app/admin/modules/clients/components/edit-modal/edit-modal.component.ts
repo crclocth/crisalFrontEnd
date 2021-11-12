@@ -11,14 +11,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./edit-modal.component.less'],
 })
 export class EditModalComponent implements OnInit {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputName: number;
   public imagePath: any;
   public imgURL: any;
   public message: string;
   public message2: string;
-  //public clientArray: Client[];
   public client: any;
   public information!: Client;
 
@@ -31,8 +29,6 @@ export class EditModalComponent implements OnInit {
     this.maxInputName = 120;
     this.message = '';
     this.message2 = '';
-    this.hasUnitNumber = false;
-    //this.clientArray = [];
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
     });

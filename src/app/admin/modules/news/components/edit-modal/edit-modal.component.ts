@@ -19,8 +19,6 @@ export class EditModalComponent implements OnInit {
   public message: string;
   public imagePath = '';
   public imgURL: any;
-  //public newsArray: News[];
-  //public op: boolean;
   public news: any;
   public information!: News;
 
@@ -35,8 +33,6 @@ export class EditModalComponent implements OnInit {
     this.maxInputContent = 500;
     this.message2 = '';
     this.message = '';
-    //this.newsArray = [];
-    //this.op = false;
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
       lead: ['', [Validators.required]],

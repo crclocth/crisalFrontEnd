@@ -10,7 +10,6 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./add-employee-screen.component.less'],
 })
 export class AddEmployeeScreenComponent {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInput: number;
   public maxInputName: number;
@@ -30,7 +29,6 @@ export class AddEmployeeScreenComponent {
     this.maxInputName = 120;
     this.maxInputProfession = 45;
     this.maxInputContent = 255;
-    this.hasUnitNumber = false;
     this.maxInput = 250;
     this.employeeArray = [];
     this.message2 = '';

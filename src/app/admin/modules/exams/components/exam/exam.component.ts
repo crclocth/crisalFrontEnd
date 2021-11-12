@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Exam } from 'src/app/core/models/exam.modal';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
@@ -20,7 +21,7 @@ import { SeeModalComponent } from '../see-modal/see-modal.component';
 export class ExamComponent implements OnInit {
   @Input() exam!: Exam;
   @Output() newItemEvent = new EventEmitter<string>();
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -36,14 +37,18 @@ export class ExamComponent implements OnInit {
   }
 
   openModalEdit() {
-    const modalRef = this.modalService.open(EditModalComponent, {
-      size: 'lg',
-    });
-    modalRef.componentInstance.exam = this.exam;
-    modalRef.result.then((result) => {
-      console.log(result);
-      this.newItemEvent.emit(result);
-    });
+    this.dialog
+      .open(EditModalComponent, {
+        width: '700px',
+        data: {
+          exam: this.exam,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        console.log(result);
+        this.newItemEvent.emit(result);
+      });
   }
 
   openModalSee() {

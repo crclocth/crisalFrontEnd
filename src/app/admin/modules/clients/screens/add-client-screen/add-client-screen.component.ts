@@ -10,7 +10,6 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./add-client-screen.component.less'],
 })
 export class AddClientScreenComponent {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputName: number;
   public imagePath: any;
@@ -27,7 +26,6 @@ export class AddClientScreenComponent {
     this.maxInputName = 120;
     this.message = '';
     this.message2 = '';
-    this.hasUnitNumber = false;
     this.clientArray = [];
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],

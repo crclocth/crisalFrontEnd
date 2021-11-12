@@ -11,7 +11,6 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./edit-modal.component.less'],
 })
 export class EditModalComponent implements OnInit {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputName: number;
   public maxInputTask: number;
@@ -29,7 +28,6 @@ export class EditModalComponent implements OnInit {
     this.maxInputName = 120;
     this.maxInputTask = 120;
     this.message2 = '';
-    this.hasUnitNumber = false;
     this.companyArray = [];
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],

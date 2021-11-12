@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactProviderService } from 'src/app/core/providers/contact/contact-provider.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -14,7 +15,10 @@ export class ContactFormComponent {
   public maxInputMail: number;
   public maxInputsubject: number;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private contacProviderService: ContactProviderService
+  ) {
     this.addressForm = this.fb.group({
       name: [null, Validators.required],
       mail: [

@@ -21,7 +21,6 @@ export class EditModalComponent implements OnInit {
   public imgURL: any;
   public message: string;
   public message2: string;
-  //public employeeArray: Employee[];
   public employee: any;
   public information!: Employee;
 
@@ -36,7 +35,6 @@ export class EditModalComponent implements OnInit {
     this.maxInputContent = 255;
     this.hasUnitNumber = false;
     this.maxInput = 250;
-    //this.employeeArray = [];
     this.message2 = '';
     this.message = '';
     this.addressForm = this.fb.group({

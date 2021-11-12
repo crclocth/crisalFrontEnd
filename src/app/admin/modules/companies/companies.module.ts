@@ -3,14 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CompaniesRoutingModule } from './companies-routing.module';
 import { CompanyScreenComponent } from './screens/company-screen/company-screen.component';
 import { AddCompanyScreenComponent } from './screens/add-company-screen/add-company-screen.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MaterialModule } from 'src/app/core/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ListCompanyScreenComponent } from './screens/list-company-screen/list-company-screen.component';
@@ -31,19 +23,6 @@ const components = [
 
 @NgModule({
   declarations: [...components],
-  imports: [
-    CommonModule,
-    CompaniesRoutingModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MaterialModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, CompaniesRoutingModule, MaterialModule, SharedModule],
 })
 export class CompaniesModule {}

@@ -10,7 +10,6 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./add-certification-screen.component.less'],
 })
 export class AddCertificationScreenComponent {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputName: number;
   public imagePath: any;
@@ -27,7 +26,6 @@ export class AddCertificationScreenComponent {
     this.maxInputName = 120;
     this.message = '';
     this.message2 = '';
-    this.hasUnitNumber = false;
     this.certificationArray = [];
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],

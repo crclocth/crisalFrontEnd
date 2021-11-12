@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row text-center justify-content-center align-items-center p-2">
+    <div style="background-color: #C4C4C4; border-radius: 5px;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+      <h5 class="mt-2">Laboratorios</h5>
+    </div>
+  </div>
+  <div class="row mb-3 text-center justify-content-center align-items-center p-3" style="background-color: #C4C4C4; border-radius: 5px;">
+    <div class="col-6">Nombre del Laboratorio</div>
+    <div class="col-6">Acciones</div>
+  </div>
+  <ng-container *ngIf="laboratoryArray">
+    <ng-container *ngFor="let laboratory of laboratoryArray"><app-laboratories [laboratory]="laboratory" (newItemEvent)="addItem($event)"></app-laboratories></ng-container>
+  </ng-container>
+</div>

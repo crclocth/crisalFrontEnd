@@ -10,7 +10,6 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./add-company-screen.component.less'],
 })
 export class AddCompanyScreenComponent {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputName: number;
   public maxInputTask: number;
@@ -25,7 +24,6 @@ export class AddCompanyScreenComponent {
     this.maxInputName = 120;
     this.maxInputTask = 120;
     this.message2 = '';
-    this.hasUnitNumber = false;
     this.companyArray = [];
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],

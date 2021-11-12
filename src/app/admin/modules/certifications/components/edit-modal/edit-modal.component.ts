@@ -11,14 +11,12 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./edit-modal.component.less'],
 })
 export class EditModalComponent implements OnInit {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputName: number;
   public imagePath: any;
   public imgURL: any;
   public message: string;
   public message2: string;
-  //public certificationArray: Certification[];
   public certification: any;
   public information!: Certification;
 
@@ -31,8 +29,6 @@ export class EditModalComponent implements OnInit {
     this.maxInputName = 120;
     this.message = '';
     this.message2 = '';
-    this.hasUnitNumber = false;
-    //this.certificationArray = [];
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
     });
