@@ -1,8 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Exam } from 'src/app/core/models/exam.modal';
+import { Laboratory } from 'src/app/core/models/laboratory.model';
 import { ExamProviderService } from 'src/app/core/providers/exam/exam-provider.service';
+import { LaboratoryProviderService } from 'src/app/core/providers/laboratory/laboratory-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
@@ -11,38 +12,34 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./create-exam-screen.component.less'],
 })
 export class CreateExamScreenComponent implements OnInit {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
-  public maxInput: number;
   public maxInputName: number;
-  public maxInputProfession: number;
   public maxInputContent: number;
-  public imagePath = '';
-  public imgURL: any;
-  public message: string;
   public message2: string;
-  public examArray: Exam[];
+  public examArray: Exam[] | null;
+  public laboratoryArray: Laboratory[];
+  public typeArray: string[];
+  public selectedValue: string = '';
   public options: string[] = ['One', 'Two', 'Three'];
 
   constructor(
     private fb: FormBuilder,
     private examProviderService: ExamProviderService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private laboratoryProviderService: LaboratoryProviderService
   ) {
     this.maxInputName = 120;
-    this.maxInputProfession = 45;
     this.maxInputContent = 255;
-    this.hasUnitNumber = false;
-    this.maxInput = 250;
     this.examArray = [];
+    this.laboratoryArray = [];
+    this.typeArray = ['General', 'Laboratorio'];
     this.message2 = '';
-    this.message = '';
 
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
-      laboratory: ['', [Validators.required]],
+      laboratory: [''],
       type: [null, [Validators.required]],
-      unit: [null, [Validators.required]],
+      unit: [''],
     });
   }
 
@@ -61,28 +58,52 @@ export class CreateExamScreenComponent implements OnInit {
 
   onSubmit(): void {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.fetchLaboratory();
+    this.examArray = await this.fetchExams('all');
+  }
 
-  async fetchEmployees() {
+  /* async fetchEmployees() {
     try {
       this.examArray = await this.examProviderService.getExams().toPromise();
+    } catch (error) {
+      console.log('error');
+    }
+  } */
+
+  async fetchExams(type: string): Promise<Exam[] | null> {
+    try {
+      return await this.examProviderService.getExams(type).toPromise();
+    } catch (error) {
+      console.log('error');
+      return null;
+    }
+  }
+
+  async fetchLaboratory() {
+    try {
+      this.laboratoryArray = await this.laboratoryProviderService
+        .getLaboratorys()
+        .toPromise();
     } catch (error) {
       console.log('error');
     }
   }
 
   notInArray(): boolean {
-    for (let i = 0; i < this.examArray.length; i++) {
-      console.log(i);
-      if (this.name === this.examArray[i].name) {
-        //this.notificationService.error('Se repite el nombre de la noticia');
-        return false;
+    if (this.examArray) {
+      for (let i = 0; i < this.examArray.length; i++) {
+        console.log(i);
+        if (this.name === this.examArray[i].name) {
+          //this.notificationService.error('Se repite el nombre de la noticia');
+          return false;
+        }
       }
     }
     return true;
   }
 
-  public async postUsuario() {
+  public async postExam() {
     let { name, laboratory, type, unit } = this.addressForm.value;
     if (this.notInArray() === true) {
       try {
@@ -92,7 +113,7 @@ export class CreateExamScreenComponent implements OnInit {
             name: this.name,
             laboratory: this.laboratory,
             type: this.type,
-            unit: this.unit,
+            measurementUnit: this.unit,
           })
           .toPromise();
         this.notificationService.success('Se Agregó correctamente el Exámen');

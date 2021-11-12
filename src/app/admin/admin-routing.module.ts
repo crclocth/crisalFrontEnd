@@ -73,6 +73,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/news/news.module').then((m) => m.NewsModule),
       },
+      {
+        path: 'laboratorios',
+        loadChildren: () =>
+          import('./modules/laboratories/laboratories.module').then(
+            (m) => m.LaboratoriesModule
+          ),
+      },
     ],
   },
 ];

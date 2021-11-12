@@ -1,6 +1,5 @@
 import { Component, HostListener, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Information } from 'src/app/core/models/information.model';
 import { InformationProviderService } from 'src/app/core/providers/information/information-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
@@ -11,7 +10,6 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./edit-information-screen.component.less'],
 })
 export class EditInformationScreenComponent {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputTelephone1: number;
   public maxInputTelephone2: number;
@@ -21,7 +19,7 @@ export class EditInformationScreenComponent {
   public maxInputVision: number;
   public maxInputMission: number;
   public maxInputValues: number;
-  public informations$: Observable<Information[]>;
+
   public informationArray: Information[];
   public information!: Information;
   public message: string;
@@ -32,7 +30,6 @@ export class EditInformationScreenComponent {
     private informationProviderService: InformationProviderService,
     private notificationService: NotificationService
   ) {
-    this.informations$ = new Observable<Information[]>();
     this.informationArray = [];
     this.id = '617345a9e2eab63a50629db3';
     this.maxInputTelephone1 = 10;
@@ -60,7 +57,6 @@ export class EditInformationScreenComponent {
       mission: [null, [Validators.required]],
       values: [null, [Validators.required]],
     });
-    this.hasUnitNumber = false;
   }
 
   get telephone1() {
@@ -124,16 +120,6 @@ export class EditInformationScreenComponent {
       mission,
       values,
     } = this.addressForm.value;
-    console.log(
-      telephone1,
-      telephone2,
-      address,
-      mail,
-      aboutUs,
-      vision,
-      mission,
-      values
-    );
     try {
       this.message = 'Se guardaron los datos.';
       this.information = {

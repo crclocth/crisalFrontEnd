@@ -1,3 +1,7 @@
 <div class="card" (click)="goToNews()">
   <img [src]="news.image" style="height: 100%" alt="logo CRISAL">
+  <div class="carousel-caption d-none d-md-block"> <!-- d-none d-md-block -->
+    <h5>{{news.title}}</h5>
+    <p>{{news.lead}}</p>
+  </div>
 </div>

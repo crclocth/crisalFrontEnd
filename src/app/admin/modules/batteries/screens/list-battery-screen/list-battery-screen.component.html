@@ -1,1 +1,16 @@
-<p>list-battery-screen works!</p>
+<div class="container-fluid">
+  <div class="row text-center justify-content-center align-items-center p-2">
+    <div style="background-color: #C4C4C4; border-radius: 5px;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+      <h5 class="mt-2">Exámenes</h5>
+    </div>
+  </div>
+  <div class="row mb-3 text-center justify-content-center align-items-center p-3" style="background-color: #C4C4C4; border-radius: 5px;">
+    <div class="col-6">Nombre Exámenes</div>
+    <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">Laboratorio</div>
+    <div class="col-3">Acciones</div>
+  </div>
+  <ng-container *ngIf="batteryArray">
+    <ng-container *ngFor="let battery of batteryArray"><app-battery (newItemEvent)="addItem($event)" [battery]="battery"></app-battery></ng-container>
+  </ng-container>
+</div>
+

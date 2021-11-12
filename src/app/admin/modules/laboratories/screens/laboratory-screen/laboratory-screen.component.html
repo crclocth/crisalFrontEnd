@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" [ngSwitch]="getCurrentRoute()">
+      <div *ngSwitchCase="'crear-laboratorio'"><app-create-laboratory-screen></app-create-laboratory-screen></div>
+      <div *ngSwitchCase="'historico'"><app-list-laboratory-screen></app-list-laboratory-screen></div>
+    </div>
+  </div>
+</div>
