@@ -1,4 +1,4 @@
-<div class="container-fluid ">
+<div class="container-fluid p-4">
   <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
     <mat-card class="shipping-card" style="background-color: #E4E4E4;">
       <div class="row text-center justify-content-center align-items-center p-3">
@@ -39,28 +39,45 @@
           </div>
         </div>
 <!----------------------------------------EXAMENES GENERALES------------------------------------------------------------>
-        <div class="row  justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
           <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
             <h5 class="mt-2">Exámenes Generales</h5>
           </div>
-        </div>
         <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
         <div class="col-md-3"></div>
           <div class="col-md-3 col-12 text-right">
-            Nombre
+            Exámenes Generales
           </div>
           <div class="col-md-6 col-12 mt-3">
             <section class="example-section">
-              <mat-checkbox class="example-margin" *ngFor="let option of examGeneralArray" [value]="option.name">{{option.name}}</mat-checkbox>
+              <div class="row" *ngFor="let option of examGeneralArray; let i = index;">
+              <mat-checkbox class="example-margin col" formControlName="generalcheck" (change)="onChange(option)" (click)="toggle($event)"
+                            [value]="option.name">{{option.name}}
+              </mat-checkbox><!-- (click)="setProperties(option)" -->
+            </div>
             </section>
           </div>
+        </div>
 <!----------------------------------------EXAMENES LABORATORIO------------------------------------------------------------>
-        <div class="row  justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
           <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
             <h5 class="mt-2">Exámenes de Laboratorio</h5>
           </div>
-        </div>
         <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+        <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Exámenes de Laboratorio
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <section class="example-section">
+              <div class="row" *ngFor="let option of examLaboratorioArray">
+              <mat-checkbox class="example-margin col"
+                            [value]="option.name">{{option.name}}
+              </mat-checkbox>
+            </div>
+            </section>
+          </div>
+        </div>
       </mat-card-content>
       <mat-card-actions>
         <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
