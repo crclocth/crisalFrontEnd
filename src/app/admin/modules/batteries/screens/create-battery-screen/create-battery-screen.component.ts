@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Battery } from 'src/app/core/models/battery.model';
 import { Exam } from 'src/app/core/models/exam.modal';
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
@@ -21,6 +22,7 @@ export class CreateBatteryScreenComponent implements OnInit {
   public batteryArray: Battery[];
   public examGeneralArray: Exam[] | null;
   public examLaboratorioArray: Exam[] | null;
+  public arrayGeneral: string[];
 
   constructor(
     private fb: FormBuilder,
@@ -36,10 +38,12 @@ export class CreateBatteryScreenComponent implements OnInit {
     this.batteryArray = [];
     this.examGeneralArray = [];
     this.examLaboratorioArray = [];
+    this.arrayGeneral = [];
 
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
       description: ['', [Validators.required]],
+      generalcheck: [''],
     });
   }
 
@@ -49,6 +53,9 @@ export class CreateBatteryScreenComponent implements OnInit {
   get description() {
     return this.addressForm.get('description')?.value;
   }
+  get generalcheck() {
+    return this.addressForm.get('generalcheck')?.value;
+  }
 
   onSubmit(): void {}
 
@@ -56,8 +63,6 @@ export class CreateBatteryScreenComponent implements OnInit {
     this.fetchBatteries();
     this.examGeneralArray = await this.fetchExams('General');
     this.examLaboratorioArray = await this.fetchExams('Laboratorio');
-    console.log(this.examGeneralArray);
-    console.log(this.examLaboratorioArray);
   }
 
   async fetchExams(type: string): Promise<Exam[] | null> {
@@ -78,6 +83,18 @@ export class CreateBatteryScreenComponent implements OnInit {
       console.log('error');
     }
   }
+  toggle(event) {
+    console.log(event);
+  }
+  /* setProperties(option: Exam) {
+    console.log(option);
+    /* let add = this.arrayGeneral.push(option._id);
+    console.log(this.generalcheck);
+  } */
+
+  onChange(option: Exam) {
+    console.log(option);
+  }
 
   notInArray(): boolean {
     for (let i = 0; i < this.batteryArray.length; i++) {
@@ -91,7 +108,7 @@ export class CreateBatteryScreenComponent implements OnInit {
   }
 
   public async postBattery() {
-    let { name, laboratory, type, unit } = this.addressForm.value;
+    let { name, description } = this.addressForm.value;
     if (this.notInArray() === true) {
       try {
         this.message2 = 'Se guardaron los datos.';
