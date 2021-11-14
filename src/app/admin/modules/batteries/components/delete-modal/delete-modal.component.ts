@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class DeleteModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    /*  private examProviderService: ExamProviderService, */
+    private batteryProviderService: BatteryProviderService,
     private notificationService: NotificationService
   ) {}
 
@@ -21,12 +22,12 @@ export class DeleteModalComponent implements OnInit {
   }
 
   async delete() {
-    /* try {
-      await this.examProviderService.deleteExamById(this.battery._id);
-      this.notificationService.success('Se Eliminó el Exámen');
+    try {
+      await this.batteryProviderService.deleteBatteryById(this.battery._id);
+      this.notificationService.success('Se Eliminó la Batería');
       this.activeModal.close('info modal');
     } catch (error) {
-      this.notificationService.error('Error al Eliminar el Exámen');
-    }*/
+      this.notificationService.error('Error al Eliminar la Batería');
+    }
   }
 }

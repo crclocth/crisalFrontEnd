@@ -12,40 +12,43 @@
           <div class="row align-items-center mb-3">
             <div class="col-2"></div>
             <div class="col-md-4 col-12 text-start">
-              Nombre del Exámen
+              Nombre la Batería
             </div>
             <div class="col-md-6 col-12 text-start">
-                {{battery?.name}}
+              {{battery?.name}}
             </div>
           </div>
           <div class="row align-items-center mb-3">
             <div class="col-2"></div>
             <div class="col-md-4 col-12 text-start">
-              Laboratorio
+              Descripción
             </div>
             <div class="col-md-6 col-12 text-start">
-                {{battery?.laboratory}}
+              {{battery?.description}}
             </div>
           </div>
           <div class="row align-items-center mb-3">
             <div class="col-2"></div>
             <div class="col-md-4 col-12 text-start">
-              Tipo de Exámen
+              Exámenes Generales
             </div>
             <div class="col-md-6 col-12 text-start">
-                {{battery?.type}}
+              <div class="row" *ngFor="let option of general">
+                {{option.name}}
+              </div>
             </div>
           </div>
           <div class="row align-items-center mb-3">
             <div class="col-2"></div>
             <div class="col-md-4 col-12 text-start">
-              Unidad
+              Exámenes de Labroatorio
             </div>
             <div class="col-md-6 col-12 text-start">
-                {{battery?.measurementUnit}}
+              <div class="row" *ngFor="let option of laboratory">
+                {{option.name}}
+              </div>
             </div>
           </div>
-
         </ng-container>
       </mat-card-content>
     </mat-card>

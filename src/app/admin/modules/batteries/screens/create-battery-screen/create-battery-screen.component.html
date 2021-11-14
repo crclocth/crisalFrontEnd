@@ -51,9 +51,9 @@
           <div class="col-md-6 col-12 mt-3">
             <section class="example-section">
               <div class="row" *ngFor="let option of examGeneralArray; let i = index;">
-              <mat-checkbox class="example-margin col" formControlName="generalcheck" (change)="onChange(option)" (click)="toggle($event)"
+              <mat-checkbox class="example-margin col" (change)="onChangeGeneral(option)"
                             [value]="option.name">{{option.name}}
-              </mat-checkbox><!-- (click)="setProperties(option)" -->
+              </mat-checkbox>
             </div>
             </section>
           </div>
@@ -70,14 +70,15 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <section class="example-section">
-              <div class="row" *ngFor="let option of examLaboratorioArray">
-              <mat-checkbox class="example-margin col"
+              <div class="row" *ngFor="let option of examLaboratorioArray; let i = index;">
+              <mat-checkbox class="example-margin col" (change)="onChangeLabroatory(option)"
                             [value]="option.name">{{option.name}}
               </mat-checkbox>
             </div>
             </section>
           </div>
         </div>
+<!---------------------------------------------------------------------------------------------------->
       </mat-card-content>
       <mat-card-actions>
         <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>

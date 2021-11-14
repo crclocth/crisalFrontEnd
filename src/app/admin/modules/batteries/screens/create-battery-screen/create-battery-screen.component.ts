@@ -1,6 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Battery } from 'src/app/core/models/battery.model';
 import { Exam } from 'src/app/core/models/exam.modal';
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
@@ -23,6 +22,7 @@ export class CreateBatteryScreenComponent implements OnInit {
   public examGeneralArray: Exam[] | null;
   public examLaboratorioArray: Exam[] | null;
   public arrayGeneral: string[];
+  public arrayLaboratory: string[];
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +39,7 @@ export class CreateBatteryScreenComponent implements OnInit {
     this.examGeneralArray = [];
     this.examLaboratorioArray = [];
     this.arrayGeneral = [];
+    this.arrayLaboratory = [];
 
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
@@ -83,17 +84,31 @@ export class CreateBatteryScreenComponent implements OnInit {
       console.log('error');
     }
   }
-  toggle(event) {
-    console.log(event);
-  }
-  /* setProperties(option: Exam) {
-    console.log(option);
-    /* let add = this.arrayGeneral.push(option._id);
-    console.log(this.generalcheck);
-  } */
 
-  onChange(option: Exam) {
+  onChangeGeneral(option: Exam) {
     console.log(option);
+    if (option._id) {
+      let index = this.arrayGeneral.findIndex((id) => id === option._id);
+      if (index > -1) {
+        this.arrayGeneral.splice(index, 1);
+      } else {
+        let add = this.arrayGeneral.push(option._id);
+      }
+      //console.log(this.arrayGeneral);
+    }
+  }
+
+  onChangeLabroatory(option: Exam) {
+    console.log(option);
+    if (option._id) {
+      let index = this.arrayLaboratory.findIndex((id) => id === option._id);
+      if (index > -1) {
+        this.arrayLaboratory.splice(index, 1);
+      } else {
+        let add = this.arrayLaboratory.push(option._id);
+      }
+      console.log(this.arrayLaboratory);
+    }
   }
 
   notInArray(): boolean {
@@ -116,6 +131,8 @@ export class CreateBatteryScreenComponent implements OnInit {
           .postBattery({
             name: this.name,
             description: this.description,
+            generalExams: this.arrayGeneral,
+            labExams: this.arrayLaboratory,
           })
           .toPromise();
         this.notificationService.success('Se Agregó correctamente la Batería');
