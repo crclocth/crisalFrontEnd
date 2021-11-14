@@ -28,7 +28,7 @@ export class BatteryComponent implements OnInit {
     const modalRef = this.modalService.open(DeleteModalComponent, {
       size: 'lg',
     });
-    modalRef.componentInstance.exam = this.battery;
+    modalRef.componentInstance.battery = this.battery;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);
@@ -39,7 +39,7 @@ export class BatteryComponent implements OnInit {
     const modalRef = this.modalService.open(EditModalComponent, {
       size: 'lg',
     });
-    modalRef.componentInstance.exam = this.battery;
+    modalRef.componentInstance.battery = this.battery;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);
@@ -50,7 +50,7 @@ export class BatteryComponent implements OnInit {
     const modalRef = this.modalService.open(SeeModalComponent, {
       size: 'lg',
     });
-    modalRef.componentInstance.exam = this.battery;
+    modalRef.componentInstance.battery = this.battery;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);

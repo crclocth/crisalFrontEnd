@@ -14,7 +14,7 @@ export class ExamProviderService {
   }
 
   public getExams(type: string): Observable<Exam[]> {
-    return this.httpService.get<Exam[]>('/exam/' + type);
+    return this.httpService.get<Exam[]>('/exam/tipo/' + type);
   }
 
   public getExamById(id: string): Observable<Exam> {

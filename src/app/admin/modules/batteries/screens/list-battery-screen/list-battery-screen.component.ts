@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Battery } from 'src/app/core/models/battery.model';
+import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 
 @Component({
   selector: 'app-list-battery-screen',
@@ -8,25 +9,27 @@ import { Battery } from 'src/app/core/models/battery.model';
 })
 export class ListBatteryScreenComponent implements OnInit {
   public batteryArray: Battery[];
-  constructor() {
+  constructor(private batteryPorviderService: BatteryProviderService) {
     this.batteryArray = [];
   }
 
   ngOnInit() {
-    /* this.fetchExams(); */
+    this.fetchExams();
   }
 
   addItem(event: any) {
-    /* this.fetchExams(); */
+    this.fetchExams();
   }
 
-  /* async fetchExams() {
+  async fetchExams() {
     try {
-      this.examArray = await this.examProviderService.getExams().toPromise();
+      this.batteryArray = await this.batteryPorviderService
+        .getBatteries()
+        .toPromise();
     } catch (error) {
       console.log('error');
     }
-  } */
+  }
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
