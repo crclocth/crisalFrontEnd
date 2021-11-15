@@ -28,7 +28,7 @@ export class SeeModalComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.getarrayGeneral();
-    this.getarrayLaboratory();
+    await this.getarrayLaboratory();
   }
 
   async getarrayGeneral() {

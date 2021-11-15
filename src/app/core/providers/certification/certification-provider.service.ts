@@ -9,7 +9,9 @@ import { HttpService } from '../../services/http/http.service';
 export class CertificationProviderService {
   constructor(private httpService: HttpService) {}
 
-  public postCertification(certification: any): Observable<Certification> {
+  public postCertification(
+    certification: Certification
+  ): Observable<Certification> {
     return this.httpService.post('/certification', certification);
   }
 

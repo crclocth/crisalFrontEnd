@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Certificate } from 'src/app/core/models/certificate.model';
+import { CertificateProviderService } from 'src/app/core/providers/certificate/certificate-provider.service';
 
 @Component({
   selector: 'app-list-certificates-screen',
@@ -6,26 +8,26 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./list-certificates-screen.component.less'],
 })
 export class ListCertificatesScreenComponent implements OnInit {
-  /* public certificatesArray: Client[]; */
-  constructor(/* private clientProviderService: ClientProviderService */) {
-    /* this.certificatesArray = []; */
+  public certificatesArray: Certificate[];
+  constructor(private certificateProviderService: CertificateProviderService) {
+    this.certificatesArray = [];
   }
   ngOnInit() {
-    this.fetchClients();
+    this.fetchCertificates();
   }
 
   addItem(event: any) {
-    this.fetchClients();
+    this.fetchCertificates();
   }
 
-  async fetchClients() {
-    /* try {
-      this.clientArray = await this.clientProviderService
-        .getClients()
+  async fetchCertificates() {
+    try {
+      this.certificatesArray = await this.certificateProviderService
+        .getCertificates()
         .toPromise();
     } catch (error) {
       console.log('error');
-    } */
+    }
   }
 
   @HostListener('window:resize', ['$event'])

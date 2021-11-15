@@ -1,13 +1,13 @@
 <div class="container-fluid mb-3 p-0">
   <div class="row selectColor text-center justify-content-center align-items-center"  style="background-color: #C4C4C4;" >
-      <div class="col-3">nombre empresa</div> <!-- {{client.title | truncate:[15,'...']}} -->
-      <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">certificado</div>
+      <div class="col-md-3 col-6">{{certificate.company.name | truncate:[15,'...']}}</div>
+      <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">{{certificate.title}}</div>
       <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">
-        <div class="row">
-          rut
+        <div class="row text-center justify-content-center align-items-center">
+          {{certificate.examinee.rut}}
         </div>
-        <div class="row">
-          nomrbre
+        <div class="row row text-center justify-content-center align-items-center">
+          {{certificate.examinee.name}}
         </div>
       </div>
       <div class="col" [ngStyle]="{'display': getScreenSize()<=764 ? 'block' : 'none'}">

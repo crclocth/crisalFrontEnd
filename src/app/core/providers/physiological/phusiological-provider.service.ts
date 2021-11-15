@@ -9,7 +9,9 @@ import { HttpService } from '../../services/http/http.service';
 export class PhusiologicalProviderService {
   constructor(private httpService: HttpService) {}
 
-  public postPhysiological(physiological: any): Observable<Physiological> {
+  public postPhysiological(
+    physiological: Physiological
+  ): Observable<Physiological> {
     return this.httpService.post('/physiological', physiological);
   }
 

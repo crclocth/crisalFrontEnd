@@ -68,6 +68,7 @@ export class EditModalComponent implements OnInit {
     this.fetchBatteries();
     this.examGeneralArray = await this.fetchExams('General');
     this.examLaboratorioArray = await this.fetchExams('Laboratorio');
+    console.log(this.battery);
   }
 
   async fetchExams(type: string): Promise<Exam[] | null> {
@@ -92,26 +93,30 @@ export class EditModalComponent implements OnInit {
   onChangeGeneral(option: Exam) {
     console.log(option);
     if (option._id) {
-      let index = this.arrayGeneral.findIndex((id) => id === option._id);
+      let index = this.battery.generalExams.findIndex(
+        (id: any) => id === option._id
+      );
       if (index > -1) {
-        this.arrayGeneral.splice(index, 1);
+        this.battery.generalExams.splice(index, 1);
       } else {
-        let add = this.arrayGeneral.push(option._id);
+        let add = this.battery.generalExams.push(option._id);
       }
-      //console.log(this.arrayGeneral);
+      console.log(this.battery.generalExams);
     }
   }
 
   onChangeLabroatory(option: Exam) {
     console.log(option);
     if (option._id) {
-      let index = this.arrayLaboratory.findIndex((id) => id === option._id);
+      let index = this.battery.labExams.findIndex(
+        (id: any) => id === option._id
+      );
       if (index > -1) {
-        this.arrayLaboratory.splice(index, 1);
+        this.battery.labExams.splice(index, 1);
       } else {
-        let add = this.arrayLaboratory.push(option._id);
+        let add = this.battery.labExams.push(option._id);
       }
-      console.log(this.arrayLaboratory);
+      console.log(this.battery.labExams);
     }
   }
 
@@ -126,14 +131,38 @@ export class EditModalComponent implements OnInit {
     return true;
   }
 
+  checkgeneral(option: any): boolean {
+    let op = false;
+    //console.log(this.battery.generalExams);
+    this.battery.generalExams.forEach((element: any) => {
+      if (element === option) {
+        //   console.log(element);
+        op = true;
+      }
+    });
+    return op;
+  }
+
+  checkLab(option: any): boolean {
+    let op = false;
+    //console.log(this.battery.generalExams);
+    this.battery.labExams.forEach((element: any) => {
+      if (element === option) {
+        //   console.log(element);
+        op = true;
+      }
+    });
+    return op;
+  }
+
   public async edit() {
     try {
       this.message2 = 'Se guardaron los datos.';
       this.information = {
         name: this.name,
         description: this.description,
-        generalExams: this.arrayGeneral,
-        labExams: this.arrayLaboratory,
+        generalExams: this.battery.generalExams,
+        labExams: this.battery.labExams,
       };
       this.batteryProviderService.patchBattery(
         this.battery._id,

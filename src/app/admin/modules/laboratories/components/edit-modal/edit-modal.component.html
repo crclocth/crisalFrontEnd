@@ -16,7 +16,7 @@
                 Nombre
               </div>
               <div class="col-md-6 col-12 mt-3">
-                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
                   <mat-label>Nombre del Laboratorio</mat-label>
                   <input matInput placeholder="Nombre del Laboratorio"  [(ngModel)]="laboratory.name" formControlName="name" [maxlength] = "maxInputName" required>
                   <mat-error *ngIf="addressForm.controls['name'].hasError('required')">

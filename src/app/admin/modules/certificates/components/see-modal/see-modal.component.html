@@ -1,1 +1,13 @@
-<p>see-modal works!</p>
+<div class="modal-header text-center" style="background-color: #309cea; color: white;">
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">{{certificate.title}}</h4>
+  <button class="btn" (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
+  </button>
+</div>
+<div class="modal-body text-center">
+  <div class="container-fluid text-center justify-content-center align-items-center">
+  </div>
+  <div class="row text-center justify-content-center align-items-center mt-3">
+    <button class="btn" style="background-color: #309CEA; color: white;" (click)="activeModal.dismiss('Cross click')">Cerrar</button>
+  </div>
+</div>

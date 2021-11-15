@@ -9,7 +9,7 @@ import { HttpService } from '../../services/http/http.service';
 export class ResultsProviderService {
   constructor(private httpService: HttpService) {}
 
-  public postResults(results: any): Observable<Results> {
+  public postResults(results: Results): Observable<Results> {
     return this.httpService.post('/physiological', results);
   }
 

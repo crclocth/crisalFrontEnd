@@ -12,7 +12,7 @@ import { MaterialModule } from 'src/app/core/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BateriaBasicaComponent } from './components/general-exams/bateria-basica/bateria-basica.component';
 import { GranAlturaGeograficaComponent } from './components/general-exams/gran-altura-geografica/gran-altura-geografica.component';
-
+/* import { MAT_DATE_LOCALE } from '@angular/material/core'; */
 const components = [
   CertificateScreenComponent,
   CreateCertificateScreenComponent,
@@ -26,6 +26,7 @@ const components = [
 ];
 
 @NgModule({
+  /*  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es' }], */
   declarations: [...components],
   imports: [
     CommonModule,

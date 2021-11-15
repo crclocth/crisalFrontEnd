@@ -94,7 +94,10 @@ export class CreateExamScreenComponent implements OnInit {
     if (this.examArray) {
       for (let i = 0; i < this.examArray.length; i++) {
         console.log(i);
-        if (this.name === this.examArray[i].name) {
+        if (
+          this.name === this.examArray[i].name &&
+          this.laboratory === this.examArray[i].laboratory
+        ) {
           //this.notificationService.error('Se repite el nombre de la noticia');
           return false;
         }

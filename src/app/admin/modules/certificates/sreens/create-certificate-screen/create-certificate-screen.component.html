@@ -29,8 +29,8 @@
                     formControlName="NameCertificate"
                     [matAutocomplete]="auto" required>
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of optionsCertificateName" [value]="option">
-                  {{option}}
+                <mat-option *ngFor="let option of batteryArray" [value]="option.name">
+                  {{option.name}}
                 </mat-option>
               </mat-autocomplete>
               <mat-error *ngIf="addressForm.controls['NameCertificate'].hasError('required')">
@@ -46,8 +46,8 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" required>
+              <mat-label>Elige una Fecha</mat-label>
+              <input matInput formControlName="date" [matDatepicker]="picker" required>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -59,7 +59,7 @@
             Empresa
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="example-full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <!-- <mat-form-field class="example-full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Empresa</mat-label>
               <input type="text"
                     matInput
@@ -75,6 +75,17 @@
               <mat-error *ngIf="addressForm.controls['NameCompany'].hasError('required')">
                 Empresa <strong>REQUERIDO</strong>
               </mat-error>
+            </mat-form-field> -->
+            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-label>Empresa</mat-label>
+              <mat-select formControlName="NameCompany">
+                <mat-option *ngFor="let option of companyArray" [value]="option.name" (click)="setOptionCompany(option)">
+                  {{option.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addressForm.controls['NameCompany'].hasError('required')">
+                Empresa <strong>REQUERIDO</strong>
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -84,19 +95,13 @@
             Batería
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="example-full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
               <mat-label>Batería</mat-label>
-              <input type="text"
-                    matInput
-                    [maxlength] = "maxInputBattery"
-                    placeholder="Batería"
-                    formControlName="NameBattery"
-                    [matAutocomplete]="autoComplete2" required>
-              <mat-autocomplete #autoComplete2="matAutocomplete">
-                <mat-option *ngFor="let option of optionsBaterry" [value]="option">
-                  {{option}}
+              <mat-select formControlName="NameBattery">
+                <mat-option *ngFor="let option of batteryArray" [value]="option.name" (click)="setOptionBattery(option)">
+                  {{option.name}}
                 </mat-option>
-              </mat-autocomplete>
+              </mat-select>
               <mat-error *ngIf="addressForm.controls['NameBattery'].hasError('required')">
                 Batería <strong>REQUERIDO</strong>
               </mat-error>
@@ -151,7 +156,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
               <mat-label>Edad del Trabajador</mat-label>
-              <input matInput placeholder="Edad del Trabajador" formControlName="age" [maxlength] = "maxInputAge" required>
+              <input matInput placeholder="Edad del Trabajador" formControlName="age" required>
               <mat-error *ngIf="addressForm.controls['age'].hasError('required')">
                 Edad del Trabajador <strong>REQUERIDO</strong>
               </mat-error>
@@ -324,13 +329,16 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1">Sin contraindicaciones para laborar en Altura Física y Andamios.</mat-radio-button>
-                <mat-radio-button value="2">Con contraindicaciones para laborar en Altura Física y Andamios.</mat-radio-button>
-                <mat-radio-button value="3">Sin contraindicaciones para laborar, según examen realizado.</mat-radio-button>
-                <mat-radio-button value="4">Con contraindicaciones para laborar, según examen realizado.</mat-radio-button>
-                <mat-radio-button value="5"></mat-radio-button>
-              </mat-radio-group>
+                <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button *ngFor="let option of conclusionArray"
+                    [value]="option" (click)="setOptionconclusion(option)">{{option}}
+                  </mat-radio-button>
+                </mat-radio-group>
+                <mat-radio-button >
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput formControlName="conclusion" [maxlength] = "maxInputNameCertificate">
+                  </mat-form-field>
+                </mat-radio-button>
             </div>
           </div>
         </div>
@@ -342,8 +350,16 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-radio-button value="1">Sin Indicaciones</mat-radio-button>
-              <mat-radio-button value="2"></mat-radio-button>
+              <mat-radio-group aria-label="Select an option">
+                <mat-radio-button *ngFor="let option of indicationArray"
+                  [value]="option" (click)="setOptionIndication(option)">{{option}}
+                </mat-radio-button>
+              </mat-radio-group>
+              <mat-radio-button value="2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input matInput>
+                </mat-form-field>
+              </mat-radio-button>
             </div>
           </div>
         </div>
@@ -355,28 +371,34 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-select [(value)]="selectedVi">
-                <mat-option [value]="1">Apto</mat-option>
-                <mat-option [value]="2">No Apto</mat-option>
-                <mat-option [value]="3">Aprobado</mat-option>
-                <mat-option [value]="4">No Aprobado</mat-option>
+              <mat-select [(value)]="selectedVi" formControlName="selectedVigencia" (selectionChange)="changeVigencia($event.value)">
+                <mat-option value="Apto">Apto</mat-option>
+                <mat-option value="No Apto">No Apto</mat-option>
+                <mat-option value="Aprobado">Aprobado</mat-option>
+                <mat-option value="No Aprobado">No Aprobado</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
-        <ng-container *ngIf="selectedVi === 1">
+        <ng-container *ngIf="selectedVi === 'Apto'">
           <div class="row align-items-center">
             <div class="col-md-3"></div>
             <div class="col-md-3 col-12 text-right">
               Fecha
             </div>
             <div class="col-md-6 col-12 mt-3">
-              <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                <mat-label>Elige una Fecha</mat-label>
+                <input matInput formControlName="datee" [matDatepicker]="pickerr" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
+                <mat-datepicker #pickerr></mat-datepicker>
+              </mat-form-field>
+              <!-- <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker2" required>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
-              </mat-form-field>
+              </mat-form-field> -->
             </div>
           </div>
         </ng-container>
@@ -387,8 +409,10 @@
           </div>
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}" >
-              <mat-select matInput required>
-                <mat-option value="1">Matías Harmat</mat-option>
+              <mat-select>
+                <mat-option *ngFor="let option of doctorArray" [value]="option" (click)="setOptionDoctor(option)">
+                  {{option}}
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -400,6 +424,7 @@
           <div class="col-12 text-center mt-4">
             <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
               [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+              (click)="postCertificate()"
             >CREAR</button>
           </div>
         </div>
