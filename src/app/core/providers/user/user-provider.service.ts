@@ -9,7 +9,7 @@ import { HttpService } from '../../services/http/http.service';
 export class UserProviderService {
   constructor(private httpService: HttpService) {}
 
-  public postUser(user: any): Observable<User> {
+  public postUser(user: User): Observable<User> {
     return this.httpService.post('/user', user);
   }
 

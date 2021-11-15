@@ -94,9 +94,27 @@ export class CreateBatteryScreenComponent implements OnInit {
       } else {
         let add = this.arrayGeneral.push(option._id);
       }
-      //console.log(this.arrayGeneral);
+      console.log(this.arrayGeneral);
     }
   }
+
+  /*  onChangeGeneral(option: Exam) {
+    console.log(option);
+    if (option._id) {
+      for (let indexx of this.arrayGeneral) {
+        if (indexx._id === this.arrayGeneral[]._id) {
+        }
+      }
+
+      let index = this.arrayGeneral.findIndex((id) => id === option._id);
+      if (index > -1) {
+        this.arrayGeneral.splice(index, 1);
+      } else {
+        let add = this.arrayGeneral.push(option);
+      }
+      console.log(this.arrayGeneral);
+    }
+  } */
 
   onChangeLabroatory(option: Exam) {
     console.log(option);

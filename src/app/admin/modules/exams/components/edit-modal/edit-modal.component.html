@@ -10,12 +10,12 @@
       <mat-card class="shipping-card" style="background-color: #E4E4E4;">
         <mat-card-content>
           <div class="row align-items-center">
-            <div class="col-md-3"></div>
-            <div class="col-md-3 col-12 text-right">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 col-12 text-right">
               Nombre
             </div>
             <div class="col-md-6 col-12 mt-3">
-              <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
                 <mat-label>Nombre del Exámen</mat-label>
                 <input matInput placeholder="Nombre del Exámen" formControlName="name" [(ngModel)]="exam.name" [maxlength] = "maxInputName" required>
                 <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
@@ -25,12 +25,12 @@
             </div>
           </div>
           <div class="row align-items-center">
-            <div class="col-md-3"></div>
-            <div class="col-md-3 col-12 text-right">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 col-12 text-right">
               Tipo de Exámen
             </div>
             <div class="col-md-6 col-12 mt-3">
-              <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'}">
                 <mat-label>Tipo de Exámen</mat-label>
                 <mat-select formControlName="type" [(ngModel)]="exam.type">
                   <mat-option *ngFor="let type of typeArray" [value]="type">
@@ -42,12 +42,12 @@
           </div>
           <ng-container *ngIf="this.type === 'Laboratorio'">
             <div class="row align-items-center">
-              <div class="col-md-3"></div>
-              <div class="col-md-3 col-12 text-right">
+              <div class="col-md-2"></div>
+              <div class="col-md-4 col-12 text-right">
                 Laboratorio
               </div>
               <div class="col-md-6 col-12 mt-3">
-                <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'}">
                   <mat-label>Laboratorio</mat-label>
                   <mat-select formControlName="laboratory" [(ngModel)]="exam.laboratory">
                     <mat-option *ngFor="let laboratory of laboratoryArray" [value]="laboratory.name">
@@ -58,12 +58,12 @@
               </div>
             </div>
             <div class="row align-items-center">
-              <div class="col-md-3"></div>
-              <div class="col-md-3 col-12 text-right">
+              <div class="col-md-2"></div>
+              <div class="col-md-4 col-12 text-right">
                 Unidad
               </div>
               <div class="col-md-6 col-12 mt-3">
-                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
                   <mat-label>Unidad Métrica</mat-label>
                   <input matInput placeholder="Unidad Métrica" [(ngModel)]="exam.measurementUnit" formControlName="unit" [maxlength] = "maxInputContent">
                   <mat-error *ngIf="addressForm.controls['unit'].hasError('required')">

@@ -91,7 +91,7 @@ export class EditModalComponent implements OnInit {
         name: this.name,
         rut: this.rut,
         faena: this.faena,
-        mail: this.mail,
+        email: this.mail,
       };
       this.companyProviderService.patchCompany(
         this.company._id,

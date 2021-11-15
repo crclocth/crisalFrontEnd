@@ -9,7 +9,7 @@ import { HttpService } from '../../services/http/http.service';
 export class BatteryProviderService {
   constructor(private httpService: HttpService) {}
 
-  public postBattery(battery: any): Observable<Battery> {
+  public postBattery(battery: Battery): Observable<Battery> {
     return this.httpService.post('/battery', battery);
   }
 

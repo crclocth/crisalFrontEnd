@@ -7,6 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Certificate } from 'src/app/core/models/certificate.model';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { SeeModalComponent } from '../see-modal/see-modal.component';
@@ -17,18 +18,20 @@ import { SeeModalComponent } from '../see-modal/see-modal.component';
   styleUrls: ['./certificates.component.less'],
 })
 export class CertificatesComponent implements OnInit {
-  /* @Input() client!: Client; */
+  @Input() certificate!: Certificate;
   @Output() newItemEvent = new EventEmitter<string>();
 
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.certificate);
+  }
 
   openModalDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent, {
       size: 'lg',
     });
-    /* modalRef.componentInstance.client = this.client; */
+    modalRef.componentInstance.certificate = this.certificate;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);
@@ -39,7 +42,7 @@ export class CertificatesComponent implements OnInit {
     const modalRef = this.modalService.open(EditModalComponent, {
       size: 'lg',
     });
-    /* modalRef.componentInstance.client = this.client; */
+    modalRef.componentInstance.certificate = this.certificate;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);
@@ -50,7 +53,7 @@ export class CertificatesComponent implements OnInit {
     const modalRef = this.modalService.open(SeeModalComponent, {
       size: 'lg',
     });
-    /* modalRef.componentInstance.client = this.client; */
+    modalRef.componentInstance.certificate = this.certificate;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);

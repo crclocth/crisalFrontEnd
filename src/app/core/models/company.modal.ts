@@ -3,7 +3,7 @@ export interface Company {
   name: string;
   rut: string;
   faena: string;
-  mail: string;
+  email: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
