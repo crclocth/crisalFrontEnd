@@ -5,9 +5,12 @@ import { DateAdapter } from '@angular/material/core';
 import { Battery } from 'src/app/core/models/battery.model';
 import { Certificate } from 'src/app/core/models/certificate.model';
 import { Company } from 'src/app/core/models/company.modal';
+import { Exam } from 'src/app/core/models/exam.modal';
+import { Results } from 'src/app/core/models/results.model';
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 import { CertificateProviderService } from 'src/app/core/providers/certificate/certificate-provider.service';
 import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
+import { ExamProviderService } from 'src/app/core/providers/exam/exam-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
@@ -24,7 +27,7 @@ export class CreateCertificateScreenComponent {
   public batteryArray: Battery[];
   public certificateArray: Certificate[];
   public companySelect: Company | null;
-  public batterySelect: Battery | null;
+  public batterySelect: any;
   public imcc: number;
   public selectedVi: string;
   public selectedInd: string;
@@ -40,6 +43,11 @@ export class CreateCertificateScreenComponent {
   public vigenciaArray = ['Apto', 'No Apto', 'Aprobado', 'No Aprobado'];
   public indicationArray = ['Sin Indicaciones'];
   public doctorArray = ['Matías Harmat'];
+  public general: Exam[] = [];
+  public laboratory: Exam[] = [];
+  public arrayGeneral: any;
+  public arrayLaboratory: any;
+  public resultArrayGeneral: Results[];
 
   constructor(
     private fb: FormBuilder,
@@ -47,7 +55,8 @@ export class CreateCertificateScreenComponent {
     private batteryProviderService: BatteryProviderService,
     private notificationService: NotificationService,
     private certificateProviderService: CertificateProviderService,
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    private examProviderService: ExamProviderService
   ) {
     this.dateAdapter.setLocale('es');
     this.maxInputNameCertificate = 120;
@@ -99,6 +108,7 @@ export class CreateCertificateScreenComponent {
     this.selectedInd = '';
     this.selectedconclusion = '';
     this.doctorSelect = '';
+    this.resultArrayGeneral = [];
   }
 
   get NameCertificate() {
@@ -156,7 +166,6 @@ export class CreateCertificateScreenComponent {
   async ngOnInit() {
     await this.fetchCompanies();
     await this.fetchBatteries();
-    console.log(this.selectedVi);
     this.fetchCertificates();
   }
 
@@ -209,33 +218,45 @@ export class CreateCertificateScreenComponent {
   }
 
   public setOptionCompany(option: Company) {
-    /* let option = event.option.value; */
     this.companySelect = option;
-    console.log(this.companySelect);
   }
 
   public setOptionDoctor(option: string) {
-    /* let option = event.option.value; */
     this.doctorSelect = option;
-    console.log(this.doctorSelect);
   }
 
   public setOptionconclusion(option: string) {
-    /* let option = event.option.value; */
     this.selectedconclusion = option;
-    console.log(this.selectedconclusion);
   }
 
   public setOptionIndication(option: string) {
-    /* let option = event.option.value; */
     this.selectedInd = option;
-    console.log(this.selectedInd);
   }
 
-  public setOptionBattery(option: Battery) {
-    /* let option = event.option.value; */
+  public async setOptionBattery(option: Battery) {
     this.batterySelect = option;
-    console.log(this.batterySelect);
+    this.arrayGeneral = option.generalExams;
+    this.arrayLaboratory = option.labExams;
+    for (let i of option.generalExams) {
+      const g = await this.examProviderService.getExamById(i).toPromise();
+      this.general.push(g);
+    }
+    for (let i of option.labExams) {
+      const l = await this.examProviderService.getExamById(i).toPromise();
+      this.laboratory.push(l);
+    }
+    console.log(this.general);
+    console.log(this.laboratory);
+
+    for (let batteryExam of this.general) {
+      const newExam: Results = {
+        exam: batteryExam.name,
+        status: '',
+        remark: '',
+      };
+      this.resultArrayGeneral.push(newExam);
+      console.log(this.resultArrayGeneral);
+    }
   }
 
   public getIMC() {
@@ -247,11 +268,9 @@ export class CreateCertificateScreenComponent {
     }
   }
 
-  /* myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  }; */
+  public addItem(newItem: Results[]) {
+    console.log(newItem);
+  }
 
   notInArray(): boolean {
     for (let i = 0; i < this.certificateArray.length; i++) {
@@ -265,8 +284,6 @@ export class CreateCertificateScreenComponent {
 
   public async postCertificate() {
     let { date } = this.addressForm.value;
-    console.log(date);
-
     if (this.notInArray() === true) {
       const info: Certificate = {
         title: this.NameCertificate,
@@ -305,7 +322,7 @@ export class CreateCertificateScreenComponent {
         this.notificationService.success(
           'Se Agregó correctamente el Certificado'
         );
-        /* window.location.reload(); */
+        window.location.reload();
       } catch (error) {
         this.notificationService.error('Error al Agregar el Certificado');
       }

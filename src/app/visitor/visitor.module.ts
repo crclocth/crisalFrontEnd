@@ -17,7 +17,6 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { BatteryComponent } from './components/battery/battery.component';
 import { NewComponent } from './components/new/new.component';
-import { WorkerComponent } from './components/worker/worker.component';
 import { SwiperModule } from 'swiper/angular';
 import { CardCertificateComponent } from './components/card-certificate/card-certificate.component';
 import { CardClientComponent } from './components/card-client/card-client.component';
@@ -32,6 +31,8 @@ import { NewsDetailComponent } from './components/news-detail/news-detail.compon
 import { CoreModule } from '../core/core.module';
 import { CardCarouselComponent } from './components/card-carousel/card-carousel.component';
 import { MaterialModule } from '../core/material.module';
+import { AppointmentPrivateComponent } from './components/appointment-private/appointment-private.component';
+import { AppointmentCompanyComponent } from './components/appointment-company/appointment-company.component';
 
 const components = [
   HomeScreenComponent,
@@ -50,7 +51,6 @@ const components = [
   EmployeeComponent,
   BatteryComponent,
   NewComponent,
-  WorkerComponent,
   CardCertificateComponent,
   CardClientComponent,
   ContactFormComponent,
@@ -59,10 +59,13 @@ const components = [
   DownloadFormComponent,
   LoginScreenComponent,
   NewsDetailComponent,
+  CardCarouselComponent,
+  AppointmentPrivateComponent,
+  AppointmentCompanyComponent,
 ];
 
 @NgModule({
-  declarations: [...components, CardCarouselComponent],
+  declarations: [...components],
   imports: [
     CommonModule,
     VisitorRoutingModule,

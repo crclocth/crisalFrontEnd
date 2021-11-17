@@ -10,13 +10,15 @@
 
 <div class="container-fluid my-3">
   <div class="row my-3">
-    <div class="my-2" *ngFor="let item of dummy"
-      [ngClass]="[getScreenSize() > 1500 ? 'col-3' :
-      getScreenSize() > 1130 && getScreenSize() <= 1500 ? 'col-4' :
-      getScreenSize() > 770 && getScreenSize() <= 1130 ? 'col-6' : 'col-12'
-      ]">
-      <app-battery [name]="item.name"></app-battery>
-    </div>
+    <ng-container *ngIf="batteryAray">
+      <div class="my-2" *ngFor="let battery of batteryAray"
+        [ngClass]="[getScreenSize() > 1500 ? 'col-3' :
+        getScreenSize() > 1130 && getScreenSize() <= 1500 ? 'col-4' :
+        getScreenSize() > 770 && getScreenSize() <= 1130 ? 'col-6' : 'col-12'
+        ]">
+        <app-battery [battery]="battery"></app-battery>
+      </div>
+    </ng-container>
   </div>
 </div>
 

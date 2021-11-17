@@ -1,0 +1,117 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+    <mat-card-content>
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-12">
+          <h5>DATOS DEL TRABAJADOR</h5>
+        </div>
+      </div>
+      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+      <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 col-12 text-right">
+          NOMBRE COMPLETO
+        </div>
+        <div class="col-md-6 col-12 mt-3">
+          <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-label>NOMBRE COMPLETO</mat-label>
+            <input matInput placeholder="NOMBRE COMPLETO" formControlName="Name" [maxlength] = "maxInputNamePart" required>
+            <mat-error *ngIf="addressForm.controls['Name'].hasError('required')">
+              NOMBRE COMPLETO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 col-12 text-right">
+          RUT
+        </div>
+        <div class="col-md-6 col-12 mt-3">
+          <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-label>RUT</mat-label>
+            <input matInput placeholder="Ej: 11111111-1" formControlName="Rut" required>
+            <mat-error *ngIf="addressForm.controls['Rut'].hasError('required')">
+              RUT <strong>REQUERIDO</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['Rut'].errors?.pattern">
+              FORMATO DE RUT INCORRECTO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 col-12 text-right">
+          EDAD
+        </div>
+        <div class="col-md-6 col-12 mt-3">
+          <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-label>EDAD</mat-label>
+            <input matInput placeholder="EDAD" formControlName="age"required>
+            <mat-error *ngIf="addressForm.controls['age'].hasError('required')">
+              NOMBRE COMPLETO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 col-12 text-right">
+          CORREO ELECTRÓNICO
+        </div>
+        <div class="col-md-6 col-12 mt-3">
+          <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-label>CORREO ELECTRÓNICO</mat-label>
+            <input matInput placeholder="CORREO" formControlName="Email" [maxlength] = "maxInputMailPart" required>
+            <mat-error *ngIf="addressForm.controls['Email'].hasError('required')">
+              CORREO <strong>REQUERIDO</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['Email'].errors?.pattern">
+              FORMATO DE CORREO ELECTRÓNICO INCORRECTO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 col-12 text-right">
+          BATERÍA
+        </div>
+        <div class="col-md-6 col-12 mt-3">
+          <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-label>Batería</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of batteryArray" [value]="option.name" (click)="setOptionBattery(option)">
+                  {{option.name}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 col-12 text-right">
+          FECHA
+        </div>
+        <div class="col-md-6 col-12 mt-3">
+          <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <mat-label>Choose a date</mat-label>
+            <input matInput formControlName="date" [matDatepickerFilter]="myFilter" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center mt-4">
+          <button mat-raised-button class="mb-4" type="submit" style="color: white;" (click)="validateRut(); postApp()" [disabled]="!addressForm.valid"
+          [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" >ENVIAR</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

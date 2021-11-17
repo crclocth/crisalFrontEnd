@@ -1,6 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Contact } from 'src/app/core/models/contact.model';
 import { ContactProviderService } from 'src/app/core/providers/contact/contact-provider.service';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -14,10 +16,12 @@ export class ContactFormComponent {
   public maxInputName: number;
   public maxInputMail: number;
   public maxInputsubject: number;
+  public message2: string = '';
 
   constructor(
     private fb: FormBuilder,
-    private contacProviderService: ContactProviderService
+    private contactProviderService: ContactProviderService,
+    private notificationService: NotificationService
   ) {
     this.addressForm = this.fb.group({
       name: [null, Validators.required],
@@ -55,12 +59,29 @@ export class ContactFormComponent {
     return this.addressForm.controls;
   }
 
+  public postContact() {
+    let { date } = this.addressForm.value;
+    const info: Contact = {
+      name: this.name,
+      email: this.mail,
+      subject: this.subject,
+      message: this.message,
+    };
+    try {
+      this.message2 = 'Se guardaron los datos.';
+      this.contactProviderService.postContact(info).toPromise();
+      console.log(info);
+      this.notificationService.success('Se Envió correctamente el Contacto');
+      window.location.reload();
+    } catch (error) {
+      this.notificationService.error('Error al Enviar el Contacto');
+    }
+  }
+
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
     return window.innerWidth;
   }
 
-  onSubmit(): void {
-    alert('Thanks!');
-  }
+  onSubmit(): void {}
 }
