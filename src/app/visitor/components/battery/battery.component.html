@@ -1,16 +1,14 @@
-<div class="card">
+<div class="card selectColor">
   <img class="card-img-top" src="/assets/image/logo.jpg" alt="logo CRISAL">
-  <div class="card-body" style="background-color: #E2E2E2;">
-    <h5 class="card-title text-center align-items-center">{{name}}
-      <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        <i class="fas fa-sort-down"></i>
-      </button>
+  <div class="card-body">
+    <h5 class="card-title text-center align-items-center">{{battery.name}}
+      <!-- <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+       <i class="fas fa-sort-down"></i>
+      </button> -->
     </h5>
-    <div class="container-fluid">
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body" style="background-color: #309CEA; color: white;">
-          DETALLES DE LA BATERÍA
-        </div>
+    <div class="container-fluid a" style="display: none;">
+      <div class="card card-body border-0" style="background-color: #309CEA; color: white;">
+        {{battery.description}}
       </div>
     </div>
   </div>

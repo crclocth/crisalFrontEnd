@@ -10,8 +10,8 @@ import { EditModalComponent } from './components/edit-modal/edit-modal.component
 import { SeeModalComponent } from './components/see-modal/see-modal.component';
 import { MaterialModule } from 'src/app/core/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { BateriaBasicaComponent } from './components/general-exams/bateria-basica/bateria-basica.component';
-import { GranAlturaGeograficaComponent } from './components/general-exams/gran-altura-geografica/gran-altura-geografica.component';
+import { GeneralExamsComponent } from './components/general-exams/general-exams.component';
+import { LaboratoryExamsComponent } from './components/laboratory-exams/laboratory-exams.component';
 /* import { MAT_DATE_LOCALE } from '@angular/material/core'; */
 const components = [
   CertificateScreenComponent,
@@ -21,13 +21,12 @@ const components = [
   DeleteModalComponent,
   EditModalComponent,
   SeeModalComponent,
-  BateriaBasicaComponent,
-  GranAlturaGeograficaComponent,
+  GeneralExamsComponent,
 ];
 
 @NgModule({
   /*  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es' }], */
-  declarations: [...components],
+  declarations: [...components, LaboratoryExamsComponent],
   imports: [
     CommonModule,
     CertificatesRoutingModule,

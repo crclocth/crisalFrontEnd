@@ -306,8 +306,7 @@
           <div class="col-md-4 col-12 ">Observación del Exámen</div>
           <div class="col-md-4 col-12">Estado del Exámen</div>
         </div>
-        <app-bateria-basica></app-bateria-basica>
-        <!-- <app-gran-altura-geografica></app-gran-altura-geografica> -->
+        <app-general-exams [batterySelect]="general" (newItemEvent)="addItem($event)"></app-general-exams>
 <!----------------------------------------EXAMENES DE LABORATORIO------------------------------------------------------------------------->
         <div class="row  justify-content-center align-items-center">
           <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
@@ -315,6 +314,15 @@
           </div>
         </div>
         <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+        <div class="row mb-3 text-center justify-content-center align-items-center"
+          style="width:50%; margin-left:25% !important; margin-right:25% !important;">
+          <div class="col-md-3 col-12">Exámen</div>
+          <div class="col-md-3 col-12 ">Laboratorio</div>
+          <div class="col-md-2 col-12 ">Resultado</div>
+          <div class="col-md-2 col-12 ">Unidad</div>
+          <div class="col-md-2 col-12">Estado del Exámen</div>
+        </div>
+        <app-laboratory-exams [batterySelect]="laboratory"></app-laboratory-exams>
 <!------------------------------------------DATOS FINALES----------------------------------------------------------------------->
         <div class="row  justify-content-center align-items-center">
           <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">

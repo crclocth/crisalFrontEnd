@@ -6,11 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./battery.component.less'],
 })
 export class BatteryComponent implements OnInit {
-  @Input() name: string;
+  @Input() battery: any;
 
-  constructor() {
-    this.name = 'nombre';
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }
