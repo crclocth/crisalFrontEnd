@@ -16,6 +16,7 @@ import {
   NgbAlertModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { InterceptorsInterceptor } from './core/interceptors/interceptors.interceptor';
+import { QRCodeModule } from 'angular2-qrcode';
 
 const components = [AppComponent];
 
@@ -33,6 +34,7 @@ const components = [AppComponent];
     CoreModule,
     HttpClientModule,
     NgbPaginationModule,
+    QRCodeModule,
     NgbAlertModule,
     ToastrModule.forRoot({
       progressBar: false,

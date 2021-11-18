@@ -13,6 +13,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { GeneralExamsComponent } from './components/general-exams/general-exams.component';
 import { LaboratoryExamsComponent } from './components/laboratory-exams/laboratory-exams.component';
 /* import { MAT_DATE_LOCALE } from '@angular/material/core'; */
+import { PdfMakeWrapper } from 'pdfmake-wrapper';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { QRCodeModule } from 'angular2-qrcode';
+PdfMakeWrapper.setFonts(pdfFonts);
+
 const components = [
   CertificateScreenComponent,
   CreateCertificateScreenComponent,
@@ -32,6 +37,7 @@ const components = [
     CertificatesRoutingModule,
     MaterialModule,
     SharedModule,
+    QRCodeModule,
   ],
 })
 export class CertificatesModule {}
