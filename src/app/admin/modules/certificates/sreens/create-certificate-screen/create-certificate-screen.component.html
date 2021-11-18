@@ -398,33 +398,41 @@
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field> -->
-                        </div>
-                    </div>
-                </ng-container>
-                <div class="row align-items-center">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3 col-12 text-right">
-                        Doctor
-                    </div>
-                    <div class="col-md-6 col-12 mt-3">
-                        <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-                            <mat-select>
-                                <mat-option *ngFor="let option of doctorArray" [value]="option" (click)="setOptionDoctor(option)">
-                                    {{option}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </mat-card-content>
-            <mat-card-actions>
-                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center mt-4">
-                        <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid" [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" (click)="postCertificate()">CREAR</button>
-                    </div>
-                </div>
-            </mat-card-actions>
-        </mat-card>
-    </form>
+
+            </div>
+          </div>
+        </ng-container>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Doctor
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-label>Doctor</mat-label>
+              <mat-select formControlName="doctor">
+                <mat-option *ngFor="let option of doctorArray" [value]="option.name" (click)="setOptionDoctor(option)">
+                  {{option.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addressForm.controls['doctor'].hasError('required')">
+                Doctor <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+        <div class="row justify-content-center">
+          <div class="col-12 text-center mt-4">
+            <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
+              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+              (click)="postCertificate()"
+            >CREAR</button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 </div>

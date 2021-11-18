@@ -5,11 +5,13 @@ import { DateAdapter } from '@angular/material/core';
 import { Battery } from 'src/app/core/models/battery.model';
 import { Certificate } from 'src/app/core/models/certificate.model';
 import { Company } from 'src/app/core/models/company.modal';
+import { Doctor } from 'src/app/core/models/doctor.model';
 import { Exam } from 'src/app/core/models/exam.modal';
 import { Results } from 'src/app/core/models/results.model';
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 import { CertificateProviderService } from 'src/app/core/providers/certificate/certificate-provider.service';
 import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
+import { DoctorProviderService } from 'src/app/core/providers/doctor/doctor-provider.service';
 import { ExamProviderService } from 'src/app/core/providers/exam/exam-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 
@@ -32,7 +34,7 @@ export class CreateCertificateScreenComponent {
   public selectedVi: string;
   public selectedInd: string;
   public selectedconclusion: string;
-  public doctorSelect: string;
+  public doctorSelect: Doctor | null;
   public message2: string = '';
   public conclusionArray = [
     'Sin contraindicaciones para laborar en Altura Física y Andamios.',
@@ -42,7 +44,7 @@ export class CreateCertificateScreenComponent {
   ];
   public vigenciaArray = ['Apto', 'No Apto', 'Aprobado', 'No Aprobado'];
   public indicationArray = ['Sin Indicaciones'];
-  public doctorArray = ['Matías Harmat'];
+  public doctorArray: Doctor[];
   public general: Exam[] = [];
   public laboratory: Exam[] = [];
   public arrayGeneral: any;
@@ -58,7 +60,8 @@ export class CreateCertificateScreenComponent {
     private notificationService: NotificationService,
     private certificateProviderService: CertificateProviderService,
     private dateAdapter: DateAdapter<Date>,
-    private examProviderService: ExamProviderService
+    private examProviderService: ExamProviderService,
+    private doctorProviderService: DoctorProviderService
   ) {
     this.dateAdapter.setLocale('es');
     this.maxInputNameCertificate = 120;
@@ -99,6 +102,7 @@ export class CreateCertificateScreenComponent {
       sat02: [null, [Validators.required, Validators.pattern('[0-9]{1,2}')]],
       conclusion: [''],
       selectedVigencia: [''],
+      doctor: [''],
     });
     this.companyArray = [];
     this.batteryArray = [];
@@ -109,10 +113,12 @@ export class CreateCertificateScreenComponent {
     this.selectedVi = '';
     this.selectedInd = '';
     this.selectedconclusion = '';
-    this.doctorSelect = '';
+    this.doctorSelect = null;
     this.resultArrayGeneral = [];
+    this.doctorArray = [];
     this.generalExamsResults = [];
     this.labExamsResults = [];
+
   }
 
   get NameCertificate() {
@@ -166,11 +172,15 @@ export class CreateCertificateScreenComponent {
   get selectedVigencia() {
     return this.addressForm.get('selectedVigencia')?.value;
   }
+  get doctor() {
+    return this.addressForm.get('doctor')?.value;
+  }
 
   async ngOnInit() {
     await this.fetchCompanies();
     await this.fetchBatteries();
-    this.fetchCertificates();
+    await this.fetchCertificates();
+    await this.fetchDoctors();
   }
 
   onSubmit(): void {}
@@ -189,6 +199,15 @@ export class CreateCertificateScreenComponent {
     try {
       this.batteryArray = await this.batteryProviderService
         .getBatteries()
+        .toPromise();
+    } catch (error) {
+      console.log('error');
+    }
+  }
+  async fetchDoctors() {
+    try {
+      this.doctorArray = await this.doctorProviderService
+        .getDoctors()
         .toPromise();
     } catch (error) {
       console.log('error');
@@ -219,7 +238,7 @@ export class CreateCertificateScreenComponent {
     this.companySelect = option;
   }
 
-  public setOptionDoctor(option: string) {
+  public setOptionDoctor(option: Doctor) {
     this.doctorSelect = option;
   }
 
@@ -289,7 +308,7 @@ export class CreateCertificateScreenComponent {
         suggestions: this.selectedInd,
         validity: this.selectedVi,
         validityDate: this.datee,
-        doctor: this.doctorSelect,
+        doctor: this.doctorSelect!,
         company: {
           rut: this.companySelect!.rut,
           name: this.companySelect!.name,
