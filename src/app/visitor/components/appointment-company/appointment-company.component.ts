@@ -135,7 +135,6 @@ export class AppointmentCompanyComponent {
   public postApp() {
     this.createExaminees();
     let { date, batterySelect } = this.addressForm.value;
-
     const info: AppointCompany = {
       name: this.companyName,
       rut: this.companyRut,
@@ -144,12 +143,10 @@ export class AppointmentCompanyComponent {
       date: this.date,
       examinees: this.examineesArray,
     };
-    try {
-      //this.message2 = 'Se guardaron los datos.';
+    try {      
       this.appointCompanyProviderService.postAppointCompany(info).toPromise();
       console.log(info);
-      this.notificationService.success('Se Envió correctamente el Formulario');
-      //window.location.reload();
+      this.notificationService.success('Se Envió correctamente el Formulario');      
     } catch (error) {
       this.notificationService.error('Error al Enviar el Formulario');
     }
@@ -174,12 +171,9 @@ export class AppointmentCompanyComponent {
   }
 
   addExaminee() {
-    this.getFormArray().push(this.newExaminee());
-    /* for (let data in this.addressForm.controls) {
-      (<FormControl>this.addressForm.controls[data]).setValue(null);
-      this.addressForm.controls[data].setErrors(null);
-    } */
+    this.getFormArray().push(this.newExaminee());    
   }
+
   removeExaminee(i: number) {
     this.getFormArray().removeAt(i);
   }
@@ -205,8 +199,7 @@ export class AppointmentCompanyComponent {
   }
 
   myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
+    const day = (d || new Date()).getDay();    
     return day !== 0 && day !== 6;
   };
 }

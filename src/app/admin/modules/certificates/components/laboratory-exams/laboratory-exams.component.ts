@@ -18,16 +18,11 @@ export class LaboratoryExamsComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.maxInputobservation = 120;
     this.selection = '';
-
     this.addressForm = this.fb.group({
-      observation: [''],
+      result: [null],
     });
   }
-
-  get observationsAudio() {
-    return this.addressForm.get('observationsAudio')?.value;
-  }
-
+  
   onSubmit(): void {}
 
   ngOnInit() {}
