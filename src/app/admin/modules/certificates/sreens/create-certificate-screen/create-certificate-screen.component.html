@@ -1,65 +1,60 @@
 <div class="container-fluid ">
-  <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
-    <mat-card class="shipping-card" style="background-color: #E4E4E4;">
-      <div class="row text-center justify-content-center align-items-center p-3">
-        <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-          <h5 class="mt-2">Crear Certificado</h5>
-        </div>
-      </div>
-<!------------------------------------------DATOS GENERALES----------------------------------------------------------------------->
-      <div class="row  justify-content-center align-items-center">
-        <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-          <h5>Datos Generales</h5>
-        </div>
-      </div>
-      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-      <mat-card-content>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Certificado Digital
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="example-full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>Certificado Digital</mat-label>
-              <input type="text"
-                    matInput
-                    [maxlength] = "maxInputNameCertificate"
-                    placeholder="Certificado Digital"
-                    formControlName="NameCertificate"
-                    [matAutocomplete]="auto" required>
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of batteryArray" [value]="option.name">
-                  {{option.name}}
-                </mat-option>
-              </mat-autocomplete>
-              <mat-error *ngIf="addressForm.controls['NameCertificate'].hasError('required')">
-                Certificado Digital <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Fecha de Exámen
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>Elige una Fecha</mat-label>
-              <input matInput formControlName="date" [matDatepicker]="picker" required>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Empresa
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <!-- <mat-form-field class="example-full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+        <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+            <div class="row text-center justify-content-center align-items-center p-3">
+                <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                    <h5 class="mt-2">Crear Certificado</h5>
+                </div>
+            </div>
+            <!------------------------------------------DATOS GENERALES----------------------------------------------------------------------->
+            <div class="row  justify-content-center align-items-center">
+                <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                    <h5>Datos Generales</h5>
+                </div>
+            </div>
+            <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+            <mat-card-content>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Certificado Digital
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="example-full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-label>Certificado Digital</mat-label>
+                            <input type="text" matInput [maxlength]="maxInputNameCertificate" placeholder="Certificado Digital" formControlName="NameCertificate" [matAutocomplete]="auto" required>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of batteryArray" [value]="option.name">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="addressForm.controls['NameCertificate'].hasError('required')">
+                                Certificado Digital <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Fecha de Exámen
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-label>Elige una Fecha</mat-label>
+                            <input matInput formControlName="date" [matDatepicker]="picker" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Empresa
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <!-- <mat-form-field class="example-full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Empresa</mat-label>
               <input type="text"
                     matInput
@@ -76,367 +71,360 @@
                 Empresa <strong>REQUERIDO</strong>
               </mat-error>
             </mat-form-field> -->
-            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Empresa</mat-label>
-              <mat-select formControlName="NameCompany">
-                <mat-option *ngFor="let option of companyArray" [value]="option.name" (click)="setOptionCompany(option)">
-                  {{option.name}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="addressForm.controls['NameCompany'].hasError('required')">
-                Empresa <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Batería
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Batería</mat-label>
-              <mat-select formControlName="NameBattery">
-                <mat-option *ngFor="let option of batteryArray" [value]="option.name" (click)="setOptionBattery(option)">
-                  {{option.name}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="addressForm.controls['NameBattery'].hasError('required')">
-                Batería <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-<!------------------------------------------------DATOS DEL TRABAJADOR----------------------------------------------------------------->
-        <div class="row  justify-content-center align-items-center">
-          <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-            <h5 class="mt-2">Datos del Trabajador</h5>
-          </div>
-        </div>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            RUT del Trabajador
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>RUT del Trabajador</mat-label>
-            <input matInput placeholder="Ej: 11111111-1" formControlName="rut" required>
-            <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
-              RUT del Trabajador <strong>REQUERIDO</strong>
-            </mat-error>
-            <mat-error *ngIf="addressForm.controls['rut'].errors?.pattern">
-              FORMATO DE RUT INCORRECTO <strong>REQUERIDO</strong>
-            </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Nombre del Trabajador
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Nombre del Trabajador</mat-label>
-              <input matInput placeholder="Nombre del Trabajador" formControlName="name" [maxlength] = "maxInputName" required>
-              <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
-                Nombre del Trabajador <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Edad del Trabajador
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Edad del Trabajador</mat-label>
-              <input matInput placeholder="Edad del Trabajador" formControlName="age" required>
-              <mat-error *ngIf="addressForm.controls['age'].hasError('required')">
-                Edad del Trabajador <strong>REQUERIDO</strong>
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['age'].errors?.pattern">
-                FORMATO DE EDAD INCORRECTO <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Cargo del Trabajador
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>Cargo del Trabajador</mat-label>
-              <input matInput placeholder="Cargo del Trabajador" formControlName="position" [maxlength] = "maxInputposition" required>
-              <mat-error *ngIf="addressForm.controls['position'].hasError('required')">
-                Cargo del Trabajador <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-<!----------------------------------------------EXAMENES DE APOYO CLINICO------------------------------------------------------------------->
-        <div class="row  justify-content-center align-items-center">
-          <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-            <h5 class="mt-2">Exámenes de Apoyo Clínico</h5>
-          </div>
-        </div>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Pulso
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Pulso</mat-label>
-              <input matInput placeholder="Pulso" formControlName="pulse" required>
-              <mat-error *ngIf="addressForm.controls['pulse'].hasError('required')">
-                Pulso <strong>REQUERIDO</strong>
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['pulse'].errors?.pattern">
-                FORMATO DE PULSO INCORRECTO <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            P.A
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>P.A</mat-label>
-              <input matInput placeholder="P.A" formControlName="pa" required>
-              <mat-error *ngIf="addressForm.controls['pa'].hasError('required')">
-                P.A <strong>REQUERIDO</strong>
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['pa'].errors?.pattern">
-                FORMATO DE PRESIÓN ARTERIAL INCORRECTO <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Peso
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-label>Peso</mat-label>
-              <input matInput placeholder="Peso" formControlName="weight" required>
-              <mat-error *ngIf="addressForm.controls['weight'].hasError('required')">
-                Peso <strong>REQUERIDO</strong>
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['weight'].errors?.pattern">
-                FORMATO DE PESO INCORRECTO <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Altura
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>Altura</mat-label>
-              <input matInput placeholder="Altura" formControlName="height" required>
-              <mat-error *ngIf="addressForm.controls['height'].hasError('required')">
-                Altura <strong>REQUERIDO</strong>
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['height'].errors?.pattern">
-                FORMATO DE ALTURA INCORRECTO <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            IMC
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>IMC</mat-label>{{getIMC()}}
-              <input matInput placeholder="imc" formControlName="imc" [(ngModel)]="imcc">
-              <mat-error *ngIf="addressForm.controls['imc'].hasError('required')">
-                IMC <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            %SAT 02
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-label>%SAT 02</mat-label>
-              <input matInput placeholder="%SAT 02" formControlName="sat02" required>
-              <mat-error *ngIf="addressForm.controls['sat02'].hasError('required')">
-                %SAT 02 <strong>REQUERIDO</strong>
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['sat02'].errors?.pattern">
-                FORMATO DE %SAT 02 INCORRECTO <strong>REQUERIDO</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-<!----------------------------------------EXAMENES GENERALES------------------------------------------------------------------------->
-        <div class="row justify-content-center align-items-center">
-          <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-            <h5 class="mt-2">Exámenes Generales</h5>
-          </div>
-        </div>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;">
-        <div class="row mb-3 text-center justify-content-center align-items-center"
-          style="width:50%; margin-left:25% !important; margin-right:25% !important;">
-          <div class="col-md-4 col-12">Exámen</div>
-          <div class="col-md-4 col-12 ">Observación del Exámen</div>
-          <div class="col-md-4 col-12">Estado del Exámen</div>
-        </div>
-        <app-general-exams [batterySelect]="general" (newItemEvent)="addItem($event)"></app-general-exams>
-<!----------------------------------------EXAMENES DE LABORATORIO------------------------------------------------------------------------->
-        <div class="row  justify-content-center align-items-center">
-          <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-            <h5 class="mt-2">Exámenes de Laboratorio</h5>
-          </div>
-        </div>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-        <div class="row mb-3 text-center justify-content-center align-items-center"
-          style="width:50%; margin-left:25% !important; margin-right:25% !important;">
-          <div class="col-md-3 col-12">Exámen</div>
-          <div class="col-md-3 col-12 ">Laboratorio</div>
-          <div class="col-md-2 col-12 ">Resultado</div>
-          <div class="col-md-2 col-12 ">Unidad</div>
-          <div class="col-md-2 col-12">Estado del Exámen</div>
-        </div>
-        <app-laboratory-exams [batterySelect]="laboratory"></app-laboratory-exams>
-<!------------------------------------------DATOS FINALES----------------------------------------------------------------------->
-        <div class="row  justify-content-center align-items-center">
-          <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-            <h5 class="mt-2">Datos Finales</h5>
-          </div>
-        </div>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Conclusiones Médicas
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-                <mat-radio-group aria-label="Select an option">
-                  <mat-radio-button *ngFor="let option of conclusionArray"
-                    [value]="option" (click)="setOptionconclusion(option)">{{option}}
-                  </mat-radio-button>
-                </mat-radio-group>
-                <mat-radio-button >
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <input matInput formControlName="conclusion" [maxlength] = "maxInputNameCertificate">
-                  </mat-form-field>
-                </mat-radio-button>
-            </div>
-          </div>
-        </div>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Indicaciones
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-              <mat-radio-group aria-label="Select an option">
-                <mat-radio-button *ngFor="let option of indicationArray"
-                  [value]="option" (click)="setOptionIndication(option)">{{option}}
-                </mat-radio-button>
-              </mat-radio-group>
-              <mat-radio-button value="2">
-                <mat-form-field class="example-full-width" appearance="outline">
-                  <input matInput>
-                </mat-form-field>
-              </mat-radio-button>
-            </div>
-          </div>
-        </div>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Vigencia
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-              <mat-select [(value)]="selectedVi" formControlName="selectedVigencia" (selectionChange)="changeVigencia($event.value)">
-                <mat-option value="Apto">Apto</mat-option>
-                <mat-option value="No Apto">No Apto</mat-option>
-                <mat-option value="Aprobado">Aprobado</mat-option>
-                <mat-option value="No Aprobado">No Aprobado</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <ng-container *ngIf="selectedVi === 'Apto'">
-          <div class="row align-items-center">
-            <div class="col-md-3"></div>
-            <div class="col-md-3 col-12 text-right">
-              Fecha
-            </div>
-            <div class="col-md-6 col-12 mt-3">
-              <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
-                <mat-label>Elige una Fecha</mat-label>
-                <input matInput formControlName="datee" [matDatepicker]="pickerr" required>
-                <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
-                <mat-datepicker #pickerr></mat-datepicker>
-              </mat-form-field>
-              <!-- <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                        <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>Empresa</mat-label>
+                            <mat-select formControlName="NameCompany">
+                                <mat-option *ngFor="let option of companyArray" [value]="option.name" (click)="setOptionCompany(option)">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="addressForm.controls['NameCompany'].hasError('required')">
+                                Empresa <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Batería
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>Batería</mat-label>
+                            <mat-select formControlName="NameBattery">
+                                <mat-option *ngFor="let option of batteryArray" [value]="option.name" (click)="setOptionBattery(option)">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="addressForm.controls['NameBattery'].hasError('required')">
+                                Batería <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!------------------------------------------------DATOS DEL TRABAJADOR----------------------------------------------------------------->
+                <div class="row  justify-content-center align-items-center">
+                    <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                        <h5 class="mt-2">Datos del Trabajador</h5>
+                    </div>
+                </div>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        RUT del Trabajador
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>RUT del Trabajador</mat-label>
+                            <input matInput placeholder="Ej: 11111111-1" formControlName="rut" required>
+                            <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
+                                RUT del Trabajador <strong>REQUERIDO</strong>
+                            </mat-error>
+                            <mat-error *ngIf="addressForm.controls['rut'].errors?.pattern">
+                                FORMATO DE RUT INCORRECTO <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Nombre del Trabajador
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>Nombre del Trabajador</mat-label>
+                            <input matInput placeholder="Nombre del Trabajador" formControlName="name" [maxlength]="maxInputName" required>
+                            <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                                Nombre del Trabajador <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Edad del Trabajador
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>Edad del Trabajador</mat-label>
+                            <input matInput placeholder="Edad del Trabajador" formControlName="age" required>
+                            <mat-error *ngIf="addressForm.controls['age'].hasError('required')">
+                                Edad del Trabajador <strong>REQUERIDO</strong>
+                            </mat-error>
+                            <mat-error *ngIf="addressForm.controls['age'].errors?.pattern">
+                                FORMATO DE EDAD INCORRECTO <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Cargo del Trabajador
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-label>Cargo del Trabajador</mat-label>
+                            <input matInput placeholder="Cargo del Trabajador" formControlName="position" [maxlength]="maxInputposition" required>
+                            <mat-error *ngIf="addressForm.controls['position'].hasError('required')">
+                                Cargo del Trabajador <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!----------------------------------------------EXAMENES DE APOYO CLINICO------------------------------------------------------------------->
+                <div class="row  justify-content-center align-items-center">
+                    <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                        <h5 class="mt-2">Exámenes de Apoyo Clínico</h5>
+                    </div>
+                </div>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Pulso
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>Pulso</mat-label>
+                            <input matInput placeholder="Pulso" formControlName="pulse" required>
+                            <mat-error *ngIf="addressForm.controls['pulse'].hasError('required')">
+                                Pulso <strong>REQUERIDO</strong>
+                            </mat-error>
+                            <mat-error *ngIf="addressForm.controls['pulse'].errors?.pattern">
+                                FORMATO DE PULSO INCORRECTO <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        P.A
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>P.A</mat-label>
+                            <input matInput placeholder="P.A" formControlName="pa" required>
+                            <mat-error *ngIf="addressForm.controls['pa'].hasError('required')">
+                                P.A <strong>REQUERIDO</strong>
+                            </mat-error>
+                            <mat-error *ngIf="addressForm.controls['pa'].errors?.pattern">
+                                FORMATO DE PRESIÓN ARTERIAL INCORRECTO <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Peso
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-label>Peso (kg)</mat-label>
+                            <input matInput placeholder="60" formControlName="weight" required>
+                            <mat-error *ngIf="addressForm.controls['weight'].hasError('required')">
+                                Peso <strong>REQUERIDO</strong>
+                            </mat-error>
+                            <mat-error *ngIf="addressForm.controls['weight'].errors?.pattern">
+                                FORMATO DE PESO INCORRECTO <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Altura
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-label>Altura (cm)</mat-label>
+                            <input matInput placeholder="Ej: 180" formControlName="height" required>
+                            <mat-error *ngIf="addressForm.controls['height'].hasError('required')">
+                                Altura <strong>REQUERIDO</strong>
+                            </mat-error>
+                            <mat-error *ngIf="addressForm.controls['height'].errors?.pattern">
+                                FORMATO DE ALTURA INCORRECTO <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        IMC
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-label>IMC</mat-label>{{getIMC()}}
+                            <input matInput placeholder="imc" formControlName="imc" [(ngModel)]="imcc">
+                            <mat-error *ngIf="addressForm.controls['imc'].hasError('required')">
+                                IMC <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        %SAT 02
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-label>%SAT 02</mat-label>
+                            <input matInput placeholder="%SAT 02" formControlName="sat02" required>
+                            <mat-error *ngIf="addressForm.controls['sat02'].hasError('required')">
+                                %SAT 02 <strong>REQUERIDO</strong>
+                            </mat-error>
+                            <mat-error *ngIf="addressForm.controls['sat02'].errors?.pattern">
+                                FORMATO DE %SAT 02 INCORRECTO <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!----------------------------------------EXAMENES GENERALES------------------------------------------------------------------------->
+                <div class="row justify-content-center align-items-center">
+                    <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                        <h5 class="mt-2">Exámenes Generales</h5>
+                    </div>
+                </div>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;">
+                <div class="row mb-3 text-center justify-content-center align-items-center" style="width:50%; margin-left:25% !important; margin-right:25% !important;">
+                    <div class="col-md-4 col-12">Exámen</div>
+                    <div class="col-md-4 col-12 ">Observación del Exámen</div>
+                    <div class="col-md-4 col-12">Estado del Exámen</div>
+                </div>
+                <app-general-exams [batterySelect]="general" (newItemEvent)="getGeneralResults($event)"></app-general-exams>
+                <!----------------------------------------EXAMENES DE LABORATORIO------------------------------------------------------------------------->
+                <div class="row  justify-content-center align-items-center">
+                    <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                        <h5 class="mt-2">Exámenes de Laboratorio</h5>
+                    </div>
+                </div>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+                <div class="row mb-3 text-center justify-content-center align-items-center" style="width:50%; margin-left:25% !important; margin-right:25% !important;">
+                    <div class="col-md-3 col-12">Exámen</div>
+                    <div class="col-md-3 col-12 ">Laboratorio</div>
+                    <div class="col-md-2 col-12 ">Resultado</div>
+                    <div class="col-md-2 col-12 ">Unidad</div>
+                    <div class="col-md-2 col-12">Estado del Exámen</div>
+                </div>
+                <app-laboratory-exams [batterySelect]="laboratory"></app-laboratory-exams>
+                <!------------------------------------------DATOS FINALES----------------------------------------------------------------------->
+                <div class="row  justify-content-center align-items-center">
+                    <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                        <h5 class="mt-2">Datos Finales</h5>
+                    </div>
+                </div>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Conclusiones Médicas
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-radio-group aria-label="Select an option">
+                                <mat-radio-button *ngFor="let option of conclusionArray" [value]="option" (click)="setOptionconclusion(option)">{{option}}
+                                </mat-radio-button>
+                                <mat-radio-button>
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <input matInput formControlName="conclusion" [maxlength]="maxInputNameCertificate">
+                                    </mat-form-field>
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Indicaciones
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-radio-group aria-label="Select an option">
+                                <mat-radio-button *ngFor="let option of indicationArray" [value]="option" (click)="setOptionIndication(option)">{{option}}
+                                </mat-radio-button>
+                                <mat-radio-button value="2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <input matInput>
+                                    </mat-form-field>
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Vigencia
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-select [(value)]="selectedVi" formControlName="selectedVigencia" (selectionChange)="changeVigencia($event.value)">
+                                <mat-option value="Apto">Apto</mat-option>
+                                <mat-option value="No Apto">No Apto</mat-option>
+                                <mat-option value="Aprobado">Aprobado</mat-option>
+                                <mat-option value="No Aprobado">No Aprobado</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <ng-container *ngIf="selectedVi === 'Apto'">
+                    <div class="row align-items-center">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3 col-12 text-right">
+                            Fecha
+                        </div>
+                        <div class="col-md-6 col-12 mt-3">
+                            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                                <mat-label>Elige una Fecha</mat-label>
+                                <input matInput formControlName="datee" [matDatepicker]="pickerr" required>
+                                <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerr></mat-datepicker>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker2" required>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field> -->
-            </div>
-          </div>
-        </ng-container>
-        <div class="row align-items-center">
-          <div class="col-md-3"></div>
-          <div class="col-md-3 col-12 text-right">
-            Doctor
-          </div>
-          <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}" >
-              <mat-select>
-                <mat-option *ngFor="let option of doctorArray" [value]="option" (click)="setOptionDoctor(option)">
-                  {{option}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
-        <div class="row justify-content-center">
-          <div class="col-12 text-center mt-4">
-            <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
-              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
-              (click)="postCertificate()"
-            >CREAR</button>
-          </div>
-        </div>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="row align-items-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-12 text-right">
+                        Doctor
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                            <mat-select>
+                                <mat-option *ngFor="let option of doctorArray" [value]="option" (click)="setOptionDoctor(option)">
+                                    {{option}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;" />
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mt-4">
+                        <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid" [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" (click)="postCertificate()">CREAR</button>
+                    </div>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </form>
 </div>

@@ -48,6 +48,8 @@ export class CreateCertificateScreenComponent {
   public arrayGeneral: any;
   public arrayLaboratory: any;
   public resultArrayGeneral: Results[];
+  public generalExamsResults: Results[];
+  public labExamsResults: Results[];
 
   constructor(
     private fb: FormBuilder,
@@ -87,11 +89,11 @@ export class CreateCertificateScreenComponent {
       ],
       weight: [
         null,
-        [Validators.required, Validators.pattern('[0-9]{1,3}.[0-9]{1,2}')],
+        [Validators.required, Validators.pattern('[0-9]{1,3}\.?[0-9]{1,2}')],
       ],
       height: [
         null,
-        [Validators.required, Validators.pattern('[0-9]{1}.[0-9]{1,2}')],
+        [Validators.required, Validators.pattern('[0-9]{1,3}\.?[0-9]{1,2}')],
       ],
       imc: [null, [Validators.required]],
       sat02: [null, [Validators.required, Validators.pattern('[0-9]{1,2}')]],
@@ -109,6 +111,8 @@ export class CreateCertificateScreenComponent {
     this.selectedconclusion = '';
     this.doctorSelect = '';
     this.resultArrayGeneral = [];
+    this.generalExamsResults = [];
+    this.labExamsResults = [];
   }
 
   get NameCertificate() {
@@ -201,12 +205,6 @@ export class CreateCertificateScreenComponent {
     }
   }
 
-  /* public setOptionComapny(event: MatAutocompleteSelectedEvent) {
-    let option = event.option.value;
-    this.companySelect = option;
-    console.log(this.companySelect);
-  } */
-
   changeVigencia(value: any) {
     this.selectedVi = value;
     console.log(value);
@@ -261,15 +259,14 @@ export class CreateCertificateScreenComponent {
 
   public getIMC() {
     if (this.weight && this.height) {
-      let al = this.height;
-      let pes = this.weight;
-      let alw = al * al;
-      this.imcc = pes / alw;
+      let al = this.height/100;
+      let pes = this.weight;      
+      this.imcc = pes / (al*al);
     }
   }
 
-  public addItem(newItem: Results[]) {
-    console.log(newItem);
+  public getGeneralResults(newItem: Results[]) {
+    this.generalExamsResults = newItem;
   }
 
   notInArray(): boolean {
@@ -313,6 +310,8 @@ export class CreateCertificateScreenComponent {
           imc: this.imcc,
           sat: this.sat02,
         },
+        generalResults: this.generalExamsResults,
+        labResults: this.labExamsResults,
       };
       try {
         this.message2 = 'Se guardaron los datos.';
