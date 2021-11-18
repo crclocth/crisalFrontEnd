@@ -60,8 +60,7 @@ export class CertificatesComponent implements OnInit {
     });
     pdf.images({
       logoCrisal: await new Img('/assets/image/logoHD.png').build(),
-      doctor: await new Img('/assets/image/doctor.png').build(),
-      firmaDoctor: await new Img('/assets/image/firmaDoctor.png').build(),
+      doctor: await new Img(this.certificate.doctor.image).build(),
     });
     pdf.add(
       await new Img('logoCrisal', true)
@@ -199,10 +198,9 @@ export class CertificatesComponent implements OnInit {
     pdf.add(
       new Columns([
         await new Img('doctor', true)
-          .fit([200, 450])
+          .fit([350, 450])
           .alignment('center')
           .build(),
-        await new Img('firmaDoctor', true).fit([150, 150]).build(),
         new QR(this.formatQR(this.certificate)).fit(150).end,
       ]).columnGap(0).end
     );

@@ -416,12 +416,16 @@
             Doctor
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <mat-form-field class="full-width" appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}" >
-              <mat-select>
-                <mat-option *ngFor="let option of doctorArray" [value]="option" (click)="setOptionDoctor(option)">
-                  {{option}}
+            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-label>Doctor</mat-label>
+              <mat-select formControlName="doctor">
+                <mat-option *ngFor="let option of doctorArray" [value]="option.name" (click)="setOptionDoctor(option)">
+                  {{option.name}}
                 </mat-option>
               </mat-select>
+              <mat-error *ngIf="addressForm.controls['doctor'].hasError('required')">
+                Doctor <strong>REQUERIDO</strong>
+              </mat-error>
             </mat-form-field>
           </div>
         </div>

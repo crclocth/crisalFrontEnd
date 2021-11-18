@@ -80,6 +80,13 @@ const routes: Routes = [
             (m) => m.LaboratoriesModule
           ),
       },
+      {
+        path: 'doctores',
+        loadChildren: () =>
+          import('./modules/doctors/doctors.module').then(
+            (m) => m.DoctorsModule
+          ),
+      },
     ],
   },
 ];
