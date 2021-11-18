@@ -1,5 +1,11 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { rutTools } from 'prettyutils';
 import { AppointCompany } from 'src/app/core/models/appointCompany.model';
 import { Appointment } from 'src/app/core/models/appointment.model';
@@ -47,8 +53,18 @@ export class AppointmentCompanyComponent {
     this.formArray.push(
       this.fb.group({
         examineeName: ['', Validators.required],
-        examineeRut: ['', Validators.required],
-        examineeAge: ['', Validators.required],
+        examineeRut: [
+          '',
+          Validators.required,
+          Validators.minLength(9),
+          Validators.maxLength(10),
+          Validators.pattern('[0-9]{1,2}[0-9]{3}[0-9]{3}-[0-9Kk]{1}'),
+        ],
+        examineeAge: [
+          '',
+          Validators.required,
+          Validators.pattern('[0-9]{1,2}'),
+        ],
         examineeJob: ['', Validators.required],
         examineeBattery: ['', Validators.required],
       })
@@ -143,6 +159,10 @@ export class AppointmentCompanyComponent {
     return this.addressForm.get('examinees') as FormArray;
   }
 
+  getFormArrayControls() {
+    return (this.addressForm.get('examinees') as FormArray).value;
+  }
+
   newExaminee() {
     return this.fb.group({
       examineeName: ['', Validators.required],
@@ -155,6 +175,10 @@ export class AppointmentCompanyComponent {
 
   addExaminee() {
     this.getFormArray().push(this.newExaminee());
+    /* for (let data in this.addressForm.controls) {
+      (<FormControl>this.addressForm.controls[data]).setValue(null);
+      this.addressForm.controls[data].setErrors(null);
+    } */
   }
   removeExaminee(i: number) {
     this.getFormArray().removeAt(i);
