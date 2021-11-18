@@ -122,7 +122,7 @@ export class CertificatesComponent implements OnInit {
           this.certificate.physiological.bloodPressure,
           this.certificate.physiological.weight,
           this.certificate.physiological.height,
-          this.certificate.physiological.imc,
+          this.certificate.physiological.imc.toFixed(1),
           this.certificate.physiological.sat,
         ],
       ])
