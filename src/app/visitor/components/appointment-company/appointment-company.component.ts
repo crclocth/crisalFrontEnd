@@ -157,10 +157,6 @@ export class AppointmentCompanyComponent {
     return this.addressForm.get('examinees') as FormArray;
   }
 
-  getFormArrayControls() {
-    return (this.addressForm.get('examinees') as FormArray).value;
-  }
-
   newExaminee() {
     return this.fb.group({
       examineeName: ['', Validators.required],

@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { DateAdapter } from '@angular/material/core';
 import { Battery } from 'src/app/core/models/battery.model';
@@ -22,6 +22,8 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
 })
 export class CreateCertificateScreenComponent {
   public addressForm: FormGroup;
+  public formArray: FormArray;
+  public formArray2: FormArray;
   public maxInputNameCertificate: number;
   public maxInputName: number;
   public maxInputposition: number;
@@ -36,6 +38,7 @@ export class CreateCertificateScreenComponent {
   public selectedconclusion: string;
   public doctorSelect: Doctor | null;
   public message2: string = '';
+  public state = ['Normal', 'Alterado'];
   public conclusionArray = [
     'Sin contraindicaciones para laborar en Altura Física y Andamios.',
     'Con contraindicaciones para laborar en Altura Física y Andamios.',
@@ -50,8 +53,11 @@ export class CreateCertificateScreenComponent {
   public arrayGeneral: any;
   public arrayLaboratory: any;
   public resultArrayGeneral: Results[];
+  public resultArrayLab: Results[];
   public generalExamsResults: Results[];
   public labExamsResults: Results[];
+  public constGE = 'generalExams';
+  public constLA = 'labExams';
 
   constructor(
     private fb: FormBuilder,
@@ -67,7 +73,27 @@ export class CreateCertificateScreenComponent {
     this.maxInputNameCertificate = 120;
     this.maxInputName = 120;
     this.maxInputposition = 120;
+    this.formArray = this.fb.array([]);
+    this.formArray.push(
+      this.fb.group({
+        resultsExam: ['', Validators.required],
+        resultsRemark: [''],
+        resultsStatus: ['', Validators.required],
+      })
+    );
+    this.formArray2 = this.fb.array([]);
+    this.formArray2.push(
+      this.fb.group({
+        resultsExam: ['', Validators.required],
+        resultsLaboratory: ['', Validators.required],
+        resultsResult: [0, Validators.required],
+        resultsMeasurementUnit: ['', Validators.required],
+        resultsStatus: ['', Validators.required],
+      })
+    );
     this.addressForm = this.fb.group({
+      generalExams: this.formArray,
+      labExams: this.formArray2,
       NameCertificate: ['', [Validators.required]],
       date: ['', [Validators.required]],
       datee: ['', [Validators.required]],
@@ -92,11 +118,11 @@ export class CreateCertificateScreenComponent {
       ],
       weight: [
         null,
-        [Validators.required, Validators.pattern('[0-9]{1,3}\.?[0-9]{1,2}')],
+        [Validators.required, Validators.pattern('[0-9]{1,3}.?[0-9]{1,2}')],
       ],
       height: [
         null,
-        [Validators.required, Validators.pattern('[0-9]{1,3}\.?[0-9]{1,2}')],
+        [Validators.required, Validators.pattern('[0-9]{1,3}.?[0-9]{1,2}')],
       ],
       imc: [null, [Validators.required]],
       sat02: [null, [Validators.required, Validators.pattern('[0-9]{1,2}')]],
@@ -115,10 +141,10 @@ export class CreateCertificateScreenComponent {
     this.selectedconclusion = '';
     this.doctorSelect = null;
     this.resultArrayGeneral = [];
+    this.resultArrayLab = [];
     this.doctorArray = [];
     this.generalExamsResults = [];
     this.labExamsResults = [];
-
   }
 
   get NameCertificate() {
@@ -252,8 +278,8 @@ export class CreateCertificateScreenComponent {
 
   public async setOptionBattery(option: Battery) {
     this.batterySelect = option;
-    this.arrayGeneral = option.generalExams;
-    this.arrayLaboratory = option.labExams;
+    this.general = [];
+    this.laboratory = [];
     for (let i of option.generalExams) {
       const g = await this.examProviderService.getExamById(i).toPromise();
       this.general.push(g);
@@ -264,28 +290,89 @@ export class CreateCertificateScreenComponent {
     }
     console.log(this.general);
     console.log(this.laboratory);
-
+    this.clearFormArray(this.getFormArray(this.constGE));
+    this.clearFormArray(this.getFormArray(this.constLA));
     for (let batteryExam of this.general) {
-      const newExam: Results = {
-        exam: batteryExam.name,
-        status: '',
-        remark: '',
-      };
-      this.resultArrayGeneral.push(newExam);
-      console.log(this.resultArrayGeneral);
+      this.addResults(this.constGE, batteryExam);
+    }
+    for (let batteryExam of this.laboratory) {
+      this.addResults(this.constLA, batteryExam);
     }
   }
 
   public getIMC() {
     if (this.weight && this.height) {
-      let al = this.height/100;
-      let pes = this.weight;      
-      this.imcc = pes / (al*al);
+      let al = this.height / 100;
+      let pes = this.weight;
+      this.imcc = pes / (al * al);
     }
   }
 
   public getGeneralResults(newItem: Results[]) {
     this.generalExamsResults = newItem;
+  }
+
+  getFormArray(nombre: string) {
+    return this.addressForm.get(nombre) as FormArray;
+  }
+
+  newResultsGeneral(exam: string) {
+    return this.fb.group({
+      resultsExam: [exam, Validators.required],
+      resultsRemark: [''],
+      resultsStatus: ['', Validators.required],
+    });
+  }
+
+  newResultsLab(exam: string, lab: string, mu: string) {
+    return this.fb.group({
+      resultsExam: [exam, Validators.required],
+      resultsLaboratory: [lab, Validators.required],
+      resultsResult: [0, Validators.required],
+      resultsMeasurementUnit: [mu, Validators.required],
+      resultsStatus: ['', Validators.required],
+    });
+  }
+
+  addResults(arrayName: string, exam: Exam) {
+    if (arrayName == this.constGE) {
+      this.getFormArray(arrayName).push(this.newResultsGeneral(exam.name));
+    } else {
+      this.getFormArray(arrayName).push(
+        this.newResultsLab(exam.name, exam.laboratory, exam.measurementUnit)
+      );
+    }
+  }
+
+  clearFormArray = (formArray: FormArray) => {
+    while (formArray.length !== 0) {
+      formArray.removeAt(0);
+    }
+  };
+
+  createResults() {
+    for (let index of this.getFormArray(this.constGE).controls) {
+      let dato: Results;
+      dato = {
+        exam: index.value.resultsExam,
+        remark: index.value.resultsRemark,
+        status: index.value.resultsStatus,
+      };
+      this.resultArrayGeneral.push(dato);
+    }
+    for (let index of this.getFormArray(this.constLA).controls) {
+      let dato: Results;
+      dato = {
+        exam: index.value.resultsExam,
+        laboratory: index.value.resultsLaboratory,
+        measurementUnit: index.value.resultsMeasurementUnit,
+        result: index.value.resultsResult,
+        status: index.value.resultsStatus,
+      };
+      this.resultArrayLab.push(dato);
+    }
+    console.log(this.resultArrayLab);
+    console.log(this.resultArrayGeneral);
   }
 
   notInArray(): boolean {
@@ -299,6 +386,7 @@ export class CreateCertificateScreenComponent {
   }
 
   public async postCertificate() {
+    this.createResults();
     let { date } = this.addressForm.value;
     if (this.notInArray() === true) {
       const info: Certificate = {
@@ -329,8 +417,8 @@ export class CreateCertificateScreenComponent {
           imc: this.imcc,
           sat: this.sat02,
         },
-        generalResults: this.generalExamsResults,
-        labResults: this.labExamsResults,
+        generalResults: this.resultArrayGeneral,
+        labResults: this.resultArrayLab,
       };
       try {
         this.message2 = 'Se guardaron los datos.';
