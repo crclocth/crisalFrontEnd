@@ -12,6 +12,7 @@ import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { PdfMakeWrapper, Txt, Table, Img, Columns, QR } from 'pdfmake-wrapper';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-certificates',
@@ -22,7 +23,7 @@ export class CertificatesComponent implements OnInit {
   @Input() certificate!: Certificate;
   @Output() newItemEvent = new EventEmitter<string>();
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     console.log(this.certificate);
@@ -48,6 +49,19 @@ export class CertificatesComponent implements OnInit {
       console.log(result);
       this.newItemEvent.emit(result);
     });
+
+    /* this.dialog
+      .open(EditModalComponent, {
+        width: '2000px',
+        data: {
+          certificate: this.certificate,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        console.log(result);
+        this.newItemEvent.emit(result);
+      }); */
   }
 
   async openModalSee() {
