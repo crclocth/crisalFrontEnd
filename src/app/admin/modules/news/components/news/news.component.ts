@@ -5,6 +5,7 @@ import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { SeeModalComponent } from '../see-modal/see-modal.component';
 import { Output, EventEmitter } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-news',
@@ -14,9 +15,15 @@ import { Output, EventEmitter } from '@angular/core';
 export class NewsComponent implements OnInit {
   @Input() news!: News;
   @Output() newItemEvent = new EventEmitter<string>();
-  constructor(private modalService: NgbModal) {}
+  public date: string;
+  constructor(private modalService: NgbModal) {
+    this.date = '';
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const datePipe = new DatePipe('en-US');
+    this.date = datePipe.transform(this.news.updatedAt, 'dd-MM-YYYY')!;
+  }
 
   openModalDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent, {

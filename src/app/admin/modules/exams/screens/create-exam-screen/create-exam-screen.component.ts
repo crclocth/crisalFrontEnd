@@ -63,14 +63,6 @@ export class CreateExamScreenComponent implements OnInit {
     this.examArray = await this.fetchExams('all');
   }
 
-  /* async fetchEmployees() {
-    try {
-      this.examArray = await this.examProviderService.getExams().toPromise();
-    } catch (error) {
-      console.log('error');
-    }
-  } */
-
   async fetchExams(type: string): Promise<Exam[] | null> {
     try {
       return await this.examProviderService.getExams(type).toPromise();

@@ -24,8 +24,8 @@ export class AddDoctorScreenComponent implements OnInit {
     private doctorProviderService: DoctorProviderService,
     private notificationService: NotificationService
   ) {
-    this.maxInputName = 60;
-    this.maxInputTitle = 60;
+    this.maxInputName = 120;
+    this.maxInputTitle = 80;
     this.message2 = '';
     this.message = '';
     this.doctorArray = [];
@@ -71,8 +71,8 @@ export class AddDoctorScreenComponent implements OnInit {
   notInArray(): boolean {
     for (let i = 0; i < this.doctorArray.length; i++) {
       console.log(i);
-      if (this.title === this.doctorArray[i].title) {
-        this.notificationService.error('Se repite el nombre del Doctor');
+      if (this.rut === this.doctorArray[i].rut) {
+        this.notificationService.error('Se repite el RUT del Doctor');
         return false;
       }
     }
@@ -98,7 +98,7 @@ export class AddDoctorScreenComponent implements OnInit {
         this.notificationService.error('Error al Crear el Doctor');
       }
     } else {
-      this.notificationService.error('Se repite el nombre del Doctor');
+      this.notificationService.error('Se repite el RUT del Doctor');
     }
   }
 

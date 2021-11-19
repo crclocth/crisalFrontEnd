@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Company } from 'src/app/core/models/company.modal';
 import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
+import { rutTools } from 'prettyutils';
 
 @Component({
   selector: 'app-add-company-screen',
@@ -79,12 +80,18 @@ export class AddCompanyScreenComponent {
   notInArray(): boolean {
     for (let i = 0; i < this.companyArray.length; i++) {
       console.log(i);
-      if (this.name === this.companyArray[i].name) {
+      if (this.rut === this.companyArray[i].rut) {
         //this.notificationService.error('Se repite el nombre de la noticia');
         return false;
       }
     }
     return true;
+  }
+
+  public validateRut() {
+    let rut = this.rut;
+    let result = rutTools.validate(rut);
+    console.log(result, this.addressForm.valid);
   }
 
   public async postCompany() {

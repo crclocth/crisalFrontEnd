@@ -7,6 +7,7 @@ export interface AppointCompany {
   faena: string;
   email: string;
   date: Date;
+  isConfirmed: boolean;
   examinees: Appointment[];
   createdAt?: Date;
   updatedAt?: Date;

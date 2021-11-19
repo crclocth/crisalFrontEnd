@@ -36,10 +36,10 @@ export class ContactFormComponent {
       message: [null, Validators.required],
     });
     this.hasUnitNumber = false;
-    this.maxInputMessage = 250;
+    this.maxInputMessage = 1000;
     this.maxInputName = 120;
     this.maxInputMail = 320;
-    this.maxInputsubject = 30;
+    this.maxInputsubject = 120;
   }
 
   get name() {

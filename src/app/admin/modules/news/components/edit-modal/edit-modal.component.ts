@@ -28,9 +28,9 @@ export class EditModalComponent implements OnInit {
     private notificationService: NotificationService,
     public activeModal: NgbActiveModal
   ) {
-    this.maxInputTitle = 60;
-    this.maxInputLead = 60;
-    this.maxInputContent = 500;
+    this.maxInputTitle = 100;
+    this.maxInputLead = 250;
+    this.maxInputContent = 2000;
     this.message2 = '';
     this.message = '';
     this.addressForm = this.fb.group({
@@ -57,17 +57,6 @@ export class EditModalComponent implements OnInit {
   ngOnInit() {
     console.log(this.news);
   }
-
-  /* notInArray(): boolean {
-    for (let i = 0; i < this.newsArray.length; i++) {
-      console.log(i);
-      if (this.title === this.newsArray[i].title) {
-        console.log('mismo nombre');
-        return false;
-      }
-    }
-    return true;
-  } */
 
   public async edit() {
     let { title, lead, content, date } = this.addressForm.value;

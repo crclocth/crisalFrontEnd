@@ -26,9 +26,9 @@ export class CreateNewScreenComponent {
     private newsProviderService: NewsProviderService,
     private notificationService: NotificationService
   ) {
-    this.maxInputTitle = 60;
-    this.maxInputLead = 60;
-    this.maxInputContent = 500;
+    this.maxInputTitle = 100;
+    this.maxInputLead = 250;
+    this.maxInputContent = 2000;
     this.message2 = '';
     this.message = '';
     this.newsArray = [];
@@ -61,37 +61,22 @@ export class CreateNewScreenComponent {
     }
   }
 
-  notInArray(): boolean {
-    for (let i = 0; i < this.newsArray.length; i++) {
-      console.log(i);
-      if (this.title === this.newsArray[i].title) {
-        this.notificationService.error('Se repite el nombre de la Noticia');
-        return false;
-      }
-    }
-    return true;
-  }
-
   public async postNew() {
     let { title, lead, content, date } = this.addressForm.value;
-    if (this.notInArray() === true) {
-      try {
-        this.message2 = 'Se guardaron los datos.';
-        await this.newsProviderService
-          .postNew({
-            title: this.title,
-            lead: this.lead,
-            content: this.content,
-            image: this.imgURL,
-          })
-          .toPromise();
-        this.notificationService.success('Se Creó correctamente la Noticia');
-        window.location.reload();
-      } catch (error) {
-        this.notificationService.error('Error al Crear la Noticia');
-      }
-    } else {
-      this.notificationService.error('Se repite el nombre de la Noticia');
+    try {
+      this.message2 = 'Se guardaron los datos.';
+      await this.newsProviderService
+        .postNew({
+          title: this.title,
+          lead: this.lead,
+          content: this.content,
+          image: this.imgURL,
+        })
+        .toPromise();
+      this.notificationService.success('Se Creó correctamente la Noticia');
+      window.location.reload();
+    } catch (error) {
+      this.notificationService.error('Error al Crear la Noticia');
     }
   }
 

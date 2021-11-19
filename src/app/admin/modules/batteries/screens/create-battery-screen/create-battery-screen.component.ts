@@ -15,7 +15,6 @@ export class CreateBatteryScreenComponent implements OnInit {
   public addressForm: FormGroup;
   public maxInputName: number;
   public maxInputDescription: number;
-  public maxInputContent: number;
   public message: string;
   public message2: string;
   public batteryArray: Battery[];
@@ -23,6 +22,8 @@ export class CreateBatteryScreenComponent implements OnInit {
   public examLaboratorioArray: Exam[] | null;
   public arrayGeneral: string[];
   public arrayLaboratory: string[];
+  public imagePath = '';
+  public imgURL: any;
 
   constructor(
     private fb: FormBuilder,
@@ -31,8 +32,8 @@ export class CreateBatteryScreenComponent implements OnInit {
     private examProviderService: ExamProviderService
   ) {
     this.maxInputName = 120;
-    this.maxInputDescription = 120;
-    this.maxInputContent = 255;
+    this.maxInputDescription = 400;
+
     this.message2 = '';
     this.message = '';
     this.batteryArray = [];
@@ -132,8 +133,11 @@ export class CreateBatteryScreenComponent implements OnInit {
   notInArray(): boolean {
     for (let i = 0; i < this.batteryArray.length; i++) {
       console.log(i);
-      if (this.name === this.batteryArray[i].name) {
-        //this.notificationService.error('Se repite el nombre de la noticia');
+      if (
+        this.name === this.batteryArray[i].name &&
+        this.description === this.batteryArray[i].description
+      ) {
+        this.notificationService.error('Se repite el nombre de la Batería');
         return false;
       }
     }
@@ -151,6 +155,7 @@ export class CreateBatteryScreenComponent implements OnInit {
             description: this.description,
             generalExams: this.arrayGeneral,
             labExams: this.arrayLaboratory,
+            image: this.imgURL,
           })
           .toPromise();
         this.notificationService.success('Se Agregó correctamente la Batería');
@@ -161,6 +166,22 @@ export class CreateBatteryScreenComponent implements OnInit {
     } else {
       this.notificationService.error('Se repite el nombre de la Batería');
     }
+  }
+
+  preview(files: any) {
+    if (files.length === 0) return;
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = 'Only images are supported.';
+      return;
+    }
+    let reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+      console.log(this.imgURL);
+    };
   }
 
   @HostListener('window:resize', ['$event'])

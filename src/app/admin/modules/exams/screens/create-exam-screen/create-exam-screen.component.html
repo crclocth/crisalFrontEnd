@@ -52,6 +52,9 @@
                   <mat-option *ngFor="let laboratory of laboratoryArray" [value]="laboratory.name">
                     {{laboratory.name}}
                   </mat-option>
+                  <mat-error *ngIf="addressForm.controls['laboratory'].hasError('required')">
+                    Laboratorio Exámen <strong>REQUERIDO</strong>
+                  </mat-error>
                 </mat-select>
               </mat-form-field>
             </div>

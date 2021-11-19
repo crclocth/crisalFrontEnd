@@ -11,9 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./edit-modal.component.less'],
 })
 export class EditModalComponent implements OnInit {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
-  public maxInput: number;
   public maxInputName: number;
   public maxInputProfession: number;
   public maxInputContent: number;
@@ -31,10 +29,8 @@ export class EditModalComponent implements OnInit {
     public activeModal: NgbActiveModal
   ) {
     this.maxInputName = 120;
-    this.maxInputProfession = 45;
-    this.maxInputContent = 255;
-    this.hasUnitNumber = false;
-    this.maxInput = 250;
+    this.maxInputProfession = 80;
+    this.maxInputContent = 500;
     this.message2 = '';
     this.message = '';
     this.addressForm = this.fb.group({
@@ -61,17 +57,6 @@ export class EditModalComponent implements OnInit {
   ngOnInit() {
     console.log(this.employee);
   }
-
-  /* notInArray(): boolean {
-    for (let i = 0; i < this.employeeArray.length; i++) {
-      console.log(i);
-      if (this.name === this.employeeArray[i].name) {
-        //this.notificationService.error('Se repite el nombre de la noticia');
-        return false;
-      }
-    }
-    return true;
-  } */
 
   public async edit() {
     let { name, description, profession } = this.addressForm.value;

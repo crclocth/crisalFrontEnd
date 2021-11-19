@@ -9,6 +9,7 @@ import { CertificateProviderService } from 'src/app/core/providers/certificate/c
 })
 export class ListCertificatesScreenComponent implements OnInit {
   public certificatesArray: Certificate[];
+
   constructor(private certificateProviderService: CertificateProviderService) {
     this.certificatesArray = [];
   }
@@ -25,6 +26,7 @@ export class ListCertificatesScreenComponent implements OnInit {
       this.certificatesArray = await this.certificateProviderService
         .getCertificates()
         .toPromise();
+      this.certificatesArray = this.certificatesArray.reverse();
     } catch (error) {
       console.log('error');
     }

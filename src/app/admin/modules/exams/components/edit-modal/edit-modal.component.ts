@@ -73,16 +73,16 @@ export class EditModalComponent implements OnInit {
     this.fetchLaboratory();
   }
 
-  /* notInArray(): boolean {
-    for (let i = 0; i < this.clientArray.length; i++) {
+  notInArray(): boolean {
+    for (let i = 0; i < this.laboratoryArray.length; i++) {
       console.log(i);
-      if (this.title === this.clientArray[i].title) {
-        this.notificationService.error('Se repite el nombre del cliente');
+      if (this.name === this.laboratoryArray[i].name) {
+        this.notificationService.error('Se repite el nombre del Exámen');
         return false;
       }
     }
     return true;
-  } */
+  }
 
   async fetchLaboratory() {
     try {
@@ -96,20 +96,24 @@ export class EditModalComponent implements OnInit {
   }
 
   public async edit() {
-    try {
-      this.message2 = 'Se guardaron los datos.';
-      this.information = {
-        name: this.name,
-        laboratory: this.laboratory,
-        type: this.type,
-        measurementUnit: this.unit,
-      };
-      this.examProviderService.patchExam(this.exam._id, this.information);
-      this.notificationService.success('Se Editó el Cliente');
-      this.dialogRef.close('info modal');
-      window.location.reload();
-    } catch (error) {
-      this.notificationService.error('Error al Editar el Cliente');
+    if (this.notInArray() === true) {
+      try {
+        this.message2 = 'Se guardaron los datos.';
+        this.information = {
+          name: this.name,
+          laboratory: this.laboratory,
+          type: this.type,
+          measurementUnit: this.unit,
+        };
+        this.examProviderService.patchExam(this.exam._id, this.information);
+        this.notificationService.success('Se Editó el Cliente');
+        this.dialogRef.close('info modal');
+        window.location.reload();
+      } catch (error) {
+        this.notificationService.error('Error al Editar el Cliente');
+      }
+    } else {
+      this.notificationService.error('Se repite el nombre del Exámen');
     }
   }
 
