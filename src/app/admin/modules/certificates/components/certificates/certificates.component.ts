@@ -154,7 +154,7 @@ export class CertificatesComponent implements OnInit {
     pdf.add(new Txt('EXÁMENES DE LABORATORIO').bold().fontSize(8).end);
     pdf.add(pdf.ln(1));
     pdf.add(
-      new Table([['Exámen', 'Laboratorio', 'Unidad', 'Resultado', 'Estado']])
+      new Table([['Exámen', 'Laboratorio', 'Resultado', 'Unidad', 'Estado']])
         .fontSize(8)
         .bold()
         .widths('*').end
@@ -165,8 +165,8 @@ export class CertificatesComponent implements OnInit {
           [
             exam.exam,
             exam.laboratory,
-            exam.measurementUnit,
             exam.result,
+            exam.measurementUnit,
             exam.status,
           ],
         ])

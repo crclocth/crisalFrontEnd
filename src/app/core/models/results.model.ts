@@ -4,7 +4,7 @@ export interface Results {
   laboratory?: string;
   measurementUnit?: string;
   status: string;
-  remark: string;
+  remark?: string;
   result?: number;
   createdAt?: Date;
   updatedAt?: Date;
