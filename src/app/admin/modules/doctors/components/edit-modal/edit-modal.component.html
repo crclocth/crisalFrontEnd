@@ -1,0 +1,86 @@
+<div class="modal-header text-center" style="background-color: #309cea; color: white;">
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de EDITAR {{doctor.name}}? </h4>
+  <button class="btn" (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
+  </button>
+</div>
+<div class="modal-body text-center">
+  <div class="container-fluid">
+    <div class="container-fluid ">
+      <form [formGroup]="addressForm" novalidate>
+        <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+          <mat-card-content>
+            <div class="row align-items-center">
+              <div class="col-md-3"></div>
+              <div class="col-md-3 col-12 text-right">
+                Nombre
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput placeholder="Nombre" [(ngModel)]="doctor.name" formControlName="name" [maxlength] = "maxInputName" required>
+                  <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                    Nombre <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-3"></div>
+              <div class="col-md-3 col-12 text-right">
+                RUT
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                  <mat-label>RUT del Doctor</mat-label>
+                <input matInput placeholder="Ej: 11111111-1" [(ngModel)]="doctor.rut" formControlName="rut" required>
+                <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
+                  RUT del Doctor <strong>REQUERIDO</strong>
+                </mat-error>
+                <mat-error *ngIf="addressForm.controls['rut'].errors?.pattern">
+                  FORMATO DE RUT INCORRECTO <strong>REQUERIDO</strong>
+                </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-3"></div>
+              <div class="col-md-3 col-12 text-right">
+                Especialidad
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                  <mat-label>Especialidad</mat-label>
+                  <input matInput placeholder="Especialidad" [(ngModel)]="doctor.title" formControlName="title" [maxlength] = "maxInputTitle"required>
+                  <mat-error *ngIf="addressForm.controls['title'].hasError('required')">
+                    Especialidad <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-3"></div>
+              <div class="col-md-3 col-12 text-right">
+                Imagen
+              </div>
+              <div class="col-md-6 col-12 mt-3">
+                <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                <div class="row mt-3">
+                  <img [src]="imgURL" *ngIf="imgURL" class="w-100">
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+  <div class="row text-center justify-content-center align-items-center mt-3">
+    <div class="col">
+      <button class="btn" style="background-color: #309CEA; color: white;" (click)="edit()">EDITAR</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-danger" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
+    </div>
+  </div>
+</div>

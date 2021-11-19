@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" [ngSwitch]="getCurrentRoute()">
+      <div *ngSwitchCase="'crear-usuario'"><app-create-user-screen></app-create-user-screen></div>
+      <div *ngSwitchCase="'historico'"><app-list-user-screen></app-list-user-screen></div>
+    </div>
+  </div>
+</div>

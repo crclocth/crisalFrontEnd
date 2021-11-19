@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row cardheader align-items-center">
+    <ng-container *ngIf="informations$ |async">
+      <div class="col-lg-4 col-12 columitem text-center">
+        <a href="tel:+4733378901"><i class="fas fa-phone-alt iconcolor"></i></a>
+        +56 32 {{informationArray[0].telephone1}} +56 9 {{informationArray[0].telephone2}}
+      </div>
+      <div class="col-lg-4 col-12 columitem text-center">
+        <a href="https://www.google.cl/maps/place/Arlegui+263,+Vi%C3%B1a+del+Mar,+Valpara%C3%ADso/@-33.0224467,-71.5595228,17z/data=!4m5!3m4!1s0x9689dde2e3fc1179:0x6574db4a4109d286!8m2!3d-33.0228605!4d-71.5586484">
+          <i class="fas fa-map-marker-alt iconcolor"></i>
+        </a>
+        {{informationArray[0].address}}
+      </div>
+      <div class="col-lg-4 col-12 columitem text-center">
+        <a href href="mailto:{{informationArray[0].mail}}"><i class="fas fa-envelope iconcolor"></i></a>
+          {{informationArray[0].mail}}
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<mat-card class="shipping-card" style="background-color: #E4E4E4;">
+    <div class="row text-center justify-content-center align-items-center p-3">
+      <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
+        <h5 class="mt-2">{{news.title}}</h5>
+      </div>
+    </div>
+    <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+  <mat-card-content>
+    <div class="row justify-content-center mb-2">
+      {{news.lead}}
+    </div>
+    <div class="row justify-content-center text-center">
+      {{news.content}}
+    </div>
+    <div class="row justify-content-center">
+      <img class="card-img-top" [src]="news?.image" alt="logo CRISAL"> <!-- style="height: 30vh" -->
+    </div>
+  </mat-card-content>
+  <div class="row text-center justify-content-center align-items-center mt-3">
+    <button class="btn" style="background-color: #309CEA; color: white;" (click)="activeModal.dismiss('Cross click')">Cerrar</button>
+  </div>
+</mat-card>
+

@@ -1,0 +1,16 @@
+<div class="container-fluid mb-3 p-0">
+  <div class="row selectColor text-center justify-content-center align-items-center" style="background-color: #C4C4C4;" >
+      <div class="col-6">{{appPrivate.name | truncate:[15,'...']}}</div>
+      <div class="col" [ngStyle]="{'display': getScreenSize()<=764 ? 'block' : 'none'}">
+        <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-caret-down" style="color: black; font-size: 100%;"></i></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openModalSee()">Ver</button>
+          <button mat-menu-item (click)="openModalDelete()">Eliminar</button>
+        </mat-menu>
+      </div>
+      <div class="col text-center" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">
+        <button type="button" class="btn btn-white"><i class="fas fa-eye" style="font-size: 100%;" (click)="openModalSee()"></i></button>
+        <button type="button" class="btn btn-white"><i class="fas fa-trash-alt" style="font-size: 100%;" (click)="openModalDelete()"></i></button>
+      </div>
+    </div>
+</div>

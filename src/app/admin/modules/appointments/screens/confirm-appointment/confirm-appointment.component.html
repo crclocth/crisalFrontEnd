@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row text-center justify-content-center align-items-center p-2">
+    <div style="background-color: #C4C4C4; border-radius: 5px;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+      <h5 class="mt-2">Confirmar Horas</h5>
+    </div>
+  </div>
+  <div class="row text-center justify-content-center align-items-center p-2 mb-2" style="background-color: #C4C4C4; border-radius: 5px;" >
+      <div class="col-6 btn" type="button" (click)="setOption('Empresa')">Empresas</div>
+      <div class="col-6 btn" type="button" (click)="setOption('Particulares')">Particulares</div>
+  </div>
+  <ng-container *ngIf="option === 'Empresa'">
+    <div class="row mb-3 text-center justify-content-center align-items-center p-3" style="background-color: #C4C4C4;">
+      <div class="col-6">Nombre de la Empresa</div>
+      <div class="col-6">Acciones</div>
+    </div>
+    <ng-container *ngIf="appCompanyArray">
+      <ng-container *ngFor="let appCompany of appCompanyArray"><app-appointment-company [appCompany]="appCompany" (newItemEvent)="addItem($event)"></app-appointment-company></ng-container>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="option === 'Particulares'">
+    <div class="row mb-3 text-center justify-content-center align-items-center p-3" style="background-color: #C4C4C4;">
+      <div class="col-6">Nombre Trabajadores</div>
+      <div class="col-6">Acciones</div>
+    </div>
+    <ng-container *ngIf="appPrivateArray">
+      <ng-container *ngFor="let appPrivate of appPrivateArray"><app-appointment-private [appPrivate]="appPrivate" (newItemEvent)="addItem($event)"></app-appointment-private></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+

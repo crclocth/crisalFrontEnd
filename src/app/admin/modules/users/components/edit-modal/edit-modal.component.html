@@ -1,0 +1,73 @@
+<div class="modal-header text-center" style="background-color: #309cea; color: white;">
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de EDITAR {{user.name}}? </h4>
+  <button class="btn" (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
+  </button>
+</div>
+<div class="modal-body text-center">
+  <div class="container-fluid ">
+    <form [formGroup]="addressForm" novalidate>
+      <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+        <mat-card-content>
+          <div class="row align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-3 col-12 text-right">
+              Nombre
+            </div>
+            <div class="col-md-6 col-12 mt-3">
+              <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre" [(ngModel)]="user.name" formControlName="name" [maxlength] = "maxInputName" required>
+                <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                  Nombre <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-3 col-12 text-right">
+              Correo Electrónico
+            </div>
+            <div class="col-md-6 col-12 mt-3">
+              <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-label>Bajada</mat-label>
+                <input matInput placeholder="Bajada" [(ngModel)]="user.mail" formControlName="mail" required>
+                <mat-error *ngIf="addressForm.controls['mail'].hasError('required')">
+                  CORREO ELECTRÓNICO <strong>REQUERIDO</strong>
+                </mat-error>
+                <mat-error *ngIf="addressForm.controls['mail'].errors?.pattern">
+                  FORMATO DE CORREO ELECTRÓNICO INCORRECTO <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-3 col-12 text-right">
+              Contraseña
+            </div>
+            <div class="col-md-6 col-12 mt-3">
+              <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-label>Contraseña:</mat-label>
+                <input matInput placeholder="" formControlName="password" type="password" [maxlength]="20" required>
+                <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+                  CÓDIGO <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div class="row text-center justify-content-center align-items-center mt-3">
+    <div class="col">
+      <button class="btn" style="background-color: #309CEA; color: white;" (click)="edit()">EDITAR</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-danger" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
+    </div>
+  </div>
+</div>
+

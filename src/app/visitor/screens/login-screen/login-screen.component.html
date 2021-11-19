@@ -1,0 +1,56 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 mb-4">
+            <img src="/assets/image/logo.jpg" alt="logo CRISAL" width="176.5" height="80.76">
+        </div>
+        <div class="row text-center justify-content-center align-items-center p-3">
+          <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+            <h5 class="mt-2">Login</h5>
+          </div>
+        </div>
+      </div>
+      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+    <mat-card-content>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>USUARIO:</mat-label>
+            <input matInput placeholder="Usuario" formControlName="user" required>
+            <mat-error *ngIf="addressForm.controls['user'].hasError('required')">
+              USUARIO <strong>REQUERIDO</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['user'].errors?.pattern">
+              FORMATO DE USUARIO INCORRECTO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>CONTRASEÑA:</mat-label>
+            <input matInput placeholder="" formControlName="password" type="password" [maxlength]="20" required>
+            <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+              CÓDIGO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center mt-4">
+          <button mat-raised-button class="mb-4" type="submit" style=" color: white;" (click)="goToHistoryScreen()" [disabled]="!addressForm.valid"
+            [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+          >INICIAR SESIÓN</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>
+<div class="container-fluid">
+  <div class="row text-center justify-content-center align-items-center">Esta plataforma está destinada para uso exclusivo de Crisal Salud Laboral,
+    todo uso inadecuado está penado por Ley.
+  </div>
+</div>

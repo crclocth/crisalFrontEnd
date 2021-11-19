@@ -1,0 +1,72 @@
+<div class="container-fluid ">
+  <form [formGroup]="addressForm" novalidate>
+    <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+      <div class="row text-center justify-content-center align-items-center p-3">
+        <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+          <h5 class="mt-2">Crear Usuario</h5>
+        </div>
+      </div>
+      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+      <mat-card-content>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Nombre
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Nombre" formControlName="name" [maxlength] = "maxInputName" required>
+              <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                Nombre <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Correo Electrónico
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput placeholder="Correo Electrónico" formControlName="mail" required>
+              <mat-error *ngIf="addressForm.controls['mail'].hasError('required')">
+                CORREO ELECTRÓNICO <strong>REQUERIDO</strong>
+              </mat-error>
+              <mat-error *ngIf="addressForm.controls['mail'].errors?.pattern">
+                FORMATO DE CORREO ELECTRÓNICO INCORRECTO <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Contraseña
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-label>Contraseña:</mat-label>
+              <input matInput placeholder="" formControlName="password" type="password" [maxlength]="20" required>
+              <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+                CÓDIGO <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+        <div class="row justify-content-center">
+          <div class="col-12 text-center mt-4">
+            <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
+              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" (click)="postNew()"
+            >CREAR USUARIO</button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

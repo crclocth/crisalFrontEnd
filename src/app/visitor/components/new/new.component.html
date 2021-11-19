@@ -1,0 +1,24 @@
+<div class="container-fluid p-3">
+  <div style="background-color: #C4C4C4; border-radius: 5px 5px 5px 5px;">
+    <div class="row">
+      <div class="col-md-1 col-12 ms-2 mt-2">
+        {{date}}
+      </div>
+      <div class="col-md-10 col-12  mt-2 align-items-center verticalLine">
+        <h5>{{news.title}}</h5>
+      </div>
+    </div>
+    <div class="row text-start">
+      <div class="col-1"></div>
+      <div class="col ms-2">
+        {{news.lead}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-2 mb-2 ms-2">
+        <button class="btn" type="submit" style="background-color: #309CEA; color: white;" (click)="goToNewsDetailScreens()">LEER MÁS</button>
+      </div>
+    </div>
+  </div>
+</div>
+

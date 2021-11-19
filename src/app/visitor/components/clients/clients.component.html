@@ -1,0 +1,65 @@
+<div class="container-fluid mb-5">
+  <div class="row align-items-center text-center">
+    <h3>CERTIFICACIONES</h3>
+  </div>
+</div>
+
+<div class="container-fluid mb-5">
+  <div class="row align-items-center justify-content-center">
+    <ng-container *ngIf="certifications$ |async; else loading">
+      <div class="col-md-6 col-12" style="user-select: none;">
+          <swiper
+            [breakpoints]="breakPoints"
+            [speed]="7000"
+            [loop]="true"
+            [autoplay]="{
+              delay: 3000,
+              disableOnInteraction: false
+            }"
+            [centeredSlides]="true"
+            [loopFillGroupWithBlank]="true"
+          >
+          <ng-container *ngFor="let certification of certificationArray">
+            <ng-template swiperSlide><app-card-certificate [certification]="certification"></app-card-certificate></ng-template>
+          </ng-container>
+          </swiper>
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      <mat-spinner class="mt-2"></mat-spinner>
+    </ng-template>
+  </div>
+</div>
+
+<div class="container-fluid mb-5">
+  <div class="row align-items-center text-center">
+    <h3>NUESTROS CLIENTES</h3>
+  </div>
+</div>
+
+<div class="container-fluid mb-5">
+  <div class="row align-items-center justify-content-center">
+    <ng-container *ngIf="clients$ | async; else loading">
+      <div class="col-md-6 col-12">
+          <swiper
+            [breakpoints]="breakPoints"
+            [speed]="7000"
+            [loop]="true"
+            [autoplay]="{
+              delay: 3000,
+              disableOnInteraction: false
+            }"
+            [centeredSlides]="true"
+            [loopFillGroupWithBlank]="true"
+          >
+          <ng-container *ngFor="let client of clientArray">
+            <ng-template swiperSlide><app-card-client [client]="client"></app-card-client></ng-template>
+          </ng-container>
+          </swiper>
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      <mat-spinner class="mt-2"></mat-spinner>
+    </ng-template>
+  </div>
+</div>

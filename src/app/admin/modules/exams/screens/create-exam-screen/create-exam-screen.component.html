@@ -1,0 +1,91 @@
+<div class="container-fluid mt-4">
+  <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+      <div class="row text-center justify-content-center align-items-center p-3">
+        <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+          <h5 class="mt-2">Crear Exámen</h5>
+        </div>
+      </div>
+      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+      <mat-card-content>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Nombre
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Nombre del Exámen</mat-label>
+              <input matInput placeholder="Nombre del Exámen" formControlName="name" [maxlength] = "maxInputName" required>
+              <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                Nombre del Exámen <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Tipo de Exámen
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+              <mat-label>Tipo de Exámen</mat-label>
+              <mat-select formControlName="type">
+                <mat-option *ngFor="let type of typeArray" [value]="type">
+                  {{type}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <ng-container *ngIf="this.type === 'Laboratorio'">
+          <div class="row align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-3 col-12 text-right">
+              Laboratorio
+            </div>
+            <div class="col-md-6 col-12 mt-3">
+              <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                <mat-label>Laboratorio</mat-label>
+                <mat-select formControlName="laboratory">
+                  <mat-option *ngFor="let laboratory of laboratoryArray" [value]="laboratory.name">
+                    {{laboratory.name}}
+                  </mat-option>
+                  <mat-error *ngIf="addressForm.controls['laboratory'].hasError('required')">
+                    Laboratorio Exámen <strong>REQUERIDO</strong>
+                  </mat-error>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-3 col-12 text-right">
+              Unidad
+            </div>
+            <div class="col-md-6 col-12 mt-3">
+              <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                <mat-label>Unidad Métrica</mat-label>
+                <input matInput placeholder="Unidad Métrica" formControlName="unit" [maxlength] = "maxInputContent">
+                <mat-error *ngIf="addressForm.controls['unit'].hasError('required')">
+                  Unidad Métrica <strong>REQUERIDO</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </ng-container>
+      </mat-card-content>
+      <mat-card-actions>
+        <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+        <div class="row justify-content-center">
+          <div class="col-12 text-center mt-4">
+            <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
+              [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" (click)="postExam()"
+            >CREAR EXÁMEN</button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

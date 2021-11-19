@@ -1,0 +1,46 @@
+<div class="container-fluid mt-4 mb-4">
+  <div class="row text-center justify-content-center align-items-center p-3">
+    <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+      <h5 class="mt-2">AGENDAR HORA</h5>
+    </div>
+  </div>
+  <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button class="btn m-2" type="button" style="color: white;background-color: #049CDB;" (click)="clickCompany('yes')">EMPRESA</button>
+      <button class="btn mr-2" type="button" style="color: white;background-color: #049CDB;" (click)="clickCompany('no')">PARTICULAR</button>
+    </div>
+  </div>
+  <ng-container *ngIf= "this.option == 'yes'">
+    <app-appointment-company></app-appointment-company>
+  </ng-container>
+<!--------------------------------------------------------------------------->
+  <ng-container *ngIf= "this.option == 'no'">
+    <app-appointment-private></app-appointment-private>
+  </ng-container>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

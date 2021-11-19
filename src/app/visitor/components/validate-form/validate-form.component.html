@@ -1,0 +1,46 @@
+<form [formGroup]="addressForm" novalidate>
+  <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+      <div class="row text-center justify-content-center align-items-center p-3">
+        <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+          <h5 class="mt-2">VALIDACIÓN DE CERTIFICADOS</h5>
+        </div>
+      </div>
+      <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
+    <mat-card-content>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Rut del Trabajador o Empresa</mat-label>
+            <input matInput placeholder="Ej: 11111111-1" formControlName="rut" required>
+            <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
+              RUT <strong>REQUERIDO</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['rut'].errors?.pattern">
+              FORMATO DE RUT INCORRECTO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-6 col-12 text-center mt-3">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Número de Certificado</mat-label>
+            <input matInput placeholder="Ej: 231321321321" formControlName="code" required>
+            <mat-error *ngIf="addressForm.controls['code'].hasError('required')">
+              CÓDIGO <strong>REQUERIDO</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center mt-4">
+          <button mat-raised-button class="mb-4" type="submit" style=" color: white;" (click)="validateRut(); getCertificate()" [disabled]="!addressForm.valid"
+            [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}"
+          >VALIDAR</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

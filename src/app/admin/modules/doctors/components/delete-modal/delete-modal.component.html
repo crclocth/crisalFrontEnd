@@ -1,0 +1,20 @@
+<div class="modal-header text-center" style="background-color: #309cea; color: white;">
+  <h4 class="modal-title w-100 text-center" id="modal-basic-title">Esta seguro de ELIMINAR {{doctor?.name}}? </h4>
+  <button class="btn" (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
+  </button>
+</div>
+<div class="modal-body text-center">
+  <mat-card class="shipping-card" style="background-color: #E4E4E4;">
+    <mat-card-content>
+      <div class="row text-center justify-content-center align-items-center p-2">
+        <div class="col">
+          <button class="btn" style="background-color: #309CEA; color: white;" (click)="delete()">ELIMINAR</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-danger" (click)="activeModal.dismiss('Cross click')">CANCELAR</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

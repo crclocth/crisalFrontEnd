@@ -1,0 +1,28 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="example-toolbar" style="background-color: #309CEA; color: white;">
+    <div class="row w-100 align-items-center">
+      <div class="col-10 text-start">
+        <div class="row align-items-center">
+          <div class="col-1 pe-0" style="max-width: 50px;">
+            <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+          </div>
+          <div class="col ps-0">
+            <h1 class="example-app-name">Administración</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 text-end">
+        <button mat-raised-button class="btn-lg" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <app-accordion></app-accordion>
+    </mat-sidenav>
+    <mat-sidenav-content>
+       <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+

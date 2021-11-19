@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" [ngSwitch]="getCurrentRoute()">
+      <div *ngSwitchCase="'agregar-certificacion'"><app-add-certification-screen></app-add-certification-screen></div>
+      <div *ngSwitchCase="'historico'"><app-list-certification-screen></app-list-certification-screen></div>
+    </div>
+  </div>
+</div>

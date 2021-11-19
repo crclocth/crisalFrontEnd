@@ -1,0 +1,15 @@
+<app-header></app-header>
+<app-certificate></app-certificate>
+<app-nav-bar></app-nav-bar>
+
+<div class="container-fluid mt-4 mb-4">
+  <div class="row">
+    <h5>NOTICIAS</h5>
+  </div>
+</div>
+
+<ng-container *ngIf="newsArray">
+  <ng-container *ngFor="let news of newsArray"><app-new [news]="news"></app-new></ng-container>
+</ng-container>
+
+<app-footer></app-footer>

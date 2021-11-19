@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" [ngSwitch]="getCurrentRoute()">
+      <div *ngSwitchCase="'crear-bateria'"><app-create-battery-screen></app-create-battery-screen></div>
+      <div *ngSwitchCase="'historico'"><app-list-battery-screen></app-list-battery-screen></div>
+    </div>
+  </div>
+</div>
+
