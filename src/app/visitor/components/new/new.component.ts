@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { News } from 'src/app/core/models/news.model';
 import { NewsDetailComponent } from '../news-detail/news-detail.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new',
@@ -11,10 +12,16 @@ import { NewsDetailComponent } from '../news-detail/news-detail.component';
 export class NewComponent implements OnInit {
   @Input() news!: News;
   @Output() newItemEvent = new EventEmitter<string>();
+  public date!: string;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) {
+    this.date = '';
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const datePipe = new DatePipe('en-US');
+    this.date = datePipe.transform(this.news.updatedAt, 'dd-MM-YYYY')!;
+  }
 
   goToNewsDetailScreens() {
     const modalRef = this.modalService.open(NewsDetailComponent, {

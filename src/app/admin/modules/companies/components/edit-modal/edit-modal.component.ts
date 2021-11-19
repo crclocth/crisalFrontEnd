@@ -72,7 +72,7 @@ export class EditModalComponent implements OnInit {
     console.log(this.company);
   }
 
-  /* notInArray(): boolean {
+  notInArray(): boolean {
     for (let i = 0; i < this.companyArray.length; i++) {
       console.log(i);
       if (this.name === this.companyArray[i].name) {
@@ -81,26 +81,30 @@ export class EditModalComponent implements OnInit {
       }
     }
     return true;
-  } */
+  }
 
   public async edit() {
     let { name, rut, task, mail } = this.addressForm.value;
-    try {
-      this.message2 = 'Se guardaron los datos.';
-      this.information = {
-        name: this.name,
-        rut: this.rut,
-        faena: this.faena,
-        email: this.mail,
-      };
-      this.companyProviderService.patchCompany(
-        this.company._id,
-        this.information
-      );
-      this.notificationService.success('Se Editó la Empresa');
-      this.activeModal.close('info modal');
-    } catch (error) {
-      this.notificationService.error('Error al Editar la Empresa');
+    if (this.notInArray() === true) {
+      try {
+        this.message2 = 'Se guardaron los datos.';
+        this.information = {
+          name: this.name,
+          rut: this.rut,
+          faena: this.faena,
+          email: this.mail,
+        };
+        this.companyProviderService.patchCompany(
+          this.company._id,
+          this.information
+        );
+        this.notificationService.success('Se Editó la Empresa');
+        this.activeModal.close('info modal');
+      } catch (error) {
+        this.notificationService.error('Error al Editar la Empresa');
+      }
+    } else {
+      this.notificationService.error('Se repite el RUT de la Empresa');
     }
   }
 

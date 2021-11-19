@@ -87,6 +87,11 @@ const routes: Routes = [
             (m) => m.DoctorsModule
           ),
       },
+      {
+        path: 'usuarios',
+        loadChildren: () =>
+          import('./modules/users/users.module').then((m) => m.UsersModule),
+      },
     ],
   },
 ];

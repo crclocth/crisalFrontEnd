@@ -33,6 +33,10 @@ import { CardCarouselComponent } from './components/card-carousel/card-carousel.
 import { MaterialModule } from '../core/material.module';
 import { AppointmentPrivateComponent } from './components/appointment-private/appointment-private.component';
 import { AppointmentCompanyComponent } from './components/appointment-company/appointment-company.component';
+import { PdfMakeWrapper } from 'pdfmake-wrapper';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { QRCodeModule } from 'angular2-qrcode';
+PdfMakeWrapper.setFonts(pdfFonts);
 
 const components = [
   HomeScreenComponent,
@@ -75,6 +79,7 @@ const components = [
     AdminModule,
     CoreModule,
     MaterialModule,
+    QRCodeModule,
   ],
 })
 export class VisitorModule {}

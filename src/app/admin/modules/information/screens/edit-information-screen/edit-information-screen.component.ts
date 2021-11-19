@@ -32,8 +32,8 @@ export class EditInformationScreenComponent {
   ) {
     this.informationArray = [];
     this.id = '617345a9e2eab63a50629db3';
-    this.maxInputTelephone1 = 10;
-    this.maxInputTelephone2 = 10;
+    this.maxInputTelephone1 = 15;
+    this.maxInputTelephone2 = 15;
     this.maxInputAddress = 60;
     this.maxInputMail = 320;
     this.maxInputAboutUs = 500;

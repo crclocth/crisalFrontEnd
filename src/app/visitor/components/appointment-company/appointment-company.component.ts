@@ -141,12 +141,13 @@ export class AppointmentCompanyComponent {
       faena: this.task,
       email: this.companyMail,
       date: this.date,
+      isConfirmed: false,
       examinees: this.examineesArray,
     };
-    try {      
+    try {
       this.appointCompanyProviderService.postAppointCompany(info).toPromise();
       console.log(info);
-      this.notificationService.success('Se Envió correctamente el Formulario');      
+      this.notificationService.success('Se Envió correctamente el Formulario');
     } catch (error) {
       this.notificationService.error('Error al Enviar el Formulario');
     }
@@ -171,7 +172,7 @@ export class AppointmentCompanyComponent {
   }
 
   addExaminee() {
-    this.getFormArray().push(this.newExaminee());    
+    this.getFormArray().push(this.newExaminee());
   }
 
   removeExaminee(i: number) {
@@ -187,6 +188,7 @@ export class AppointmentCompanyComponent {
         age: index.value.examineeAge,
         battery: index.value.examineeBattery,
         jobTitle: index.value.examineeJob,
+        isConfirmed: false,
       };
       this.examineesArray.push(dato);
     }
@@ -199,7 +201,7 @@ export class AppointmentCompanyComponent {
   }
 
   myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();    
+    const day = (d || new Date()).getDay();
     return day !== 0 && day !== 6;
   };
 }

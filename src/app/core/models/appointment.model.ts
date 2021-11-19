@@ -6,6 +6,7 @@ export interface Appointment {
   battery: string;
   date?: Date;
   age: number;
+  isConfirmed: boolean;
   jobTitle?: string;
   createdAt?: Date;
   updatedAt?: Date;

@@ -57,13 +57,13 @@
             </div>
             <div class="row align-items-center">
               <div class="col-2"></div>
-              <div class="col-md-4 col-12 text-right">
+              <div class="col-md-4 col-12 text-start">
                 Imagen
               </div>
               <div class="col-md-6 col-12 mt-3">
                 <input #file type="file" accept='image/*' (change)="preview(file.files)" />
                 <div class="row text-center justify-content-center align-items-center mt-3">
-                  <img [src]="imgURL" *ngIf="imgURL" class="w-50">
+                  <img [src]="imgURL" *ngIf="imgURL" class="w-100">
                 </div>
               </div>
             </div>

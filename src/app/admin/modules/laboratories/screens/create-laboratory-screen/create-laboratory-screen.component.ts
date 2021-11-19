@@ -10,9 +10,7 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./create-laboratory-screen.component.less'],
 })
 export class CreateLaboratoryScreenComponent implements OnInit {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
-  public maxInput: number;
   public maxInputName: number;
   public message2: string;
   public laboratoryArray: Laboratory[];
@@ -23,8 +21,6 @@ export class CreateLaboratoryScreenComponent implements OnInit {
     private notificationService: NotificationService
   ) {
     this.maxInputName = 120;
-    this.hasUnitNumber = false;
-    this.maxInput = 250;
     this.laboratoryArray = [];
     this.message2 = '';
 

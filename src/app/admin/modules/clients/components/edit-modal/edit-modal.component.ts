@@ -19,6 +19,7 @@ export class EditModalComponent implements OnInit {
   public message2: string;
   public client: any;
   public information!: Client;
+  public clientArray: Client[];
 
   constructor(
     private fb: FormBuilder,
@@ -29,6 +30,7 @@ export class EditModalComponent implements OnInit {
     this.maxInputName = 120;
     this.message = '';
     this.message2 = '';
+    this.clientArray = [];
     this.addressForm = this.fb.group({
       title: [null, [Validators.required]],
     });
@@ -46,7 +48,7 @@ export class EditModalComponent implements OnInit {
     console.log(this.client);
   }
 
-  /* notInArray(): boolean {
+  notInArray(): boolean {
     for (let i = 0; i < this.clientArray.length; i++) {
       console.log(i);
       if (this.title === this.clientArray[i].title) {
@@ -55,22 +57,29 @@ export class EditModalComponent implements OnInit {
       }
     }
     return true;
-  } */
+  }
 
   public async edit() {
-    let { title } = this.addressForm.value;
-    try {
-      this.message2 = 'Se guardaron los datos.';
-      this.information = {
-        title: this.title,
-        image: this.imgURL,
-      };
-      this.clientProviderService.patchClient(this.client._id, this.information);
-      this.notificationService.success('Se Editó el Cliente');
-      this.activeModal.close('info modal');
-      window.location.reload();
-    } catch (error) {
-      this.notificationService.error('Error al Editar el Cliente');
+    if (this.notInArray() === true) {
+      let { title } = this.addressForm.value;
+      try {
+        this.message2 = 'Se guardaron los datos.';
+        this.information = {
+          title: this.title,
+          image: this.imgURL,
+        };
+        this.clientProviderService.patchClient(
+          this.client._id,
+          this.information
+        );
+        this.notificationService.success('Se Editó el Cliente');
+        this.activeModal.close('info modal');
+        window.location.reload();
+      } catch (error) {
+        this.notificationService.error('Error al Editar el Cliente');
+      }
+    } else {
+      this.notificationService.error('Se repite el nombre del Cliente');
     }
   }
 

@@ -1,13 +1,12 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { rutTools } from 'prettyutils';
-import { FormControl } from '@angular/forms';
 import { Battery } from 'src/app/core/models/battery.model';
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 import { DateAdapter } from '@angular/material/core';
 import { Appointment } from 'src/app/core/models/appointment.model';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
-import { ApointmentProviderService } from 'src/app/core/providers/appointment/apointment-provider.service';
+import { AppointmentProviderService } from 'src/app/core/providers/appointment/apointment-provider.service';
 
 @Component({
   selector: 'app-appointment-private',
@@ -26,7 +25,7 @@ export class AppointmentPrivateComponent {
     private fb: FormBuilder,
     private batteryProviderService: BatteryProviderService,
     private dateAdapter: DateAdapter<Date>,
-    private appointmentProviderService: ApointmentProviderService,
+    private appointmentProviderService: AppointmentProviderService,
     private notificationService: NotificationService
   ) {
     this.maxInputTask = 120;
@@ -112,6 +111,7 @@ export class AppointmentPrivateComponent {
       battery: this.batterySelect,
       date: this.date,
       age: this.age,
+      isConfirmed: false,
     };
     try {
       //this.message2 = 'Se guardaron los datos.';

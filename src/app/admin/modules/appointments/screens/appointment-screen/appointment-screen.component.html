@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col" [ngSwitch]="getCurrentRoute()">
-      <div *ngSwitchCase="'confirmar-horas'">Confirmar Horas</div>
+      <div *ngSwitchCase="'confirmar-horas'"><app-confirm-appointment></app-confirm-appointment></div>
       <div *ngSwitchCase="'horas-agendadas'">Horas Agendadas</div>
     </div>
   </div>

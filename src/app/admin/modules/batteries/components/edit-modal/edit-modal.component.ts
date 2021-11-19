@@ -17,7 +17,6 @@ export class EditModalComponent implements OnInit {
   public addressForm: FormGroup;
   public maxInputName: number;
   public maxInputDescription: number;
-  public maxInputContent: number;
   public message: string;
   public message2: string;
   public batteryArray: Battery[];
@@ -26,6 +25,8 @@ export class EditModalComponent implements OnInit {
   public arrayGeneral: string[];
   public arrayLaboratory: string[];
   public information!: Battery;
+  public imagePath = '';
+  public imgURL: any;
 
   constructor(
     private fb: FormBuilder,
@@ -35,8 +36,7 @@ export class EditModalComponent implements OnInit {
     public activeModal: NgbActiveModal
   ) {
     this.maxInputName = 120;
-    this.maxInputDescription = 120;
-    this.maxInputContent = 255;
+    this.maxInputDescription = 400;
     this.message2 = '';
     this.message = '';
     this.batteryArray = [];
@@ -120,17 +120,6 @@ export class EditModalComponent implements OnInit {
     }
   }
 
-  notInArray(): boolean {
-    for (let i = 0; i < this.batteryArray.length; i++) {
-      console.log(i);
-      if (this.name === this.batteryArray[i].name) {
-        //this.notificationService.error('Se repite el nombre de la noticia');
-        return false;
-      }
-    }
-    return true;
-  }
-
   checkgeneral(option: any): boolean {
     let op = false;
     //console.log(this.battery.generalExams);
@@ -155,24 +144,59 @@ export class EditModalComponent implements OnInit {
     return op;
   }
 
-  public async edit() {
-    try {
-      this.message2 = 'Se guardaron los datos.';
-      this.information = {
-        name: this.name,
-        description: this.description,
-        generalExams: this.battery.generalExams,
-        labExams: this.battery.labExams,
-      };
-      this.batteryProviderService.patchBattery(
-        this.battery._id,
-        this.information
-      );
-      this.notificationService.success('Se Editó la Batería');
-      this.activeModal.close('info modal');
-    } catch (error) {
-      this.notificationService.error('Error al Editar la Batería');
+  notInArray(): boolean {
+    for (let i = 0; i < this.batteryArray.length; i++) {
+      console.log(i);
+      if (
+        this.name === this.batteryArray[i].name &&
+        this.description === this.batteryArray[i].description
+      ) {
+        this.notificationService.error('Se repite el nombre de la Batería');
+        return false;
+      }
     }
+    return true;
+  }
+
+  public async edit() {
+    if (this.notInArray() === true) {
+      try {
+        this.message2 = 'Se guardaron los datos.';
+        this.information = {
+          name: this.name,
+          description: this.description,
+          generalExams: this.battery.generalExams,
+          labExams: this.battery.labExams,
+          image: this.imgURL,
+        };
+        this.batteryProviderService.patchBattery(
+          this.battery._id,
+          this.information
+        );
+        this.notificationService.success('Se Editó la Batería');
+        this.activeModal.close('info modal');
+      } catch (error) {
+        this.notificationService.error('Error al Editar la Batería');
+      }
+    } else {
+      this.notificationService.error('Se repite el nombre de la Batería');
+    }
+  }
+
+  preview(files: any) {
+    if (files.length === 0) return;
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = 'Only images are supported.';
+      return;
+    }
+    let reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+      console.log(this.imgURL);
+    };
   }
 
   @HostListener('window:resize', ['$event'])

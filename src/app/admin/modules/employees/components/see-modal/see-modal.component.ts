@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,10 +9,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SeeModalComponent implements OnInit {
   public employee: any;
-  constructor(public activeModal: NgbActiveModal) {}
+  public date: string;
+  constructor(public activeModal: NgbActiveModal) {
+    this.date = '';
+  }
 
   ngOnInit(): void {
     console.log(this.employee);
+    const datePipe = new DatePipe('en-US');
+    this.date = datePipe.transform(this.employee.updatedAt, 'dd-MM-YYYY')!;
   }
 
   @HostListener('window:resize', ['$event'])

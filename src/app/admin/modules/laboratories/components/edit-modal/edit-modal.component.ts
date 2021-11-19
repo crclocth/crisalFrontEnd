@@ -11,10 +11,8 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./edit-modal.component.less'],
 })
 export class EditModalComponent implements OnInit {
-  public hasUnitNumber: boolean;
   public addressForm: FormGroup;
   public maxInputName: number;
-  public maxInputTask: number;
   public message2: string;
   public laboratoryArray: Laboratory[];
   public laboratory: any;
@@ -27,9 +25,7 @@ export class EditModalComponent implements OnInit {
     public activeModal: NgbActiveModal
   ) {
     this.maxInputName = 120;
-    this.maxInputTask = 120;
     this.message2 = '';
-    this.hasUnitNumber = false;
     this.laboratoryArray = [];
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
@@ -48,32 +44,36 @@ export class EditModalComponent implements OnInit {
     console.log(this.laboratory);
   }
 
-  /* notInArray(): boolean {
-    for (let i = 0; i < this.companyArray.length; i++) {
+  notInArray(): boolean {
+    for (let i = 0; i < this.laboratoryArray.length; i++) {
       console.log(i);
-      if (this.name === this.companyArray[i].name) {
+      if (this.name === this.laboratoryArray[i].name) {
         //this.notificationService.error('Se repite el nombre de la noticia');
         return false;
       }
     }
     return true;
-  } */
+  }
 
   public async edit() {
     let { name } = this.addressForm.value;
-    try {
-      this.message2 = 'Se guardaron los datos.';
-      this.information = {
-        name: this.name,
-      };
-      this.laboratoryProviderService.patchLaboratory(
-        this.laboratory._id,
-        this.information
-      );
-      this.notificationService.success('Se Editó el Laboratorio');
-      this.activeModal.close('info modal');
-    } catch (error) {
-      this.notificationService.error('Error al Editar el Laboratorio');
+    if (this.notInArray() === true) {
+      try {
+        this.message2 = 'Se guardaron los datos.';
+        this.information = {
+          name: this.name,
+        };
+        this.laboratoryProviderService.patchLaboratory(
+          this.laboratory._id,
+          this.information
+        );
+        this.notificationService.success('Se Editó el Laboratorio');
+        this.activeModal.close('info modal');
+      } catch (error) {
+        this.notificationService.error('Error al Editar el Laboratorio');
+      }
+    } else {
+      this.notificationService.error('Se repite el nombre del Laboratorio');
     }
   }
 

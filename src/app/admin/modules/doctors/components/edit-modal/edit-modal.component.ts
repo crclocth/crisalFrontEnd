@@ -28,8 +28,8 @@ export class EditModalComponent implements OnInit {
     private notificationService: NotificationService,
     public activeModal: NgbActiveModal
   ) {
-    this.maxInputName = 60;
-    this.maxInputTitle = 60;
+    this.maxInputName = 120;
+    this.maxInputTitle = 80;
     this.message2 = '';
     this.message = '';
     this.doctorArray = [];
@@ -64,34 +64,52 @@ export class EditModalComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.doctor);
+    this.fetchdoctors();
   }
 
-  /* notInArray(): boolean {
-    for (let i = 0; i < this.newsArray.length; i++) {
+  notInArray(): boolean {
+    for (let i = 0; i < this.doctorArray.length; i++) {
       console.log(i);
-      if (this.title === this.newsArray[i].title) {
-        console.log('mismo nombre');
+      if (this.rut === this.doctorArray[i].rut) {
+        this.notificationService.error('Se repite el RUT del Doctor');
         return false;
       }
     }
     return true;
-  } */
+  }
+
+  async fetchdoctors() {
+    try {
+      this.doctorArray = await this.doctorProviderService
+        .getDoctors()
+        .toPromise();
+    } catch (error) {
+      console.log('error');
+    }
+  }
 
   public async edit() {
     let { title, name, rut, image } = this.addressForm.value;
-    try {
-      this.message = 'Se guardaron los datos.';
-      this.information = {
-        title: this.title,
-        name: this.name,
-        rut: this.rut,
-        image: this.imgURL,
-      };
-      this.doctorProviderService.patchDoctor(this.doctor._id, this.information);
-      this.notificationService.success('Se Editó el Doctor');
-      this.activeModal.close('info modal');
-    } catch (error) {
-      this.notificationService.error('Error al Editar el Doctor');
+    if (this.notInArray() === true) {
+      try {
+        this.message = 'Se guardaron los datos.';
+        this.information = {
+          title: this.title,
+          name: this.name,
+          rut: this.rut,
+          image: this.imgURL,
+        };
+        this.doctorProviderService.patchDoctor(
+          this.doctor._id,
+          this.information
+        );
+        this.notificationService.success('Se Editó el Doctor');
+        this.activeModal.close('info modal');
+      } catch (error) {
+        this.notificationService.error('Error al Editar el Doctor');
+      }
+    } else {
+      this.notificationService.error('Se repite el RUT del Doctor');
     }
   }
 
