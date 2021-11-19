@@ -300,7 +300,51 @@
                     <div class="col-md-4 col-12 ">Observación del Exámen</div>
                     <div class="col-md-4 col-12">Estado del Exámen</div>
                 </div>
-                <app-general-exams [batterySelect]="general" (newItemEvent)="getGeneralResults($event)"></app-general-exams>
+                <div class="row justify-content-center mt-2 mb-4">
+                  <div class="col-md-10 col-12">
+                    <div formArrayName = "generalExams">
+                      <ng-container *ngFor="let generalExam of getFormArray(constGE).controls; let i = index" formGroupName="{{i}}">
+                        <div class="row text-center justify-content-center align-items-center mb-2">
+                          <div class="col-3">
+                            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%' }">
+                              <input matInput formControlName="resultsExam" readonly>
+                          </mat-form-field>
+                          </div>
+                          <div class="col-2">
+                            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%' }">
+                              <input matInput formControlName="resultsRemark">
+                          </mat-form-field>
+                          </div>
+                          <div class="col-md-4 col-12">
+                            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
+                                <mat-select formControlName="resultsStatus">
+                                    <mat-option *ngFor="let option of state" [value]="option">
+                                        {{option}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                          <!-- <div class="col-2 text-center justify-content-center align-items-center">
+                            <mat-form-field appearance="fill"  [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'}" >
+                              <mat-label>Batería</mat-label>
+                              <mat-select formControlName="examineeBattery">
+                                <mat-option *ngFor="let option of batteryArray" [value]="option.name">
+                                  {{option.name}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div> -->
+                        <div class="col-1">
+                            <div class="input-group has-validation">
+                              <button class="btn" style="background-color: #309CEA; color: white;"><i class="fas fa-minus"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <!-- <app-general-exams [batterySelect]="general" (newItemEvent)="getGeneralResults($event)"></app-general-exams> -->
                 <!----------------------------------------EXAMENES DE LABORATORIO------------------------------------------------------------------------->
                 <div class="row  justify-content-center align-items-center">
                     <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
@@ -315,7 +359,57 @@
                     <div class="col-md-2 col-12 ">Unidad</div>
                     <div class="col-md-2 col-12">Estado del Exámen</div>
                 </div>
-                <app-laboratory-exams [batterySelect]="laboratory"></app-laboratory-exams>
+                <div formArrayName = "labExams">
+                  <ng-container *ngFor="let LABExam of getFormArray(constLA).controls; let i = index" formGroupName="{{i}}">
+                    <div class="row text-center justify-content-center align-items-center mb-2">
+                      <div class="col-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%' }">
+                          <input matInput formControlName="resultsExam" readonly>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%' }">
+                          <input matInput formControlName="resultsLaboratory" readonly>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-2">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%' }">
+                          <input matInput formControlName="resultsResult">
+                      </mat-form-field>
+                      </div>
+                      <div class="col-2">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%' }">
+                          <input matInput formControlName="resultsMeasurementUnit" readonly>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '90%'  }">
+                            <mat-select formControlName="resultsStatus">
+                                <mat-option *ngFor="let option of state" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                      <!-- <div class="col-2 text-center justify-content-center align-items-center">
+                        <mat-form-field appearance="fill"  [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'}" >
+                          <mat-label>Batería</mat-label>
+                          <mat-select formControlName="examineeBattery">
+                            <mat-option *ngFor="let option of batteryArray" [value]="option.name">
+                              {{option.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div> -->
+                      <!-- <div class="col-1">
+                        <div class="input-group has-validation">
+                          <button class="btn" style="background-color: #309CEA; color: white;"><i class="fas fa-minus" (click)="removeExaminee(i)"></i></button>
+                        </div>
+                      </div> -->
+                    </div>
+                  </ng-container>
+                </div>
+               <!--  <app-laboratory-exams [batterySelect]="laboratory"></app-laboratory-exams> -->
                 <!------------------------------------------DATOS FINALES----------------------------------------------------------------------->
                 <div class="row  justify-content-center align-items-center">
                     <div style [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
