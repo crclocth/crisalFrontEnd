@@ -40,13 +40,13 @@ export class CreateUserScreenComponent implements OnInit {
   }
 
   get name() {
-    return this.addressForm.get('name')?.value;
+    return this.addressForm.get('name')?.value.trim();
   }
   get mail() {
-    return this.addressForm.get('mail')?.value;
+    return this.addressForm.get('mail')?.value.trim();
   }
   get password() {
-    return this.addressForm.get('password')?.value;
+    return this.addressForm.get('password')?.value.trim();
   }
 
   ngOnInit() {

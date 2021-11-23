@@ -14,6 +14,7 @@ export class EditModalComponent implements OnInit {
   public addressForm: FormGroup;
   public maxInputName: number;
   public maxInputProfession: number;
+  public maxInputabreprofession: number;
   public maxInputContent: number;
   public imagePath = '';
   public imgURL: any;
@@ -29,6 +30,7 @@ export class EditModalComponent implements OnInit {
     public activeModal: NgbActiveModal
   ) {
     this.maxInputName = 120;
+    this.maxInputabreprofession = 10;
     this.maxInputProfession = 80;
     this.maxInputContent = 500;
     this.message2 = '';
@@ -36,6 +38,7 @@ export class EditModalComponent implements OnInit {
     this.addressForm = this.fb.group({
       name: [null, [Validators.required]],
       profession: ['', [Validators.required]],
+      abreprofession: ['', [Validators.required]],
       description: [null, [Validators.required]],
     });
   }
@@ -48,6 +51,9 @@ export class EditModalComponent implements OnInit {
   }
   get description() {
     return this.addressForm.get('description')?.value;
+  }
+  get abreprofession() {
+    return this.addressForm.get('abreprofession')?.value;
   }
 
   onSubmit(): void {
@@ -67,6 +73,7 @@ export class EditModalComponent implements OnInit {
         profession: this.profession,
         image: this.imgURL,
         description: this.description,
+        abreprofession: this.abreprofession,
       };
       this.employeeProviderService.patchEmployee(
         this.employee._id,

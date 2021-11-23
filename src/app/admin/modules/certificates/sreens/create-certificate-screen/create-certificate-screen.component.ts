@@ -1,15 +1,16 @@
 import { Component, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { DateAdapter } from '@angular/material/core';
 import { Battery } from 'src/app/core/models/battery.model';
 import { Certificate } from 'src/app/core/models/certificate.model';
+import { Code } from 'src/app/core/models/code.model';
 import { Company } from 'src/app/core/models/company.modal';
 import { Doctor } from 'src/app/core/models/doctor.model';
 import { Exam } from 'src/app/core/models/exam.modal';
 import { Results } from 'src/app/core/models/results.model';
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 import { CertificateProviderService } from 'src/app/core/providers/certificate/certificate-provider.service';
+import { CodeProviderService } from 'src/app/core/providers/code/code-provider.service';
 import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
 import { DoctorProviderService } from 'src/app/core/providers/doctor/doctor-provider.service';
 import { ExamProviderService } from 'src/app/core/providers/exam/exam-provider.service';
@@ -44,9 +45,10 @@ export class CreateCertificateScreenComponent {
     'Con contraindicaciones para laborar en Altura Física y Andamios.',
     'Sin contraindicaciones para laborar, según examen realizado.',
     'Con contraindicaciones para laborar, según examen realizado.',
+    '',
   ];
   public vigenciaArray = ['Apto', 'No Apto', 'Aprobado', 'No Aprobado'];
-  public indicationArray = ['Sin Indicaciones'];
+  public indicationArray = ['Sin Indicaciones', ''];
   public doctorArray: Doctor[];
   public general: Exam[] = [];
   public laboratory: Exam[] = [];
@@ -58,6 +60,7 @@ export class CreateCertificateScreenComponent {
   public labExamsResults: Results[];
   public constGE = 'generalExams';
   public constLA = 'labExams';
+  public code!: Code;
 
   constructor(
     private fb: FormBuilder,
@@ -67,7 +70,8 @@ export class CreateCertificateScreenComponent {
     private certificateProviderService: CertificateProviderService,
     private dateAdapter: DateAdapter<Date>,
     private examProviderService: ExamProviderService,
-    private doctorProviderService: DoctorProviderService
+    private doctorProviderService: DoctorProviderService,
+    private codeProviderService: CodeProviderService
   ) {
     this.dateAdapter.setLocale('es');
     this.maxInputNameCertificate = 120;
@@ -96,7 +100,7 @@ export class CreateCertificateScreenComponent {
       labExams: this.formArray2,
       NameCertificate: ['', [Validators.required]],
       date: ['', [Validators.required]],
-      datee: ['', [Validators.required]],
+      datee: [''],
       NameCompany: ['', [Validators.required]],
       NameBattery: ['', [Validators.required]],
       rut: [
@@ -129,6 +133,7 @@ export class CreateCertificateScreenComponent {
       conclusion: [''],
       selectedVigencia: [''],
       doctor: [''],
+      indication: [''],
     });
     this.companyArray = [];
     this.batteryArray = [];
@@ -201,12 +206,16 @@ export class CreateCertificateScreenComponent {
   get doctor() {
     return this.addressForm.get('doctor')?.value;
   }
+  get indication() {
+    return this.addressForm.get('indication')?.value;
+  }
 
   async ngOnInit() {
     await this.fetchCompanies();
     await this.fetchBatteries();
     await this.fetchCertificates();
     await this.fetchDoctors();
+    await this.fetchCode();
   }
 
   onSubmit(): void {}
@@ -235,6 +244,17 @@ export class CreateCertificateScreenComponent {
       this.doctorArray = await this.doctorProviderService
         .getDoctors()
         .toPromise();
+    } catch (error) {
+      console.log('error');
+    }
+  }
+  async fetchCode() {
+    try {
+      const code: Code = await this.codeProviderService
+        .getCodeById('619bf81840a82cc95c8bbdf6')
+        .toPromise();
+      this.code = code;
+      this.code.serial = code.serial + 1;
     } catch (error) {
       console.log('error');
     }
@@ -324,6 +344,10 @@ export class CreateCertificateScreenComponent {
     });
   }
 
+  updateCode() {
+    this.codeProviderService.patchCode('619bf81840a82cc95c8bbdf6', this.code);
+  }
+
   newResultsLab(exam: string, lab: string, mu: string) {
     return this.fb.group({
       resultsExam: [exam, Validators.required],
@@ -387,11 +411,19 @@ export class CreateCertificateScreenComponent {
 
   public async postCertificate() {
     this.createResults();
+    if (this.selectedconclusion === '') {
+      this.selectedconclusion = this.conclusion;
+    }
+    if (this.selectedInd === '') {
+      this.selectedInd = this.indication;
+    }
+
     let { date } = this.addressForm.value;
     if (this.notInArray() === true) {
       const info: Certificate = {
-        title: this.NameCertificate,
+        title: this.NameCertificate.toUpperCase(),
         date: this.date,
+
         conclusion: this.selectedconclusion,
         suggestions: this.selectedInd,
         validity: this.selectedVi,
@@ -405,9 +437,9 @@ export class CreateCertificateScreenComponent {
         },
         examinee: {
           rut: this.rut,
-          name: this.name,
+          name: this.name.toUpperCase(),
           age: this.age,
-          jobTitle: this.position,
+          jobTitle: this.position.toUpperCase(),
         },
         physiological: {
           heartRate: this.pulse,
@@ -419,6 +451,7 @@ export class CreateCertificateScreenComponent {
         },
         generalResults: this.resultArrayGeneral,
         labResults: this.resultArrayLab,
+        serialCode: this.code.serial,
       };
       try {
         this.message2 = 'Se guardaron los datos.';
@@ -428,6 +461,7 @@ export class CreateCertificateScreenComponent {
         this.notificationService.success(
           'Se Agregó correctamente el Certificado'
         );
+        this.updateCode();
         window.location.reload();
       } catch (error) {
         this.notificationService.error('Error al Agregar el Certificado');

@@ -13,6 +13,7 @@ export class AddEmployeeScreenComponent {
   public addressForm: FormGroup;
   public maxInputName: number;
   public maxInputProfession: number;
+  public maxInputabreprofession: number;
   public maxInputContent: number;
   public imagePath = '';
   public imgURL: any;
@@ -27,6 +28,7 @@ export class AddEmployeeScreenComponent {
   ) {
     this.maxInputName = 120;
     this.maxInputProfession = 80;
+    this.maxInputabreprofession = 10;
     this.maxInputContent = 500;
     this.employeeArray = [];
     this.message2 = '';
@@ -36,17 +38,21 @@ export class AddEmployeeScreenComponent {
       name: [null, [Validators.required]],
       profession: ['', [Validators.required]],
       description: [null, [Validators.required]],
+      abreprofession: [null, [Validators.required]],
     });
   }
 
   get name() {
-    return this.addressForm.get('name')?.value;
+    return this.addressForm.get('name')?.value.trim().toUpperCase();
   }
   get profession() {
-    return this.addressForm.get('profession')?.value;
+    return this.addressForm.get('profession')?.value.trim();
   }
   get description() {
-    return this.addressForm.get('description')?.value;
+    return this.addressForm.get('description')?.value.trim();
+  }
+  get abreprofession() {
+    return this.addressForm.get('abreprofession')?.value.trim().toUpperCase();
   }
 
   onSubmit(): void {}
@@ -75,6 +81,7 @@ export class AddEmployeeScreenComponent {
           profession: this.profession,
           image: this.imgURL,
           description: this.description,
+          abreprofession: this.abreprofession,
         })
         .toPromise();
       this.notificationService.success('Se Agregó correctamente el Empleado');

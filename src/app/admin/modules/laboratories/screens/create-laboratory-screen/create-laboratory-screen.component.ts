@@ -30,7 +30,7 @@ export class CreateLaboratoryScreenComponent implements OnInit {
   }
 
   get name() {
-    return this.addressForm.get('name')?.value;
+    return this.addressForm.get('name')?.value.trim();
   }
 
   onSubmit(): void {}

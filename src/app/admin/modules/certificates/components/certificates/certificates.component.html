@@ -1,6 +1,6 @@
 <div class="container-fluid mb-3 p-0">
   <div class="row selectColor text-center justify-content-center align-items-center"  style="background-color: #C4C4C4;" >
-      <div class="col-md-3 col-6">{{certificate.company.name | truncate:[15,'...']}}</div>
+      <div class="col-md-3 col-6 font">{{certificate.company.name}}</div>
       <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">{{certificate.title}}</div>
       <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">
         <div class="row text-center justify-content-center align-items-center">
