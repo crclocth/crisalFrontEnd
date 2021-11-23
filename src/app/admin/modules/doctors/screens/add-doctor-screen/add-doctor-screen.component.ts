@@ -45,13 +45,13 @@ export class AddDoctorScreenComponent implements OnInit {
   }
 
   get title() {
-    return this.addressForm.get('title')?.value;
+    return this.addressForm.get('title')?.value.trim();
   }
   get name() {
-    return this.addressForm.get('name')?.value;
+    return this.addressForm.get('name')?.value.trim();
   }
   get rut() {
-    return this.addressForm.get('rut')?.value;
+    return this.addressForm.get('rut')?.value.trim();
   }
 
   ngOnInit() {

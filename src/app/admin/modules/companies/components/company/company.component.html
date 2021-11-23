@@ -1,6 +1,6 @@
 <div class="container-fluid mb-3 p-0">
   <div class="row selectColor text-center justify-content-center align-items-center" style="background-color: #C4C4C4;">
-    <div class="col-6">{{company.name | truncate:[15,'...']}}</div>
+    <div class="col-6 font">{{company.name}}</div>
     <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">{{company.rut}}</div>
     <div class="col" [ngStyle]="{'display': getScreenSize()<=764 ? 'block' : 'none'}">
       <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-caret-down" style="color: black; font-size: 100%;"></i></button>

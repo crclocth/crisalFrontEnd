@@ -89,9 +89,9 @@ export class EditModalComponent implements OnInit {
       try {
         this.message2 = 'Se guardaron los datos.';
         this.information = {
-          name: this.name,
+          name: this.name.toUpperCase(),
           rut: this.rut,
-          faena: this.faena,
+          faena: this.faena.toUpperCase(),
           email: this.mail,
         };
         this.companyProviderService.patchCompany(

@@ -425,14 +425,14 @@
                     <div class="col-md-6 col-12 mt-3">
                         <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
                             <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button *ngFor="let option of conclusionArray" [value]="option" (click)="setOptionconclusion(option)">{{option}}
+                                 <mat-radio-button *ngFor="let option of conclusionArray; let i = index" [value]="option" (click)="setOptionconclusion(option)">{{option}}
+                                <ng-container *ngIf="i === 4">
+                                  <mat-form-field class="example-full-width" appearance="outline">
+                                    <input matInput formControlName="conclusion">
+                                  </mat-form-field>
+                                </ng-container>
                                 </mat-radio-button>
-                                <mat-radio-button>
-                                    <mat-form-field class="example-full-width" appearance="outline">
-                                        <input matInput formControlName="conclusion" [maxlength]="maxInputNameCertificate">
-                                    </mat-form-field>
-                                </mat-radio-button>
-                            </mat-radio-group>
+                            </mat-radio-group><!-- formControlName="conclusion" [maxlength]="maxInputNameCertificate" -->
                         </div>
                     </div>
                 </div>
@@ -445,13 +445,13 @@
                     <div class="col-md-6 col-12 mt-3">
                         <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
                             <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button *ngFor="let option of indicationArray" [value]="option" (click)="setOptionIndication(option)">{{option}}
-                                </mat-radio-button>
-                                <mat-radio-button value="2">
+                                <mat-radio-button *ngFor="let option of indicationArray; let i = index" [value]="option" (click)="setOptionIndication(option)">{{option}}
+                                  <ng-container *ngIf="i === 1">
                                     <mat-form-field class="example-full-width" appearance="outline">
-                                        <input matInput>
+                                      <input matInput formControlName="indication">
                                     </mat-form-field>
-                                </mat-radio-button>
+                                  </ng-container>
+                              </mat-radio-button>
                             </mat-radio-group>
                         </div>
                     </div>

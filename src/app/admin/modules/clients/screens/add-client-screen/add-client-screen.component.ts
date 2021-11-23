@@ -33,7 +33,7 @@ export class AddClientScreenComponent {
   }
 
   get title() {
-    return this.addressForm.get('title')?.value;
+    return this.addressForm.get('title')?.value.trim();
   }
 
   onSubmit(): void {}

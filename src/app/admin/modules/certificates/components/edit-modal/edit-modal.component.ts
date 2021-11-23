@@ -409,7 +409,7 @@ export class EditModalComponent implements OnInit {
     let { title, name, rut, image } = this.addressForm.value;
     /* if (this.notInArray() === true) { */
     try {
-      this.information = {
+      /* this.information = {
         title: this.NameCertificate,
         date: this.date,
         conclusion: this.selectedconclusion,
@@ -439,7 +439,7 @@ export class EditModalComponent implements OnInit {
         },
         generalResults: this.resultArrayGeneral,
         labResults: this.resultArrayLab,
-      };
+      }; */
       this.certificateProviderService.patchCertificate(
         this.certificate._id,
         this.information

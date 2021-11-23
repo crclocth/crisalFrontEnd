@@ -61,7 +61,7 @@
             Exámenes Generales
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <section class="example-section " >
+            <section class="example-section font">
               <div class="row" *ngFor="let option of examGeneralArray; let i = index;">
               <mat-checkbox class="example-margin col " (change)="onChangeGeneral(option)"
                             [value]="option.name">{{option.name}}
@@ -81,7 +81,7 @@
             Exámenes de Laboratorio
           </div>
           <div class="col-md-6 col-12 mt-3">
-            <section class="example-section">
+            <section class="example-section font">
               <div class="row" *ngFor="let option of examLaboratorioArray; let i = index;">
               <mat-checkbox class="example-margin col" (change)="onChangeLabroatory(option)"
                             [value]="option.name">{{option.name}}

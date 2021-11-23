@@ -137,6 +137,7 @@ export class EditInformationScreenComponent {
         this.information
       );
       this.notificationService.success('Se Editó la Información');
+      //window.location.reload();
     } catch (error) {
       this.notificationService.success('Error al Editar la Información');
     }
