@@ -6,12 +6,12 @@
           <div class="col-1 pe-0" style="max-width: 50px;">
             <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
           </div>
-          <div class="col ps-0">
+          <div class="col ps-3">
             <h1 class="example-app-name">Administración</h1>
           </div>
         </div>
       </div>
-      <div class="col-2 text-end">
+      <div class="col-2 text-end" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">
         <button mat-raised-button class="btn-lg" (click)="logout()">Cerrar Sesión</button>
       </div>
     </div>

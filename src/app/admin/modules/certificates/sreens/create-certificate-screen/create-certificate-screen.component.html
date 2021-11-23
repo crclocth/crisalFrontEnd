@@ -423,7 +423,7 @@
                         Conclusiones Médicas
                     </div>
                     <div class="col-md-6 col-12 mt-3">
-                        <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
+                        <div class="full-width font" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
                             <mat-radio-group aria-label="Select an option">
                                  <mat-radio-button *ngFor="let option of conclusionArray; let i = index" [value]="option" (click)="setOptionconclusion(option)">{{option}}
                                 <ng-container *ngIf="i === 4">
@@ -443,7 +443,7 @@
                         Indicaciones
                     </div>
                     <div class="col-md-6 col-12 mt-3">
-                        <div class="full-width" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                        <div class="full-width font" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
                             <mat-radio-group aria-label="Select an option">
                                 <mat-radio-button *ngFor="let option of indicationArray; let i = index" [value]="option" (click)="setOptionIndication(option)">{{option}}
                                   <ng-container *ngIf="i === 1">

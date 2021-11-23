@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  HostListener,
+} from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthProviderService } from 'src/app/core/providers/auth/auth-provider.service';
 
@@ -34,5 +39,10 @@ export class HomeScreenComponent implements OnInit {
 
   public logout() {
     this.authProviderService.logout();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    return window.innerWidth;
   }
 }
