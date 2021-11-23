@@ -4,10 +4,10 @@
       <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">{{certificate.title}}</div>
       <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">
         <div class="row text-center justify-content-center align-items-center">
-          {{certificate.examinee.rut}}
+          RUT: {{certificate.examinee.rut}}
         </div>
         <div class="row row text-center justify-content-center align-items-center">
-          {{certificate.examinee.name}}
+          NOMBRE: {{certificate.examinee.name}}
         </div>
       </div>
       <div class="col" [ngStyle]="{'display': getScreenSize()<=764 ? 'block' : 'none'}">
