@@ -25,9 +25,7 @@ export class CertificatesComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    console.log(this.certificate);
-  }
+  ngOnInit() {}
 
   openModalDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent, {
@@ -41,18 +39,20 @@ export class CertificatesComponent implements OnInit {
   }
 
   openModalEdit() {
-    const modalRef = this.modalService.open(EditModalComponent, {
+    /* const modalRef = this.modalService.open(EditModalComponent, {
       size: 'lg',
     });
     modalRef.componentInstance.certificate = this.certificate;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);
-    });
+    }); */
 
-    /* this.dialog
+    this.dialog
       .open(EditModalComponent, {
-        width: '2000px',
+        //width: '700px',
+        autoFocus: false,
+        //maxHeight: '90vh',
         data: {
           certificate: this.certificate,
         },
@@ -61,7 +61,7 @@ export class CertificatesComponent implements OnInit {
       .subscribe((result) => {
         console.log(result);
         this.newItemEvent.emit(result);
-      }); */
+      });
   }
 
   async openModalSee() {
