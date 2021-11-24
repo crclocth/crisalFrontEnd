@@ -3,10 +3,10 @@
 <app-nav-bar></app-nav-bar>
 <app-carousel></app-carousel>
 
-<div class="container-fluid mb-5">
+<div class="container-fluid mb-4" style="background-color: #309cea; color: white;">
   <div class="row align-items-center">
     <ng-container *ngIf="informationArray">
-      <div class="col-lg-4 col-12 align-items-center text-center mt-5">
+      <div class="col-lg-4 col-12 align-items-center text-center mt-3 mb-3">
         <i class="fas fa-phone-alt iconSize"></i>
         <div class="row align-items-center text-center">
           <div class="col-12">TELÉFONO</div>
@@ -15,7 +15,7 @@
           <div class="col-12">+56 32 {{informationArray[0]?.telephone1}} +56 9 {{informationArray[0]?.telephone2}}</div>
         </div>
       </div>
-      <div class="col-lg-4 col-12 align-items-center text-center mt-5">
+      <div class="col-lg-4 col-12 align-items-center text-center mt-3 mb-3">
           <i class="fas fa-envelope iconSize"></i>
           <div class="row align-items-center text-center">
             <div class="col-12">CORREO ELECTRÓNICO</div>
@@ -24,7 +24,7 @@
             <div class="col-12">{{informationArray[0]?.mail}}</div>
           </div>
       </div>
-      <div class="col-lg-4 col-12 align-items-center text-center mt-5">
+      <div class="col-lg-4 col-12 align-items-center text-center mt-3 mb-3">
           <i class="fas fa-map-marker-alt iconSize"></i>
           <div class="row align-items-center text-center">
             <div class="col-12">DIRECCIÓN</div>

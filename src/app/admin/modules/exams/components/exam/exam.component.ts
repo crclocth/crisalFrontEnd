@@ -21,6 +21,7 @@ import { SeeModalComponent } from '../see-modal/see-modal.component';
 export class ExamComponent implements OnInit {
   @Input() exam!: Exam;
   @Output() newItemEvent = new EventEmitter<string>();
+
   constructor(private modalService: NgbModal, private dialog: MatDialog) {}
 
   ngOnInit() {}
@@ -40,6 +41,8 @@ export class ExamComponent implements OnInit {
     this.dialog
       .open(EditModalComponent, {
         width: '700px',
+        autoFocus: false,
+        //maxHeight: '90vh',
         data: {
           exam: this.exam,
         },

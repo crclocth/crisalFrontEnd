@@ -15,6 +15,7 @@ import { CertificateProviderService } from 'src/app/core/providers/certificate/c
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Code } from 'src/app/core/models/code.model';
 
 @Component({
   selector: 'app-edit-modal',
@@ -45,9 +46,10 @@ export class EditModalComponent implements OnInit {
     'Con contraindicaciones para laborar en Altura Física y Andamios.',
     'Sin contraindicaciones para laborar, según examen realizado.',
     'Con contraindicaciones para laborar, según examen realizado.',
+    '',
   ];
   public vigenciaArray = ['Apto', 'No Apto', 'Aprobado', 'No Aprobado'];
-  public indicationArray = ['Sin Indicaciones'];
+  public indicationArray = ['Sin Indicaciones', ''];
   public doctorArray: Doctor[];
   public general: Exam[] = [];
   public laboratory: Exam[] = [];
@@ -59,6 +61,7 @@ export class EditModalComponent implements OnInit {
   public labExamsResults: Results[];
   public constGE = 'generalExams';
   public constLA = 'labExams';
+  //public code!: Code;
   public certificate: any;
   public information!: Certificate;
 
@@ -71,12 +74,14 @@ export class EditModalComponent implements OnInit {
     private dateAdapter: DateAdapter<Date>,
     private examProviderService: ExamProviderService,
     private doctorProviderService: DoctorProviderService,
-    public activeModal: NgbActiveModal /* @Inject(MAT_DIALOG_DATA) //public dialogRef: MatDialogRef<EditModalComponent>,
+    //private codeProviderService: CodeProviderService,
+    public dialogRef: MatDialogRef<EditModalComponent>,
+    @Inject(MAT_DIALOG_DATA)
     data: {
       certificate: Certificate;
-    } */
+    }
   ) {
-    //this.certificate = data.certificate;
+    this.certificate = data.certificate;
     this.dateAdapter.setLocale('es');
     this.maxInputNameCertificate = 120;
     this.maxInputName = 120;
@@ -137,6 +142,7 @@ export class EditModalComponent implements OnInit {
       conclusion: [''],
       selectedVigencia: [''],
       doctor: [''],
+      indication: [''],
     });
     this.companyArray = [];
     this.batteryArray = [];
@@ -209,6 +215,9 @@ export class EditModalComponent implements OnInit {
   get doctor() {
     return this.addressForm.get('doctor')?.value;
   }
+  get indication() {
+    return this.addressForm.get('indication')?.value;
+  }
 
   /* onSubmit(): void {
     this.addressForm.reset();
@@ -219,16 +228,7 @@ export class EditModalComponent implements OnInit {
     await this.fetchBatteries();
     await this.fetchCertificates();
     await this.fetchDoctors();
-  }
-
-  async fetchdoctors() {
-    try {
-      this.doctorArray = await this.doctorProviderService
-        .getDoctors()
-        .toPromise();
-    } catch (error) {
-      console.log('error');
-    }
+    //await this.fetchCode();
   }
 
   async fetchCompanies() {
@@ -259,6 +259,17 @@ export class EditModalComponent implements OnInit {
       console.log('error');
     }
   }
+  /* async fetchCode() {
+    try {
+      const code: Code = await this.codeProviderService
+        .getCodeById('619bf81840a82cc95c8bbdf6')
+        .toPromise();
+      this.code = code;
+      this.code.serial = code.serial + 1;
+    } catch (error) {
+      console.log('error');
+    }
+  } */
 
   async fetchCertificates() {
     try {
@@ -343,6 +354,9 @@ export class EditModalComponent implements OnInit {
       resultsStatus: ['', Validators.required],
     });
   }
+  /* updateCode() {
+    this.codeProviderService.patchCode('619bf81840a82cc95c8bbdf6', this.code);
+  } */
 
   newResultsLab(exam: string, lab: string, mu: string) {
     return this.fb.group({
@@ -352,6 +366,23 @@ export class EditModalComponent implements OnInit {
       resultsMeasurementUnit: [mu, Validators.required],
       resultsStatus: ['', Validators.required],
     });
+  }
+
+  checkgeneral(option: any): boolean {
+    let op = false;
+    //console.log(this.battery.generalExams);
+    console.log(this.certificate.conclusion);
+
+    if (this.certificate.conclusion === option) {
+      op = true;
+    }
+    return op;
+    /* this.certificate.conclusion.forEach((element: any) => {
+      if (element === option) {
+        //   console.log(element);
+        op = true;
+      }
+    }); */
   }
 
   addResults(arrayName: string, exam: Exam) {
@@ -445,7 +476,7 @@ export class EditModalComponent implements OnInit {
         this.information
       );
       this.notificationService.success('Se Editó el Certificado');
-      this.activeModal.close('info modal');
+      this.dialogRef.close('info modal');
     } catch (error) {
       this.notificationService.error('Error al Editar el Certificado');
     }
