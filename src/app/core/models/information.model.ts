@@ -8,6 +8,7 @@ export interface Information {
   vision: string;
   mission: string;
   values: string;
+  location: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
