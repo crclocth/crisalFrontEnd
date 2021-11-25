@@ -19,6 +19,7 @@ export class EditInformationScreenComponent {
   public maxInputVision: number;
   public maxInputMission: number;
   public maxInputValues: number;
+  public maxInputLocation: number;
 
   public informationArray: Information[];
   public information!: Information;
@@ -39,8 +40,9 @@ export class EditInformationScreenComponent {
     this.maxInputAboutUs = 500;
     this.maxInputVision = 500;
     this.maxInputMission = 500;
-    this.maxInputValues = 500;
     this.message = '';
+    this.maxInputValues = 500;
+    this.maxInputLocation = 1000;
     this.addressForm = this.fb.group({
       telephone1: [null, [Validators.required]],
       telephone2: [null, [Validators.required]],
@@ -56,6 +58,7 @@ export class EditInformationScreenComponent {
       vision: [null, [Validators.required]],
       mission: [null, [Validators.required]],
       values: [null, [Validators.required]],
+      location: [null, [Validators.required]],
     });
   }
 
@@ -82,6 +85,9 @@ export class EditInformationScreenComponent {
   }
   get values() {
     return this.addressForm.get('values')?.value;
+  }
+  get location() {
+    return this.addressForm.get('location')?.value;
   }
 
   onSubmit(): void {
@@ -131,6 +137,7 @@ export class EditInformationScreenComponent {
         vision: this.vision,
         mission: this.mission,
         values: this.values,
+        location: this.location,
       };
       await this.informationProviderService.patchInformation(
         this.id,

@@ -129,6 +129,21 @@
             </mat-form-field>
           </div>
         </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
+            Ubicación
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '80%'  }">
+              <mat-label>Ubicación</mat-label>
+              <textarea matInput placeholder="Ubicación" [(ngModel)]="informationArray[0].location"  formControlName="location" [maxlength] = "maxInputLocation" [rows]="8" required></textarea>
+              <mat-error *ngIf="addressForm.controls['location'].hasError('required')">
+                Ubicación <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
       </ng-container>
       </mat-card-content>
       <mat-card-actions>
