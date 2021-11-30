@@ -71,6 +71,7 @@ export class CreateNewScreenComponent {
           lead: this.lead,
           content: this.content,
           image: this.imgURL,
+          visible: true,
         })
         .toPromise();
       this.notificationService.success('Se Creó correctamente la Noticia');

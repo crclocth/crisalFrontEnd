@@ -6,8 +6,9 @@
   </div>
   <div class="row mb-3 text-center justify-content-center align-items-center p-3" style="background-color: #C4C4C4;">
     <div class="col-md-3 col-6">Nombre de la Empresa</div>
-    <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">Certificado</div>
+    <div class="col-2" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">Certificado</div>
     <div class="col-3" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">Datos del Trabajador</div>
+    <div class="col" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">Código</div>
     <div class="col">Acciones</div>
   </div>
   <ng-container *ngIf="certificatesArray">

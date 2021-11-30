@@ -13,7 +13,7 @@
           NOMBRE DE LA EMPRESA
         </div>
         <div class="col-md-6 col-12 mt-3">
-          <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '70%'  }">
+          <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '65%'  }">
             <mat-label>NOMBRE DE LA EMPRESA</mat-label>
             <input matInput placeholder="NOMBRE DE LA EMPRESA" formControlName="companyName" [maxlength] = "maxInputNameCompany" required>
             <mat-error *ngIf="addressForm.controls['companyName'].hasError('required')">
@@ -94,24 +94,62 @@
       </div>
       <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
       <div class="row justify-content-center">
-        <div class="col-md-10 col-12">
+        <div class="col-md-12 col-12">
           <div class="row text-center justify-content-center align-items-center">
-            <div class="col-3">NOMBRE COMPLETO</div>
-            <div class="col-2">RUT</div>
-            <div class="col-1">EDAD</div>
-            <div class="col-2">CARGO</div>
-            <div class="col-2">BATERÍA</div>
-            <div class="col-1"></div>
+            <div class="col-md-3 col-12">NOMBRE COMPLETO</div>
+            <div class="col-md-1 col-12">RUT</div>
+            <div class="col-md-1 col-12">EDAD</div>
+            <div class="col-md-2 col-12">CARGO</div>
+            <div class="col-md-1 col-12">BATERÍA</div>
+            <div class="col-md-1 col-12"></div>
           </div>
         </div>
       </div>
 <!------------------------------------------------------------------------------------------------------------------------------------>
       <div class="row justify-content-center mt-2 mb-4">
-        <div class="col-md-10 col-12">
+        <div class="col-md-12 col-12">
           <div formArrayName = "examinees">
             <ng-container *ngFor="let employee of getFormArray().controls; let i = index" formGroupName="{{i}}">
               <div class="row text-center justify-content-center align-items-center mb-2">
-                <div class="col-3">
+                <div class="col-md-3 col-12">
+                  <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'  }">
+                    <input matInput placeholder="NOMBRE COMPLETO" formControlName="examineeName"required maxlength="320">
+                    <!-- <mat-error *ngIf="addressForm.controls['examineeName'].hasError('required')">
+                      NOMBRE COMPLETO <strong>REQUERIDO</strong>
+                    </mat-error> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-1 col-12">
+                  <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'  }">
+                    <input matInput placeholder="Ej: 10100100-1" formControlName="examineeRut"required
+                    pattern="[0-9]{1,2}[0-9]{3}[0-9]{3}-[0-9Kk]{1}"
+                    minlength="9"
+                    maxlength="10"
+                    >
+                    <!-- <mat-error *ngIf="addressForm.controls['examineeName'].hasError('required')">
+                      RUT <strong>REQUERIDO</strong>
+                    </mat-error> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-1 col-12">
+                  <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'  }">
+                    <input matInput placeholder="EDAD" formControlName="examineeAge"required
+                    pattern="[0-9]{1,2}"
+                    >
+                    <!-- <mat-error *ngIf="addressForm.controls['examineeName'].hasError('required')">
+                      EDAD <strong>REQUERIDO</strong>
+                    </mat-error> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2 col-12">
+                  <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'  }">
+                    <input matInput placeholder="CARGO" formControlName="examineeJob"required maxlength="120">
+                    <!-- <mat-error *ngIf="addressForm.controls['examineeName'].hasError('required')">
+                      CARGO <strong>REQUERIDO</strong>
+                    </mat-error> -->
+                  </mat-form-field>
+                </div>
+                <!-- <div class="col-3">
                   <div class="input-group has-validation">
                     <input type="text" class="form-control" formControlName="examineeName" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
                   </div>
@@ -130,8 +168,8 @@
                   <div class="input-group has-validation">
                     <input type="text" class="form-control" formControlName="examineeJob" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
                   </div>
-                </div>
-                <div class="col-2 text-center justify-content-center align-items-center">
+                </div> -->
+                <div class="col-md-1 col-12 text-center justify-content-center align-items-center">
                   <mat-form-field appearance="fill"  [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'}" >
                     <mat-label>Batería</mat-label>
                     <mat-select formControlName="examineeBattery">
@@ -141,7 +179,7 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
-                <div class="col-1">
+                <div class="col-md-1 col-12">
                   <div class="input-group has-validation">
                     <button class="btn" style="background-color: #309CEA; color: white;"><i class="fas fa-minus" (click)="removeExaminee(i)"></i></button>
                   </div>
@@ -162,8 +200,10 @@
       <mat-card-actions>
       <div class="row justify-content-center">
         <div class="col-12 text-center mt-4">
-          <button mat-raised-button class="mb-4" style="color: white;" (click)="postApp()" [disabled]="!addressForm.valid"
-          [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" >ENVIAR</button>
+          <button mat-raised-button class="mb-4" style="background-color: #309CEA; color: white;" (click)="postApp()"
+        >ENVIAR</button>
+          <!-- <button mat-raised-button class="mb-4" style="color: white;" (click)="postApp()" [disabled]="!addressForm.valid"
+          [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" >ENVIAR</button> -->
         </div>
       </div>
     </mat-card-actions>

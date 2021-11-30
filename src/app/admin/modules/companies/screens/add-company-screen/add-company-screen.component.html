@@ -31,7 +31,7 @@
           <div class="col-md-6 col-12  mt-3">
             <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
               <mat-label>Rut de la Empresa</mat-label>
-              <input matInput placeholder="Ej: 11111111-1" formControlName="rut" required>
+              <input matInput placeholder="Ej: 10100100-1" formControlName="rut" required>
               <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
                 RUT <strong>REQUERIDO</strong>
               </mat-error>

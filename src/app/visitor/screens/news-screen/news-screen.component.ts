@@ -29,6 +29,7 @@ export class NewsScreenComponent implements OnInit {
   async fetchNews() {
     try {
       this.newsArray = await this.newProviderService.getNews().toPromise();
+      this.newsArray = this.newsArray.reverse();
     } catch (error) {
       console.log('error');
     }

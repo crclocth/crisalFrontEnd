@@ -67,7 +67,7 @@ export class AppointmentPrivateComponent {
     return this.addressForm.get('Email')?.value.trim();
   }
   get date() {
-    return this.addressForm.get('date')?.value.trim();
+    return this.addressForm.get('date')?.value;
   }
   get age() {
     return this.addressForm.get('age')?.value.trim();
@@ -101,8 +101,8 @@ export class AppointmentPrivateComponent {
   }
 
   public postApp() {
-    let { date, batterySelect } = this.addressForm.value;
-    console.log(date, batterySelect);
+    let { date } = this.addressForm.value;
+    console.log(date, this.batterySelect);
 
     const info: Appointment = {
       name: this.Name,

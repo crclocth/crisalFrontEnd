@@ -20,7 +20,7 @@ export class NewComponent implements OnInit {
 
   ngOnInit(): void {
     const datePipe = new DatePipe('en-US');
-    this.date = datePipe.transform(this.news.updatedAt, 'dd-MM-YYYY')!;
+    this.date = datePipe.transform(this.news.createdAt, 'dd-MM-YYYY')!;
   }
 
   goToNewsDetailScreens() {

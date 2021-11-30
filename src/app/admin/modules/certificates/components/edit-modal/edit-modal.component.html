@@ -311,17 +311,17 @@
                         <div class="row text-end justify-content-center align-items-center mb-2">
                           <div class="col-md col-12"></div>
                           <div class="col-md-3 col-12 text-center">
-                            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%' }">
+                            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%' }">
                               <input matInput formControlName="resultsExam" readonly>
                           </mat-form-field>
                           </div>
                           <div class="col-md-3 col-12 text-center">
-                            <mat-form-field  appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%' }">
+                            <mat-form-field  appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%' }">
                               <input matInput formControlName="resultsRemark">
                           </mat-form-field>
                           </div>
                           <div class="col-md-3 col-12 text-center">
-                            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+                            <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '100%'  }">
                                 <mat-select formControlName="resultsStatus">
                                     <mat-option *ngFor="let option of state" [value]="option">
                                         {{option}}
@@ -436,7 +436,7 @@
                     <div class="col-md-6 col-12 mt-3">
                         <div class="full-width font" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
                             <mat-radio-group aria-label="Select an option">
-                                 <mat-radio-button [checked]="checkgeneral(option)" *ngFor="let option of conclusionArray; let i = index" [value]="option" (click)="setOptionconclusion(option)">
+                                 <mat-radio-button [checked]="checkgeneral(option, i)" *ngFor="let option of conclusionArray; let i = index" [value]="option" (click)="setOptionconclusion(option)">
                                    {{option}}
                                   <ng-container *ngIf="i === 4">
                                     <mat-form-field class="example-full-width" appearance="outline">
@@ -457,10 +457,11 @@
                     <div class="col-md-6 col-12 mt-3">
                         <div class="full-width font" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
                             <mat-radio-group aria-label="Select an option">
-                                <mat-radio-button *ngFor="let option of indicationArray; let i = index" [value]="option" (click)="setOptionIndication(option)">{{option}}
+                                <mat-radio-button [checked]="checkindication(option)" *ngFor="let option of indicationArray; let i = index" [value]="option" (click)="setOptionIndication(option)">
+                                  {{option}}
                                   <ng-container *ngIf="i === 1">
                                     <mat-form-field class="example-full-width" appearance="outline">
-                                      <input matInput formControlName="indication">
+                                      <input matInput [(ngModel)]="certificate.suggestions" formControlName="indication">
                                     </mat-form-field>
                                   </ng-container>
                               </mat-radio-button>

@@ -58,7 +58,7 @@
               clickable: true
             }"
           >
-          <ng-container *ngFor="let news of newsArray">
+          <ng-container *ngFor="let news of arrayCarrousel">
             <ng-template swiperSlide (click)="slidePrev()"><app-card-carousel [news]="news"></app-card-carousel></ng-template>
           </ng-container>
           </swiper>
