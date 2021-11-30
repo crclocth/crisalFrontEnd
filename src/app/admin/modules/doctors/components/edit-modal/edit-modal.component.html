@@ -33,7 +33,7 @@
               <div class="col-md-6 col-12 mt-3">
                 <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
                   <mat-label>RUT del Doctor</mat-label>
-                <input matInput placeholder="Ej: 11111111-1" [(ngModel)]="doctor.rut" formControlName="rut" required>
+                <input matInput placeholder="Ej: 10100100-1" [(ngModel)]="doctor.rut" formControlName="rut" required>
                 <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
                   RUT del Doctor <strong>REQUERIDO</strong>
                 </mat-error>
@@ -64,9 +64,9 @@
                 Imagen
               </div>
               <div class="col-md-6 col-12 mt-3">
-                <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                <input #file type="file" accept='image/*' (change)="preview(file.files)"[ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '80%'}" />
                 <div class="row mt-3">
-                  <img [src]="imgURL" *ngIf="imgURL" class="w-100">
+                  <img [src]="imgURL" *ngIf="imgURL" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '80%'}">
                 </div>
               </div>
             </div>

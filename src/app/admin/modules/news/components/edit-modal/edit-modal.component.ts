@@ -41,13 +41,13 @@ export class EditModalComponent implements OnInit {
   }
 
   get title() {
-    return this.addressForm.get('title')?.value;
+    return this.addressForm.get('title')?.value.trim();
   }
   get lead() {
-    return this.addressForm.get('lead')?.value;
+    return this.addressForm.get('lead')?.value.trim();
   }
   get content() {
-    return this.addressForm.get('content')?.value;
+    return this.addressForm.get('content')?.value.trim();
   }
 
   onSubmit(): void {
@@ -67,10 +67,12 @@ export class EditModalComponent implements OnInit {
         lead: this.lead,
         content: this.content,
         image: this.imgURL,
+        visible: this.news.visible,
       };
       this.newsProviderService.patchNew(this.news._id, this.information);
       this.notificationService.success('Se Editó la Noticia');
       this.activeModal.close('info modal');
+      //window.location.reload();
     } catch (error) {
       this.notificationService.error('Error al Editar la Noticia');
     }

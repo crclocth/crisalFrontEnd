@@ -38,10 +38,10 @@ export class DownloadFormComponent {
   }
 
   get rut() {
-    return this.addressForm.get('rut')?.value;
+    return this.addressForm.get('rut')?.value.trim();
   }
   get code() {
-    return this.addressForm.get('code')?.value;
+    return this.addressForm.get('code')?.value.trim();
   }
 
   ngOnInit() {

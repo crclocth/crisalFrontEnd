@@ -25,9 +25,7 @@ export class CertificatesComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    console.log(this.certificate);
-  }
+  ngOnInit() {}
 
   openModalDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent, {
@@ -41,18 +39,20 @@ export class CertificatesComponent implements OnInit {
   }
 
   openModalEdit() {
-    const modalRef = this.modalService.open(EditModalComponent, {
+    /* const modalRef = this.modalService.open(EditModalComponent, {
       size: 'lg',
     });
     modalRef.componentInstance.certificate = this.certificate;
     modalRef.result.then((result) => {
       console.log(result);
       this.newItemEvent.emit(result);
-    });
+    }); */
 
-    /* this.dialog
+    this.dialog
       .open(EditModalComponent, {
-        width: '2000px',
+        //width: '700px',
+        autoFocus: false,
+        //maxHeight: '90vh',
         data: {
           certificate: this.certificate,
         },
@@ -61,7 +61,7 @@ export class CertificatesComponent implements OnInit {
       .subscribe((result) => {
         console.log(result);
         this.newItemEvent.emit(result);
-      }); */
+      });
   }
 
   async openModalSee() {
@@ -84,10 +84,22 @@ export class CertificatesComponent implements OnInit {
     );
     pdf.add(pdf.ln(1));
     pdf.add(
-      new Txt('CERTIFICADO DIGITAL DE EVALUACIÓN LABORAL')
-        .bold()
+      new Table([
+        [
+          'CERTIFICADO N° ' +
+            datePipe.transform(this.certificate.date, 'YYYY') +
+            '/' +
+            this.certificate.serialCode,
+          'CERTIFICADO DIGITAL DE EVALUACIÓN LABORAL',
+          'Fecha de Exámen: ' +
+            datePipe.transform(this.certificate.date, 'dd-MM-YYYY'),
+        ],
+      ])
+        .fontSize(8)
+        .widths([110, '*', 110])
         .alignment('center')
-        .fontSize(8).end
+        .layout('noBorders')
+        .bold().end
     );
     pdf.add(pdf.ln(1));
     pdf.add(
@@ -202,7 +214,7 @@ export class CertificatesComponent implements OnInit {
         ['INDICACIONES:', this.certificate.suggestions],
         [
           'VIGENCIA INFORME MÉDICO:',
-          datePipe.transform(this.certificate.validityDate, 'dd-MM-YYYY'),
+          this.createValidity(this.certificate, datePipe),
         ],
       ])
         .layout('noBorders')
@@ -262,6 +274,16 @@ export class CertificatesComponent implements OnInit {
       '\n\nVigencia Informe Medico: ' +
       datePipe.transform(certificate.validityDate, 'dd-MM-YYYY');
     return cadena;
+  }
+
+  createValidity(certificate: Certificate, datePipe: DatePipe) {
+    if (
+      certificate.validity === 'Apto' ||
+      certificate.validity === 'Aprobado'
+    ) {
+      return datePipe.transform(this.certificate.validityDate, 'dd-MM-YYYY');
+    }
+    return certificate.validity;
   }
 
   @HostListener('window:resize', ['$event'])

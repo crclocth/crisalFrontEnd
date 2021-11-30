@@ -45,9 +45,10 @@ export class EditModalComponent implements OnInit {
     'Con contraindicaciones para laborar en Altura Física y Andamios.',
     'Sin contraindicaciones para laborar, según examen realizado.',
     'Con contraindicaciones para laborar, según examen realizado.',
+    '',
   ];
   public vigenciaArray = ['Apto', 'No Apto', 'Aprobado', 'No Aprobado'];
-  public indicationArray = ['Sin Indicaciones'];
+  public indicationArray = ['Sin Indicaciones', ''];
   public doctorArray: Doctor[];
   public general: Exam[] = [];
   public laboratory: Exam[] = [];
@@ -59,6 +60,7 @@ export class EditModalComponent implements OnInit {
   public labExamsResults: Results[];
   public constGE = 'generalExams';
   public constLA = 'labExams';
+  //public code!: Code;
   public certificate: any;
   public information!: Certificate;
 
@@ -71,12 +73,14 @@ export class EditModalComponent implements OnInit {
     private dateAdapter: DateAdapter<Date>,
     private examProviderService: ExamProviderService,
     private doctorProviderService: DoctorProviderService,
-    public activeModal: NgbActiveModal /* @Inject(MAT_DIALOG_DATA) //public dialogRef: MatDialogRef<EditModalComponent>,
+    //private codeProviderService: CodeProviderService,
+    public dialogRef: MatDialogRef<EditModalComponent>,
+    @Inject(MAT_DIALOG_DATA)
     data: {
       certificate: Certificate;
-    } */
+    }
   ) {
-    //this.certificate = data.certificate;
+    this.certificate = data.certificate;
     this.dateAdapter.setLocale('es');
     this.maxInputNameCertificate = 120;
     this.maxInputName = 120;
@@ -137,6 +141,7 @@ export class EditModalComponent implements OnInit {
       conclusion: [''],
       selectedVigencia: [''],
       doctor: [''],
+      indication: [''],
     });
     this.companyArray = [];
     this.batteryArray = [];
@@ -209,6 +214,9 @@ export class EditModalComponent implements OnInit {
   get doctor() {
     return this.addressForm.get('doctor')?.value;
   }
+  get indication() {
+    return this.addressForm.get('indication')?.value;
+  }
 
   /* onSubmit(): void {
     this.addressForm.reset();
@@ -219,16 +227,7 @@ export class EditModalComponent implements OnInit {
     await this.fetchBatteries();
     await this.fetchCertificates();
     await this.fetchDoctors();
-  }
-
-  async fetchdoctors() {
-    try {
-      this.doctorArray = await this.doctorProviderService
-        .getDoctors()
-        .toPromise();
-    } catch (error) {
-      console.log('error');
-    }
+    //await this.fetchCode();
   }
 
   async fetchCompanies() {
@@ -259,6 +258,17 @@ export class EditModalComponent implements OnInit {
       console.log('error');
     }
   }
+  /* async fetchCode() {
+    try {
+      const code: Code = await this.codeProviderService
+        .getCodeById('619bf81840a82cc95c8bbdf6')
+        .toPromise();
+      this.code = code;
+      this.code.serial = code.serial + 1;
+    } catch (error) {
+      console.log('error');
+    }
+  } */
 
   async fetchCertificates() {
     try {
@@ -271,29 +281,28 @@ export class EditModalComponent implements OnInit {
   }
 
   changeVigencia(value: any) {
-    this.selectedVi = value;
-    console.log(value);
+    this.certificate.validity = value;
   }
 
-  changeInd(value: any) {
+  /* changeInd(value: any) {
     this.selectedInd = value;
     console.log(value);
-  }
+  } */
 
   public setOptionCompany(option: Company) {
-    this.companySelect = option;
+    this.certificate.company = option;
   }
 
   public setOptionDoctor(option: Doctor) {
-    this.doctorSelect = option;
+    this.certificate.doctor = option;
   }
 
   public setOptionconclusion(option: string) {
-    this.selectedconclusion = option;
+    this.certificate.conclusion = option;
   }
 
   public setOptionIndication(option: string) {
-    this.selectedInd = option;
+    this.certificate.suggestions = option;
   }
 
   public async setOptionBattery(option: Battery) {
@@ -343,6 +352,9 @@ export class EditModalComponent implements OnInit {
       resultsStatus: ['', Validators.required],
     });
   }
+  /* updateCode() {
+    this.codeProviderService.patchCode('619bf81840a82cc95c8bbdf6', this.code);
+  } */
 
   newResultsLab(exam: string, lab: string, mu: string) {
     return this.fb.group({
@@ -352,6 +364,39 @@ export class EditModalComponent implements OnInit {
       resultsMeasurementUnit: [mu, Validators.required],
       resultsStatus: ['', Validators.required],
     });
+  }
+
+  checkgeneral(option: any, i: any): boolean {
+    let op = false;
+    //console.log(this.battery.generalExams);
+    //console.log(this.certificate.conclusion);
+
+    if (this.certificate.conclusion === option || i === 4) {
+      op = true;
+    }
+    return op;
+    /* this.certificate.conclusion.forEach((element: any) => {
+      if (element === option) {
+        //   console.log(element);
+        op = true;
+      }
+    }); */
+  }
+  checkindication(option: any): boolean {
+    let op = false;
+    //console.log(this.battery.generalExams);
+    // console.log(this.certificate.suggestions);
+
+    if (this.certificate.suggestions === option) {
+      op = true;
+    }
+    return op;
+    /* this.certificate.conclusion.forEach((element: any) => {
+      if (element === option) {
+        //   console.log(element);
+        op = true;
+      }
+    }); */
   }
 
   addResults(arrayName: string, exam: Exam) {
@@ -406,28 +451,35 @@ export class EditModalComponent implements OnInit {
   }
 
   public async edit() {
-    let { title, name, rut, image } = this.addressForm.value;
+    /* if (this.selectedconclusion === '') {
+      this.selectedconclusion = this.conclusion;
+    }
+    if (this.selectedInd === '') {
+      this.selectedInd = this.indication;
+    } */
+    let { NameCertificate, date, datee, batterySelect, NameCompany } =
+      this.addressForm.value;
     /* if (this.notInArray() === true) { */
     try {
       this.information = {
-        title: this.NameCertificate,
+        title: this.NameCertificate.toUpperCase(),
         date: this.date,
-        conclusion: this.selectedconclusion,
-        suggestions: this.selectedInd,
-        validity: this.selectedVi,
+        conclusion: this.certificate.conclusion,
+        suggestions: this.certificate.suggestions,
+        validity: this.certificate.validity,
         validityDate: this.datee,
-        doctor: this.doctorSelect!,
+        doctor: this.certificate.doctor,
         company: {
-          rut: this.companySelect!.rut,
-          name: this.companySelect!.name,
-          email: this.companySelect!.email,
-          faena: this.companySelect!.faena,
+          rut: this.certificate.company!.rut,
+          name: this.certificate.company!.name,
+          email: this.certificate.company!.email,
+          faena: this.certificate.company!.faena,
         },
         examinee: {
           rut: this.rut,
-          name: this.name,
+          name: this.name.toUpperCase(),
           age: this.age,
-          jobTitle: this.position,
+          jobTitle: this.position.toUpperCase(),
         },
         physiological: {
           heartRate: this.pulse,
@@ -445,7 +497,7 @@ export class EditModalComponent implements OnInit {
         this.information
       );
       this.notificationService.success('Se Editó el Certificado');
-      this.activeModal.close('info modal');
+      this.dialogRef.close('info modal');
     } catch (error) {
       this.notificationService.error('Error al Editar el Certificado');
     }
@@ -459,3 +511,10 @@ export class EditModalComponent implements OnInit {
     return window.innerWidth;
   }
 }
+
+/* this.createResults();
+
+  if (this.notInArray() === true) {
+  } else {
+    this.notificationService.error('Se repite el nombre del Certificado');
+  } */

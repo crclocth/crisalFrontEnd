@@ -10,7 +10,7 @@ export class UserProviderService {
   constructor(private httpService: HttpService) {}
 
   public postUser(user: User): Observable<User> {
-    return this.httpService.post('/user', user);
+    return this.httpService.post('auth/login/user', user);
   }
 
   public getUsers(): Observable<User[]> {

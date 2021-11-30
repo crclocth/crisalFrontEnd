@@ -49,16 +49,16 @@ export class AddCompanyScreenComponent {
   }
 
   get name() {
-    return this.addressForm.get('name')?.value;
+    return this.addressForm.get('name')?.value.trim().toUpperCase();
   }
   get rut() {
-    return this.addressForm.get('rut')?.value;
+    return this.addressForm.get('rut')?.value.trim();
   }
   get faena() {
-    return this.addressForm.get('faena')?.value;
+    return this.addressForm.get('faena')?.value.trim().toUpperCase();
   }
   get mail() {
-    return this.addressForm.get('mail')?.value;
+    return this.addressForm.get('mail')?.value.trim();
   }
 
   onSubmit(): void {}

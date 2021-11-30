@@ -8,8 +8,11 @@
   </div>
 </div>
 
-<ng-container *ngIf="newsArray">
+<ng-container *ngIf="newsArray; else loading">
   <ng-container *ngFor="let news of newsArray"><app-new [news]="news"></app-new></ng-container>
 </ng-container>
+<ng-template #loading>
+  <mat-spinner class="mt-2"></mat-spinner>
+</ng-template>
 
 <app-footer></app-footer>

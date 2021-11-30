@@ -41,6 +41,21 @@
         <div class="row align-items-center">
           <div class="col-md-3"></div>
           <div class="col-md-3 col-12 text-right">
+            Abreviación de la Profesión
+          </div>
+          <div class="col-md-6 col-12 mt-3">
+            <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
+              <mat-label>Abreviación de la Profesión</mat-label>
+              <input matInput placeholder="Abreviación de la Profesión" formControlName="abreprofession" [maxlength] = "maxInputProfession" required>
+              <mat-error *ngIf="addressForm.controls['profession'].hasError('required')">
+                Abreviación de la Profesión <strong>REQUERIDO</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 col-12 text-right">
             Descripción
           </div>
           <div class="col-md-6 col-12 mt-3">

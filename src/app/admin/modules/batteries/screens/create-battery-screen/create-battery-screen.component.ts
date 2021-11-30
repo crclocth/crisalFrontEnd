@@ -50,13 +50,13 @@ export class CreateBatteryScreenComponent implements OnInit {
   }
 
   get name() {
-    return this.addressForm.get('name')?.value;
+    return this.addressForm.get('name')?.value.trim();
   }
   get description() {
-    return this.addressForm.get('description')?.value;
+    return this.addressForm.get('description')?.value.trim();
   }
   get generalcheck() {
-    return this.addressForm.get('generalcheck')?.value;
+    return this.addressForm.get('generalcheck')?.value.trim();
   }
 
   onSubmit(): void {}

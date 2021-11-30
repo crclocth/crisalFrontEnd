@@ -4,6 +4,7 @@ export interface News {
   lead: string;
   content: string;
   image: string;
+  visible: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }

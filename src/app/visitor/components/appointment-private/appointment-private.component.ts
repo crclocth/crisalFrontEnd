@@ -58,19 +58,19 @@ export class AppointmentPrivateComponent {
   }
 
   get Name() {
-    return this.addressForm.get('Name')?.value;
+    return this.addressForm.get('Name')?.value.trim();
   }
   get Rut() {
-    return this.addressForm.get('Rut')?.value;
+    return this.addressForm.get('Rut')?.value.trim();
   }
   get Email() {
-    return this.addressForm.get('Email')?.value;
+    return this.addressForm.get('Email')?.value.trim();
   }
   get date() {
     return this.addressForm.get('date')?.value;
   }
   get age() {
-    return this.addressForm.get('age')?.value;
+    return this.addressForm.get('age')?.value.trim();
   }
 
   async ngOnInit() {
@@ -101,8 +101,8 @@ export class AppointmentPrivateComponent {
   }
 
   public postApp() {
-    let { date, batterySelect } = this.addressForm.value;
-    console.log(date, batterySelect);
+    let { date } = this.addressForm.value;
+    console.log(date, this.batterySelect);
 
     const info: Appointment = {
       name: this.Name,

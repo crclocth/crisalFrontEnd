@@ -40,13 +40,13 @@ export class CreateNewScreenComponent {
   }
 
   get title() {
-    return this.addressForm.get('title')?.value;
+    return this.addressForm.get('title')?.value.trim();
   }
   get lead() {
-    return this.addressForm.get('lead')?.value;
+    return this.addressForm.get('lead')?.value.trim();
   }
   get content() {
-    return this.addressForm.get('content')?.value;
+    return this.addressForm.get('content')?.value.trim();
   }
 
   ngOnInit() {
@@ -71,6 +71,7 @@ export class CreateNewScreenComponent {
           lead: this.lead,
           content: this.content,
           image: this.imgURL,
+          visible: true,
         })
         .toPromise();
       this.notificationService.success('Se Creó correctamente la Noticia');

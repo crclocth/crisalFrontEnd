@@ -1,5 +1,5 @@
 <div class="modal-header text-center" style="background-color: #309cea; color: white;">
-  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de EDITAR {{certification.name}}? </h4>
+  <h4 class="modal-title  w-100 text-center" id="modal-basic-title">Esta seguro de EDITAR {{certification.title}}? </h4>
   <button class="btn" (click)="activeModal.dismiss('Cross click')">
     <i class="fas fa-times" style="color: white; font-size: 100%;"></i>
   </button>
@@ -31,9 +31,9 @@
                   Imagen
                 </div>
                 <div class="col-md-6 col-12 mt-3">
-                  <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                  <input #file type="file" accept='image/*' (change)="preview(file.files)"[ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '80%'}" />
                   <div class="row text-center justify-content-center align-items-center mt-3">
-                    <img [src]="imgURL" *ngIf="imgURL" class="w-100">
+                    <img [src]="imgURL" *ngIf="imgURL" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
                   </div>
                 </div>
               </div>

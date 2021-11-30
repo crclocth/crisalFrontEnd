@@ -44,7 +44,7 @@ export class CreateExamScreenComponent implements OnInit {
   }
 
   get name() {
-    return this.addressForm.get('name')?.value;
+    return this.addressForm.get('name')?.value.trim();
   }
   get laboratory() {
     return this.addressForm.get('laboratory')?.value;
@@ -53,7 +53,7 @@ export class CreateExamScreenComponent implements OnInit {
     return this.addressForm.get('type')?.value;
   }
   get unit() {
-    return this.addressForm.get('unit')?.value;
+    return this.addressForm.get('unit')?.value.trim();
   }
 
   onSubmit(): void {}
