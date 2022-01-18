@@ -22,6 +22,7 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
   styleUrls: ['./create-certificate-screen.component.less'],
 })
 export class CreateCertificateScreenComponent {
+  public todaydate:Date = new Date();
   public addressForm: FormGroup;
   public formArray: FormArray;
   public formArray2: FormArray;
@@ -112,7 +113,8 @@ export class CreateCertificateScreenComponent {
           Validators.pattern('[0-9]{1,2}[0-9]{3}[0-9]{3}-[0-9Kk]{1}'),
         ],
       ],
-      name: ['', [Validators.required]],
+      names: ['', [Validators.required]],
+      lastNames: ['', [Validators.required]],
       age: [null, [Validators.required, Validators.pattern('[0-9]{1,2}')]],
       position: [null, [Validators.required]],
       pulse: [null, [Validators.required, Validators.pattern('[0-9]{1,3}')]],
@@ -170,8 +172,11 @@ export class CreateCertificateScreenComponent {
   get rut() {
     return this.addressForm.get('rut')?.value;
   }
-  get name() {
-    return this.addressForm.get('name')?.value;
+  get names() {
+    return this.addressForm.get('names')?.value;
+  }
+  get lastNames() {
+    return this.addressForm.get('lastNames')?.value;
   }
   get age() {
     return this.addressForm.get('age')?.value;
@@ -399,16 +404,6 @@ export class CreateCertificateScreenComponent {
     console.log(this.resultArrayGeneral);
   }
 
-  notInArray(): boolean {
-    for (let i = 0; i < this.certificateArray.length; i++) {
-      if (this.name === this.certificateArray[i].title) {
-        //this.notificationService.error('Se repite el nombre de la noticia');
-        return false;
-      }
-    }
-    return true;
-  }
-
   public async postCertificate() {
     this.createResults();
     if (this.selectedconclusion === '') {
@@ -419,7 +414,6 @@ export class CreateCertificateScreenComponent {
     }
 
     let { date } = this.addressForm.value;
-    if (this.notInArray() === true) {
       const info: Certificate = {
         title: this.NameCertificate.toUpperCase(),
         date: this.date,
@@ -437,7 +431,8 @@ export class CreateCertificateScreenComponent {
         },
         examinee: {
           rut: this.rut,
-          name: this.name.toUpperCase(),
+          names: this.names.toUpperCase(),
+          lastNames: this.lastNames.toUpperCase(),
           age: this.age,
           jobTitle: this.position.toUpperCase(),
         },
@@ -466,9 +461,6 @@ export class CreateCertificateScreenComponent {
       } catch (error) {
         this.notificationService.error('Error al Agregar el Certificado');
       }
-    } else {
-      this.notificationService.error('Se repite el nombre del Certificado');
-    }
   }
 
   @HostListener('window:resize', ['$event'])

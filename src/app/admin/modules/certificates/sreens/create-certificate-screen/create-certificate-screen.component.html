@@ -42,7 +42,7 @@
                     <div class="col-md-6 col-12 mt-3">
                         <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '60%'  }">
                             <mat-label>Seleccione una Fecha</mat-label>
-                            <input matInput formControlName="date" [matDatepicker]="picker" required>
+                            <input matInput formControlName="date" [matDatepicker]="picker" [min]="todaydate" required>
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -131,14 +131,29 @@
                 <div class="row align-items-center">
                     <div class="col-md-2"></div>
                     <div class="col-md-4 col-12 text-right">
-                        Nombre del Trabajador
+                        Nombres del Trabajador
                     </div>
                     <div class="col-md-6 col-12 mt-3">
                         <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '60%'}">
-                            <mat-label>Nombre del Trabajador</mat-label>
-                            <input matInput placeholder="Nombre del Trabajador" formControlName="name" [maxlength]="maxInputName" required>
-                            <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
-                                Nombre del Trabajador <strong>REQUERIDO</strong>
+                            <mat-label>Nombres del Trabajador</mat-label>
+                            <input matInput placeholder="Nombres del Trabajador" formControlName="names" [maxlength]="maxInputName" required>
+                            <mat-error *ngIf="addressForm.controls['names'].hasError('required')">
+                                Nombres del Trabajador <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4 col-12 text-right">
+                        Apellidos del Trabajador
+                    </div>
+                    <div class="col-md-6 col-12 mt-3">
+                        <mat-form-field class="full-width" appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '60%'}">
+                            <mat-label>Apellidos del Trabajador</mat-label>
+                            <input matInput placeholder="Apellidos del Trabajador" formControlName="lastNames" [maxlength]="maxInputName" required>
+                            <mat-error *ngIf="addressForm.controls['lastNames'].hasError('required')">
+                              Apellidos del Trabajador <strong>REQUERIDO</strong>
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -514,7 +529,7 @@
                         <div class="col-md-6 col-12 mt-3">
                             <mat-form-field appearance="fill" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'  }">
                                 <mat-label>Elige una Fecha</mat-label>
-                                <input matInput formControlName="datee" [matDatepicker]="pickerr" required>
+                                <input matInput formControlName="datee" [matDatepicker]="pickerr" [min]="todaydate" required>
                                 <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerr></mat-datepicker>
                             </mat-form-field>

@@ -178,8 +178,11 @@ export class EditModalComponent implements OnInit {
   get rut() {
     return this.addressForm.get('rut')?.value;
   }
-  get name() {
-    return this.addressForm.get('name')?.value;
+  get names() {
+    return this.addressForm.get('names')?.value;
+  }
+  get lastNames() {
+    return this.addressForm.get('lastNames')?.value;
   }
   get age() {
     return this.addressForm.get('age')?.value;
@@ -440,16 +443,6 @@ export class EditModalComponent implements OnInit {
     console.log(this.resultArrayGeneral);
   }
 
-  notInArray(): boolean {
-    for (let i = 0; i < this.certificateArray.length; i++) {
-      if (this.name === this.certificateArray[i].title) {
-        //this.notificationService.error('Se repite el nombre de la noticia');
-        return false;
-      }
-    }
-    return true;
-  }
-
   public async edit() {
     /* if (this.selectedconclusion === '') {
       this.selectedconclusion = this.conclusion;
@@ -477,7 +470,8 @@ export class EditModalComponent implements OnInit {
         },
         examinee: {
           rut: this.rut,
-          name: this.name.toUpperCase(),
+          names: this.names.toUpperCase(),
+          lastNames: this.lastNames.toUpperCase(),
           age: this.age,
           jobTitle: this.position.toUpperCase(),
         },
