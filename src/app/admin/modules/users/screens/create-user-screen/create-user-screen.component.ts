@@ -39,9 +39,9 @@ export class CreateUserScreenComponent implements OnInit {
     });
   }
 
-  get name() {
+  /* get name() {
     return this.addressForm.get('name')?.value.trim();
-  }
+  } */
   get mail() {
     return this.addressForm.get('mail')?.value.trim();
   }
@@ -79,10 +79,10 @@ export class CreateUserScreenComponent implements OnInit {
         this.message2 = 'Se guardaron los datos.';
         await this.userProviderService
           .postUser({
-            name: this.name,
+            //name: this.name,
             mail: this.mail,
             password: this.password,
-            role: 'user',
+            //role: 'user',
           })
           .toPromise();
         this.notificationService.success('Se Creó correctamente el Usuario');

@@ -121,7 +121,7 @@ export class DownloadFormComponent {
       new Table([
         [
           'Nombre:',
-          certificate.examinee.name,
+          certificate.examinee.names + ' ' + certificate.examinee.lastNames,
           'RUT:',
           certificate.examinee.rut,
           'Edad:',
@@ -270,7 +270,7 @@ export class DownloadFormComponent {
       datePipe.transform(certificate.date, 'dd-MM-YYYY') +
       '\n\nDatos del Trabajador: ' +
       '\nNombre: ' +
-      certificate.examinee.name +
+      certificate.examinee.names + ' ' + certificate.examinee.lastNames +
       '\nRUT: ' +
       certificate.examinee.rut +
       '\n\nDatos de la Empresa: ' +

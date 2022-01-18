@@ -18,7 +18,7 @@ export interface Certificate {
   validity: string;
   validityDate: string;
   doctor: Doctor;
-  serialCode: number;
+  serialCode?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }

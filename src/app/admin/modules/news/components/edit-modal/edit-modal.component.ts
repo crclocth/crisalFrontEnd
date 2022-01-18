@@ -67,6 +67,7 @@ export class EditModalComponent implements OnInit {
         lead: this.lead,
         content: this.content,
         image: this.imgURL,
+        visible: this.news.visible,
       };
       this.newsProviderService.patchNew(this.news._id, this.information);
       this.notificationService.success('Se Editó la Noticia');

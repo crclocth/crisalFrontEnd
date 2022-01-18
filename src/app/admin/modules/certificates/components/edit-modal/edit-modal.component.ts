@@ -15,7 +15,6 @@ import { CertificateProviderService } from 'src/app/core/providers/certificate/c
 import { BatteryProviderService } from 'src/app/core/providers/battery/battery-provider.service';
 import { CompanyProviderService } from 'src/app/core/providers/company/company-provider.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Code } from 'src/app/core/models/code.model';
 
 @Component({
   selector: 'app-edit-modal',
@@ -179,8 +178,11 @@ export class EditModalComponent implements OnInit {
   get rut() {
     return this.addressForm.get('rut')?.value;
   }
-  get name() {
-    return this.addressForm.get('name')?.value;
+  get names() {
+    return this.addressForm.get('names')?.value;
+  }
+  get lastNames() {
+    return this.addressForm.get('lastNames')?.value;
   }
   get age() {
     return this.addressForm.get('age')?.value;
@@ -282,29 +284,28 @@ export class EditModalComponent implements OnInit {
   }
 
   changeVigencia(value: any) {
-    this.selectedVi = value;
-    console.log(value);
+    this.certificate.validity = value;
   }
 
-  changeInd(value: any) {
+  /* changeInd(value: any) {
     this.selectedInd = value;
     console.log(value);
-  }
+  } */
 
   public setOptionCompany(option: Company) {
-    this.companySelect = option;
+    this.certificate.company = option;
   }
 
   public setOptionDoctor(option: Doctor) {
-    this.doctorSelect = option;
+    this.certificate.doctor = option;
   }
 
   public setOptionconclusion(option: string) {
-    this.selectedconclusion = option;
+    this.certificate.conclusion = option;
   }
 
   public setOptionIndication(option: string) {
-    this.selectedInd = option;
+    this.certificate.suggestions = option;
   }
 
   public async setOptionBattery(option: Battery) {
@@ -368,12 +369,28 @@ export class EditModalComponent implements OnInit {
     });
   }
 
-  checkgeneral(option: any): boolean {
+  checkgeneral(option: any, i: any): boolean {
     let op = false;
     //console.log(this.battery.generalExams);
-    console.log(this.certificate.conclusion);
+    //console.log(this.certificate.conclusion);
 
-    if (this.certificate.conclusion === option) {
+    if (this.certificate.conclusion === option || i === 4) {
+      op = true;
+    }
+    return op;
+    /* this.certificate.conclusion.forEach((element: any) => {
+      if (element === option) {
+        //   console.log(element);
+        op = true;
+      }
+    }); */
+  }
+  checkindication(option: any): boolean {
+    let op = false;
+    //console.log(this.battery.generalExams);
+    // console.log(this.certificate.suggestions);
+
+    if (this.certificate.suggestions === option) {
       op = true;
     }
     return op;
@@ -426,39 +443,37 @@ export class EditModalComponent implements OnInit {
     console.log(this.resultArrayGeneral);
   }
 
-  notInArray(): boolean {
-    for (let i = 0; i < this.certificateArray.length; i++) {
-      if (this.name === this.certificateArray[i].title) {
-        //this.notificationService.error('Se repite el nombre de la noticia');
-        return false;
-      }
-    }
-    return true;
-  }
-
   public async edit() {
-    let { title, name, rut, image } = this.addressForm.value;
+    /* if (this.selectedconclusion === '') {
+      this.selectedconclusion = this.conclusion;
+    }
+    if (this.selectedInd === '') {
+      this.selectedInd = this.indication;
+    } */
+    let { NameCertificate, date, datee, batterySelect, NameCompany } =
+      this.addressForm.value;
     /* if (this.notInArray() === true) { */
     try {
-      /* this.information = {
-        title: this.NameCertificate,
+      this.information = {
+        title: this.NameCertificate.toUpperCase(),
         date: this.date,
-        conclusion: this.selectedconclusion,
-        suggestions: this.selectedInd,
-        validity: this.selectedVi,
+        conclusion: this.certificate.conclusion,
+        suggestions: this.certificate.suggestions,
+        validity: this.certificate.validity,
         validityDate: this.datee,
-        doctor: this.doctorSelect!,
+        doctor: this.certificate.doctor,
         company: {
-          rut: this.companySelect!.rut,
-          name: this.companySelect!.name,
-          email: this.companySelect!.email,
-          faena: this.companySelect!.faena,
+          rut: this.certificate.company!.rut,
+          name: this.certificate.company!.name,
+          email: this.certificate.company!.email,
+          faena: this.certificate.company!.faena,
         },
         examinee: {
           rut: this.rut,
-          name: this.name,
+          names: this.names.toUpperCase(),
+          lastNames: this.lastNames.toUpperCase(),
           age: this.age,
-          jobTitle: this.position,
+          jobTitle: this.position.toUpperCase(),
         },
         physiological: {
           heartRate: this.pulse,
@@ -470,7 +485,7 @@ export class EditModalComponent implements OnInit {
         },
         generalResults: this.resultArrayGeneral,
         labResults: this.resultArrayLab,
-      }; */
+      };
       this.certificateProviderService.patchCertificate(
         this.certificate._id,
         this.information
@@ -490,3 +505,10 @@ export class EditModalComponent implements OnInit {
     return window.innerWidth;
   }
 }
+
+/* this.createResults();
+
+  if (this.notInArray() === true) {
+  } else {
+    this.notificationService.error('Se repite el nombre del Certificado');
+  } */

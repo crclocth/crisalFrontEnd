@@ -3,7 +3,7 @@
     <mat-card class="shipping-card" style="background-color: #E4E4E4;">
       <div class="row text-center justify-content-center align-items-center p-3">
         <div style="background-color: #C4C4C4;" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
-          <h5 class="mt-2">Crear Doctor</h5>
+          <h5 class="mt-2">Agregar Doctor</h5>
         </div>
       </div>
       <hr style="width:50%; margin-left:25% !important; margin-right:25% !important;"/>
@@ -31,7 +31,7 @@
           <div class="col-md-6 col-12 mt-3">
             <mat-form-field appearance="outline" [ngStyle]="{'width': getScreenSize()<=764 ? '100%' : '50%'}">
               <mat-label>RUT del Doctor</mat-label>
-            <input matInput placeholder="Ej: 11111111-1" formControlName="rut" required>
+            <input matInput placeholder="Ej: 10100100-1" formControlName="rut" required>
             <mat-error *ngIf="addressForm.controls['rut'].hasError('required')">
               RUT del Doctor <strong>REQUERIDO</strong>
             </mat-error>
@@ -75,7 +75,7 @@
           <div class="col-12 text-center mt-4">
             <button mat-raised-button class="mb-4" type="submit" style=" color: white;" [disabled]="!addressForm.valid"
               [ngStyle]="{'background-color': !addressForm.valid ? 'gray' : '#309CEA'}" (click)="postDoctor()"
-            >CREAR NOTICIA</button>
+            >AGREGAR DOCTOR</button>
           </div>
         </div>
       </mat-card-actions>

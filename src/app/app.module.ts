@@ -17,6 +17,8 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { InterceptorsInterceptor } from './core/interceptors/interceptors.interceptor';
 import { QRCodeModule } from 'angular2-qrcode';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 const components = [AppComponent];
 
@@ -36,11 +38,13 @@ const components = [AppComponent];
     NgbPaginationModule,
     QRCodeModule,
     NgbAlertModule,
+    MatTableModule,
+    MatSortModule,
     ToastrModule.forRoot({
       progressBar: false,
       closeButton: true,
       timeOut: 3000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-center-center',
       preventDuplicates: true,
       resetTimeoutOnDuplicate: true,
     }),

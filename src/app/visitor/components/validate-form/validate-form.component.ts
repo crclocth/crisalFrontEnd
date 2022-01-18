@@ -124,7 +124,7 @@ export class ValidateFormComponent {
           datePipe.transform(certificate.date, 'dd-MM-YYYY'),
         ],
         ['RUT:', certificate.examinee.rut],
-        ['Nombre', certificate.examinee.name],
+        ['Nombre', certificate.examinee.names + ' ' + certificate.examinee.lastNames],
       ])
         .fontSize(8)
         .layout('noBorders')
@@ -181,7 +181,7 @@ export class ValidateFormComponent {
       datePipe.transform(certificate.date, 'dd-MM-YYYY') +
       '\n\nDatos del Trabajador: ' +
       '\nNombre: ' +
-      certificate.examinee.name +
+      certificate.examinee.names + ' ' + certificate.examinee.lastNames
       '\nRUT: ' +
       certificate.examinee.rut +
       '\n\nDatos de la Empresa: ' +

@@ -7,13 +7,25 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="openModalSee()">Ver</button>
         <button mat-menu-item (click)="openModalEdit()">Editar</button>
+        <ng-container *ngIf="news.visible === true">
+          <button mat-menu-item (click)="hide()">Esconder</button>
+        </ng-container>
+        <ng-container *ngIf="news.visible === false">
+          <button mat-menu-item (click)="hide()">Mostrar</button>
+        </ng-container>
         <button mat-menu-item (click)="openModalDelete()">Eliminar</button>
       </mat-menu>
     </div>
     <div class="col text-center" [ngStyle]="{'display': getScreenSize()>764 ? 'block' : 'none'}">
-      <button type="button" class="btn btn-white"><i class="fas fa-eye" style="font-size: 100%;" (click)="openModalSee()"></i></button>
-      <button type="button" class="btn btn-white"><i class="fas fa-edit"style="font-size: 100%;" (click)="openModalEdit()"></i></button>
-      <button type="button" class="btn btn-white"><i class="fas fa-trash-alt" style="font-size: 100%;" (click)="openModalDelete()"></i></button>
+      <button type="button" title="Ver" class="btn btn-white"><i class="fas fa-eye" style="font-size: 100%;" (click)="openModalSee()"></i></button>
+      <button type="button" title="Editar" class="btn btn-white"><i class="fas fa-edit"style="font-size: 100%;" (click)="openModalEdit()"></i></button>
+      <ng-container *ngIf="news.visible === true">
+        <button type="button" title="Esconder" class="btn btn-white"><i class="fas fa-sun"style="font-size: 100%;" (click)="hide()"></i></button>
+      </ng-container>
+      <ng-container *ngIf="news.visible === false">
+        <button type="button" title="Mostrar" class="btn btn-white"><i class="fas fa-cloud"style="font-size: 100%;" (click)="hide()"></i></button>
+      </ng-container>
+      <button type="button" title="Eliminar" class="btn btn-white"><i class="fas fa-trash-alt" style="font-size: 100%;" (click)="openModalDelete()"></i></button>
     </div>
   </div>
 </div>

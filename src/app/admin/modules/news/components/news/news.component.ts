@@ -6,6 +6,7 @@ import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { SeeModalComponent } from '../see-modal/see-modal.component';
 import { Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { NewsProviderService } from 'src/app/core/providers/news/news-provider.service';
 
 @Component({
   selector: 'app-news',
@@ -16,13 +17,16 @@ export class NewsComponent implements OnInit {
   @Input() news!: News;
   @Output() newItemEvent = new EventEmitter<string>();
   public date: string;
-  constructor(private modalService: NgbModal) {
+  constructor(
+    private modalService: NgbModal,
+    private newsProviderService: NewsProviderService
+  ) {
     this.date = '';
   }
 
   ngOnInit() {
     const datePipe = new DatePipe('en-US');
-    this.date = datePipe.transform(this.news.updatedAt, 'dd-MM-YYYY')!;
+    this.date = datePipe.transform(this.news.createdAt, 'dd-MM-YYYY')!;
   }
 
   openModalDelete() {
@@ -56,6 +60,11 @@ export class NewsComponent implements OnInit {
       console.log(result);
       this.newItemEvent.emit(result);
     });
+  }
+
+  hide() {
+    this.news.visible = !this.news.visible;
+    this.newsProviderService.patchNew(this.news._id!, this.news);
   }
 
   @HostListener('window:resize', ['$event'])
